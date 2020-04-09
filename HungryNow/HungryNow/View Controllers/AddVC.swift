@@ -10,8 +10,13 @@ import UIKit
 
 class AddVC: UIViewController {
 
+    @IBOutlet weak var popUpContainer: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        popUpContainer.addSubview(searchController.searchBar)
 
     }
     
