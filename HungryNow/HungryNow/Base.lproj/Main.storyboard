@@ -37,7 +37,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="8pL-2e-Hbc" kind="relationship" relationship="viewControllers" id="u0k-Tp-5nD"/>
-                        <segue destination="erC-C2-c9N" kind="relationship" relationship="viewControllers" id="cTE-bl-fED"/>
+                        <segue destination="Zas-aY-qIg" kind="relationship" relationship="viewControllers" id="mkZ-3b-qiS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqC-Qw-Bpx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -64,27 +64,43 @@
             <point key="canvasLocation" x="1010" y="-11"/>
         </scene>
         <!--Add-->
+        <scene sceneID="518-5A-zqQ">
+            <objects>
+                <viewController id="Zas-aY-qIg" customClass="AddTransitionVC" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fyA-7g-tcI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="hqW-pk-w7b"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Add" id="5XT-cX-2K7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P6V-mw-AJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="720"/>
+        </scene>
+        <!--Add-->
         <scene sceneID="b5v-zF-0Kg">
             <objects>
-                <viewController storyboardIdentifier="AddVC" id="erC-C2-c9N" customClass="AddVC" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddVC" modalPresentationStyle="overCurrentContext" id="erC-C2-c9N" customClass="AddVC" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bY1-B1-vbp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Gn-17-dfh">
-                                <rect key="frame" x="87" y="216" width="240" height="128"/>
+                                <rect key="frame" x="71" y="216" width="256" height="643"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.55634254220000001" green="0.97934550050000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="l7r-FG-TlS"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add" id="doi-0b-wWH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ee4-Hc-mZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1297" y="711"/>
+            <point key="canvasLocation" x="1295.6521739130435" y="710.49107142857144"/>
         </scene>
     </scenes>
 </document>
