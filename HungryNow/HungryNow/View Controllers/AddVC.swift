@@ -48,17 +48,20 @@ class AddVC: UIViewController {
     }
     
     func getRestaurants() {
-        GoogleAPI.getSearch(query: searchController.searchBar.text!, cllocation: Location.locationManager.location)  { (restaurants: [Restaurant]?, error: Error?) in
-            if error != nil {
-                print(error!)
-            } else if let restaurants = restaurants {
-                self.restaurants = restaurants
-                // Reload the tableView now that there is new data
-                self.tableView.reloadData()
+        retriveCurrentLocation()
+        if let location = Location.locationManager.location {
+            YelpAPI.getSearch(query: searchController.searchBar.text!, cllocation: location)  { (restaurants: [Restaurant]?, error: Error?) in
+                if error != nil {
+                    print(error!)
+                } else if let restaurants = restaurants {
+                    self.restaurants = restaurants
+                    // Reload the tableView now that there is new data
+                    self.tableView.reloadData()
+                }
             }
+        } else {
+            print("no location enabled")
         }
-        
-        tableView.reloadData()
     }
     
     func retriveCurrentLocation() {
@@ -101,6 +104,7 @@ extension AddVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantAddCell", for: indexPath) as! RestaurantAddCell
         cell.nameLabel.text = restaurants[indexPath.row].name
         cell.addressLabel.text = restaurants[indexPath.row].address
+        cell.reviewsCountLabel.text = String(describing: restaurants[indexPath.row].reviewCount)
         cell.backgroundColor = UIColor.yellow
         return cell
     }
@@ -112,8 +116,6 @@ extension AddVC: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // Update current locatino
-        retriveCurrentLocation()
         getRestaurants()
     }
 }
@@ -142,8 +144,6 @@ extension AddVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // .requestLocation will only pass one location to the locations array
         // hence we can access it by taking the first element of the array
-        if let _ = locations.first {
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

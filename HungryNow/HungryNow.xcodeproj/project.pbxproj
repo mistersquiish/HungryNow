@@ -14,7 +14,7 @@
 		28758A25243FD449007F6CCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A23243FD449007F6CCA /* LaunchScreen.storyboard */; };
 		28758A30243FD449007F6CCA /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A2F243FD449007F6CCA /* HungryNowTests.swift */; };
 		28758A3B243FD449007F6CCA /* HungryNowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A3A243FD449007F6CCA /* HungryNowUITests.swift */; };
-		28758A4B243FD53A007F6CCA /* GoogleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4A243FD53A007F6CCA /* GoogleAPI.swift */; };
+		28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4A243FD53A007F6CCA /* YelpAPI.swift */; };
 		28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4C243FD716007F6CCA /* Restaurant.swift */; };
 		28758A4F243FDDDC007F6CCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4E243FDDDC007F6CCA /* Errors.swift */; };
 		28758A51243FE429007F6CCA /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A50243FE429007F6CCA /* AddVC.swift */; };
@@ -61,7 +61,7 @@
 		28758A36243FD449007F6CCA /* HungryNowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HungryNowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28758A3A243FD449007F6CCA /* HungryNowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowUITests.swift; sourceTree = "<group>"; };
 		28758A3C243FD449007F6CCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28758A4A243FD53A007F6CCA /* GoogleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPI.swift; sourceTree = "<group>"; };
+		28758A4A243FD53A007F6CCA /* YelpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
 		28758A4C243FD716007F6CCA /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		28758A4E243FDDDC007F6CCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		28758A50243FE429007F6CCA /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
@@ -70,6 +70,7 @@
 		28758A57243FF0CE007F6CCA /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		28758A5A243FF451007F6CCA /* RestaurantAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAddCell.swift; sourceTree = "<group>"; };
 		28758A5C24400F31007F6CCA /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		28960E7224412CA8006F0AB6 /* CurlCommands.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CurlCommands.sh; sourceTree = "<group>"; };
 		3D9BD93922F087EEC69A8349 /* Pods-HungryNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNow.debug.xcconfig"; path = "Target Support Files/Pods-HungryNow/Pods-HungryNow.debug.xcconfig"; sourceTree = "<group>"; };
 		3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +124,7 @@
 		28758A0E243FD448007F6CCA = {
 			isa = PBXGroup;
 			children = (
+				28960E7224412CA8006F0AB6 /* CurlCommands.sh */,
 				28758A19243FD448007F6CCA /* HungryNow */,
 				28758A2E243FD449007F6CCA /* HungryNowTests */,
 				28758A39243FD449007F6CCA /* HungryNowUITests */,
@@ -188,7 +190,7 @@
 		28758A49243FD52B007F6CCA /* GoogleAPIClient */ = {
 			isa = PBXGroup;
 			children = (
-				28758A4A243FD53A007F6CCA /* GoogleAPI.swift */,
+				28758A4A243FD53A007F6CCA /* YelpAPI.swift */,
 				28758A4C243FD716007F6CCA /* Restaurant.swift */,
 				28758A4E243FDDDC007F6CCA /* Errors.swift */,
 				28758A5C24400F31007F6CCA /* Location.swift */,
@@ -453,7 +455,7 @@
 				28758A4F243FDDDC007F6CCA /* Errors.swift in Sources */,
 				28758A5B243FF451007F6CCA /* RestaurantAddCell.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
-				28758A4B243FD53A007F6CCA /* GoogleAPI.swift in Sources */,
+				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,
 				28758A5D24400F31007F6CCA /* Location.swift in Sources */,
 				28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */,
 			);
