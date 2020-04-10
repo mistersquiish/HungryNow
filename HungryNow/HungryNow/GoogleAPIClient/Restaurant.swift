@@ -33,4 +33,14 @@ class Restaurant {
         address = data["formatted_address"] as? String ?? "N/A"
         rating = data["rating"] as? Float ?? 0.0
     }
+    
+    class func restaurants(dictionaries: [[String: Any]]) -> [Restaurant] {
+        var restaurants: [Restaurant] = []
+        for dictionary in dictionaries {
+            let restaurant = Restaurant(data: dictionary)
+            restaurants.append(restaurant)
+        }
+        
+        return restaurants
+    }
 }

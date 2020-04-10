@@ -9,10 +9,11 @@
 import UIKit
 import Alamofire
 import UserNotifications
+import CoreLocation
 
 class RestaurantVC: UIViewController {
     
-    var notificationCenter: UNUserNotificationCenter!
+    let notificationCenter: UNUserNotificationCenter = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +21,10 @@ class RestaurantVC: UIViewController {
         // delegates
         self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
 
-        // Step 1: Ask user for notification permission
-        notificationCenter = UNUserNotificationCenter.current()
-        
+        // Step 1: Ask user for notification permission        
         notificationCenter.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
         }
-        
+
 //        GoogleAPI.getSearch(query: "Taco Joint")
     }
 
@@ -57,4 +56,3 @@ class RestaurantVC: UIViewController {
     }
     
 }
-

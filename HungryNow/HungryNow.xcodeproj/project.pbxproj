@@ -21,6 +21,8 @@
 		28758A53243FE96E007F6CCA /* AddTransitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A52243FE96E007F6CCA /* AddTransitionVC.swift */; };
 		28758A56243FF0BB007F6CCA /* Add.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A55243FF0BB007F6CCA /* Add.storyboard */; };
 		28758A58243FF0CE007F6CCA /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A57243FF0CE007F6CCA /* Tutorial.storyboard */; };
+		28758A5B243FF451007F6CCA /* RestaurantAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A5A243FF451007F6CCA /* RestaurantAddCell.swift */; };
+		28758A5D24400F31007F6CCA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A5C24400F31007F6CCA /* Location.swift */; };
 		936CAA022480651B71C3CC76 /* Pods_HungryNowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */; };
 		DF84A3A5C444A447C1F7594C /* Pods_HungryNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */; };
 		FAD9CF2BEC83C5264FB88FC0 /* Pods_HungryNowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08171D9FB4B49018149F883D /* Pods_HungryNowTests.framework */; };
@@ -66,6 +68,8 @@
 		28758A52243FE96E007F6CCA /* AddTransitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransitionVC.swift; sourceTree = "<group>"; };
 		28758A55243FF0BB007F6CCA /* Add.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Add.storyboard; sourceTree = "<group>"; };
 		28758A57243FF0CE007F6CCA /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		28758A5A243FF451007F6CCA /* RestaurantAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAddCell.swift; sourceTree = "<group>"; };
+		28758A5C24400F31007F6CCA /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3D9BD93922F087EEC69A8349 /* Pods-HungryNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNow.debug.xcconfig"; path = "Target Support Files/Pods-HungryNow/Pods-HungryNow.debug.xcconfig"; sourceTree = "<group>"; };
 		3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				28758A49243FD52B007F6CCA /* GoogleAPIClient */,
+				28758A59243FF422007F6CCA /* Views */,
 				28758A48243FD50C007F6CCA /* View Controllers */,
 				28758A1A243FD448007F6CCA /* AppDelegate.swift */,
 				28758A54243FF09B007F6CCA /* Storyboards */,
@@ -186,6 +191,7 @@
 				28758A4A243FD53A007F6CCA /* GoogleAPI.swift */,
 				28758A4C243FD716007F6CCA /* Restaurant.swift */,
 				28758A4E243FDDDC007F6CCA /* Errors.swift */,
+				28758A5C24400F31007F6CCA /* Location.swift */,
 			);
 			path = GoogleAPIClient;
 			sourceTree = "<group>";
@@ -198,6 +204,14 @@
 				28758A57243FF0CE007F6CCA /* Tutorial.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		28758A59243FF422007F6CCA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				28758A5A243FF451007F6CCA /* RestaurantAddCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		37F5DDA6791788BD35D1CB5E /* Frameworks */ = {
@@ -437,8 +451,10 @@
 				28758A1D243FD448007F6CCA /* RestaurantVC.swift in Sources */,
 				28758A53243FE96E007F6CCA /* AddTransitionVC.swift in Sources */,
 				28758A4F243FDDDC007F6CCA /* Errors.swift in Sources */,
+				28758A5B243FF451007F6CCA /* RestaurantAddCell.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* GoogleAPI.swift in Sources */,
+				28758A5D24400F31007F6CCA /* Location.swift in Sources */,
 				28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
