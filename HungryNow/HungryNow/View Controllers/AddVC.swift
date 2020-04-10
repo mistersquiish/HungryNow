@@ -19,7 +19,6 @@ class AddVC: UIViewController {
     var restaurants: [Restaurant] = []
     let searchController = UISearchController(searchResultsController: nil)
     // used to check whether the user has GPS enabled or GPS capable
-    var currentLocation: CLLocation? = Location.locationManager.location
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +48,7 @@ class AddVC: UIViewController {
     }
     
     func getRestaurants() {
-        GoogleAPI.getSearch(query: searchController.searchBar.text!, cllocation: currentLocation)  { (restaurants: [Restaurant]?, error: Error?) in
+        GoogleAPI.getSearch(query: searchController.searchBar.text!, cllocation: Location.locationManager.location)  { (restaurants: [Restaurant]?, error: Error?) in
             if error != nil {
                 print(error!)
             } else if let restaurants = restaurants {
@@ -115,7 +114,6 @@ extension AddVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Update current locatino
         retriveCurrentLocation()
-        currentLocation = Location.locationManager.location
         getRestaurants()
     }
 }
@@ -151,7 +149,6 @@ extension AddVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // might be that user didn't enable location service on the device
         // or there might be no GPS signal inside a building
-        currentLocation = nil
         
         // might be a good idea to show an alert to user to ask them to walk to a place with GPS signal
     }
