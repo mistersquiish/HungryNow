@@ -38,7 +38,6 @@ class YelpAPI {
                           parameters: parameters,
                           headers: header).response { response in
                             if let data = response.data {
-                                let temp = response.response!.url
                                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                                 let restaurantsDictionary = dataDictionary["businesses"] as! [[String: Any]]
                                 
