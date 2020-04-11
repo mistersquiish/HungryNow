@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		286F97C424423AFB00BC2DED /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C324423AFB00BC2DED /* SearchView.swift */; };
+		286F97C624423C2800BC2DED /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C524423C2800BC2DED /* AddViewController.swift */; };
 		28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A1A243FD448007F6CCA /* AppDelegate.swift */; };
 		28758A1D243FD448007F6CCA /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A1C243FD448007F6CCA /* RestaurantVC.swift */; };
 		28758A20243FD448007F6CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A1E243FD448007F6CCA /* Main.storyboard */; };
@@ -23,6 +25,9 @@
 		28758A58243FF0CE007F6CCA /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A57243FF0CE007F6CCA /* Tutorial.storyboard */; };
 		28758A5B243FF451007F6CCA /* RestaurantAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A5A243FF451007F6CCA /* RestaurantAddCell.swift */; };
 		28758A5D24400F31007F6CCA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A5C24400F31007F6CCA /* Location.swift */; };
+		28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A97838244241A5007BF823 /* RestaurantListViewModel.swift */; };
+		28A9783B24424FEA007BF823 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783A24424FEA007BF823 /* SearchBar.swift */; };
+		28A9783E24426714007BF823 /* ImageProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783D24426714007BF823 /* ImageProcessing.swift */; };
 		936CAA022480651B71C3CC76 /* Pods_HungryNowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */; };
 		DF84A3A5C444A447C1F7594C /* Pods_HungryNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */; };
 		FAD9CF2BEC83C5264FB88FC0 /* Pods_HungryNowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08171D9FB4B49018149F883D /* Pods_HungryNowTests.framework */; };
@@ -48,6 +53,8 @@
 /* Begin PBXFileReference section */
 		08171D9FB4B49018149F883D /* Pods_HungryNowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		188184C43F39B9A27C556E70 /* Pods-HungryNowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNowUITests.release.xcconfig"; path = "Target Support Files/Pods-HungryNowUITests/Pods-HungryNowUITests.release.xcconfig"; sourceTree = "<group>"; };
+		286F97C324423AFB00BC2DED /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		286F97C524423C2800BC2DED /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		28758A17243FD448007F6CCA /* HungryNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HungryNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28758A1A243FD448007F6CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28758A1C243FD448007F6CCA /* RestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVC.swift; sourceTree = "<group>"; };
@@ -71,6 +78,9 @@
 		28758A5A243FF451007F6CCA /* RestaurantAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAddCell.swift; sourceTree = "<group>"; };
 		28758A5C24400F31007F6CCA /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		28960E7224412CA8006F0AB6 /* CurlCommands.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CurlCommands.sh; sourceTree = "<group>"; };
+		28A97838244241A5007BF823 /* RestaurantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewModel.swift; sourceTree = "<group>"; };
+		28A9783A24424FEA007BF823 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		28A9783D24426714007BF823 /* ImageProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessing.swift; sourceTree = "<group>"; };
 		3D9BD93922F087EEC69A8349 /* Pods-HungryNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNow.debug.xcconfig"; path = "Target Support Files/Pods-HungryNow/Pods-HungryNow.debug.xcconfig"; sourceTree = "<group>"; };
 		3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +131,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		286F97C224423AB500BC2DED /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				28A9783724424181007BF823 /* View Models */,
+				286F97C324423AFB00BC2DED /* SearchView.swift */,
+				286F97C524423C2800BC2DED /* AddViewController.swift */,
+				28A9783A24424FEA007BF823 /* SearchBar.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		286F97C724423F4E00BC2DED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				28758A4C243FD716007F6CCA /* Restaurant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		28758A0E243FD448007F6CCA = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +176,9 @@
 		28758A19243FD448007F6CCA /* HungryNow */ = {
 			isa = PBXGroup;
 			children = (
-				28758A49243FD52B007F6CCA /* GoogleAPIClient */,
+				28A9783C24426703007BF823 /* Helpers */,
+				286F97C224423AB500BC2DED /* Search */,
+				28758A49243FD52B007F6CCA /* YelpAPIClient */,
 				28758A59243FF422007F6CCA /* Views */,
 				28758A48243FD50C007F6CCA /* View Controllers */,
 				28758A1A243FD448007F6CCA /* AppDelegate.swift */,
@@ -187,15 +218,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		28758A49243FD52B007F6CCA /* GoogleAPIClient */ = {
+		28758A49243FD52B007F6CCA /* YelpAPIClient */ = {
 			isa = PBXGroup;
 			children = (
+				286F97C724423F4E00BC2DED /* Models */,
 				28758A4A243FD53A007F6CCA /* YelpAPI.swift */,
-				28758A4C243FD716007F6CCA /* Restaurant.swift */,
 				28758A4E243FDDDC007F6CCA /* Errors.swift */,
 				28758A5C24400F31007F6CCA /* Location.swift */,
 			);
-			path = GoogleAPIClient;
+			path = YelpAPIClient;
 			sourceTree = "<group>";
 		};
 		28758A54243FF09B007F6CCA /* Storyboards */ = {
@@ -214,6 +245,22 @@
 				28758A5A243FF451007F6CCA /* RestaurantAddCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		28A9783724424181007BF823 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				28A97838244241A5007BF823 /* RestaurantListViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		28A9783C24426703007BF823 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				28A9783D24426714007BF823 /* ImageProcessing.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		37F5DDA6791788BD35D1CB5E /* Frameworks */ = {
@@ -449,12 +496,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A9783B24424FEA007BF823 /* SearchBar.swift in Sources */,
+				286F97C424423AFB00BC2DED /* SearchView.swift in Sources */,
+				28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */,
 				28758A51243FE429007F6CCA /* AddVC.swift in Sources */,
 				28758A1D243FD448007F6CCA /* RestaurantVC.swift in Sources */,
+				286F97C624423C2800BC2DED /* AddViewController.swift in Sources */,
 				28758A53243FE96E007F6CCA /* AddTransitionVC.swift in Sources */,
 				28758A4F243FDDDC007F6CCA /* Errors.swift in Sources */,
 				28758A5B243FF451007F6CCA /* RestaurantAddCell.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
+				28A9783E24426714007BF823 /* ImageProcessing.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,
 				28758A5D24400F31007F6CCA /* Location.swift in Sources */,
 				28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */,
@@ -636,6 +688,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V786S5U359;
 				INFOPLIST_FILE = HungryNow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -655,6 +708,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V786S5U359;
 				INFOPLIST_FILE = HungryNow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

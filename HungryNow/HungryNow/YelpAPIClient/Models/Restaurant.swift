@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Restaurant {
     var id: String!
@@ -14,9 +15,9 @@ class Restaurant {
     var address: String!
     var rating: Float!
     var reviewCount: Int!
-    var phone: Int?
-    var imageURL: URL?
-    var categories: [String: String]?
+    var phone: String?
+    var image: UIImage?
+    var categories: [String: String]!
     
     init(data: [String: Any]) {
 //        do {
@@ -36,10 +37,19 @@ class Restaurant {
         name = data["name"] as? String ?? "N/A"
         rating = data["rating"] as? Float ?? 0.0
         reviewCount = data["review_count"] as? Int ?? 0
-        phone = data["phone"] as? Int
-        imageURL = data["image_url"] as? URL
-        categories = data["categories"] as? [String: String]
-
+        phone = data["phone"] as? String ?? "No number"
+        categories = data["categories"] as? [String: String] ?? ["alias": "food",
+                                                                    "title": "food"]
+        
+        // Get image
+        getData(from: URL(fileURLWithPath: data["image_url"] as! String)) { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() {
+                self.image = UIImage(data: data)
+            }
+        }
+        
+        // Address string
         if let locationInfo = data["location"] as? [String: Any] {
             let city = locationInfo["city"]!
             //let country = locationInfo["country"]
