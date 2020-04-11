@@ -18,7 +18,9 @@ class AddVC: UIViewController {
     
     var restaurants: [Restaurant] = []
     let searchController = UISearchController(searchResultsController: nil)
-    // used to check whether the user has GPS enabled or GPS capable
+    
+    // Drag to dismiss variables
+    var viewTranslation = CGPoint(x: 0, y: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,11 @@ class AddVC: UIViewController {
         // Ask for location permission
         Location.locationManager.delegate = self
         Location.locationManager.requestWhenInUseAuthorization()
+        
+        // Drag to dismiss Modal View
+        popUpContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
 
+        
         // UI changes
         tableView.rowHeight = 145
         
@@ -88,6 +94,31 @@ class AddVC: UIViewController {
         // start monitoring location data and get notified whenever there is change in location data / every few seconds, until stopUpdatingLocation() is called
         // locationManager.startUpdatingLocation()
     }
+    
+    // dismiss modal view
+    @objc func handleDismiss(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .changed:
+            viewTranslation = sender.translation(in: view)
+            if viewTranslation.y > 0 {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.view.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
+                })
+            }
+            
+        case .ended:
+            if viewTranslation.y < 200 {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.view.transform = .identity
+                })
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
+        default:
+            break
+        }
+    }
+
 }
 
 extension AddVC: UITableViewDelegate, UITableViewDataSource {

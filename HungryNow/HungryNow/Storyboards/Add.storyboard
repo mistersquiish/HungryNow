@@ -111,7 +111,6 @@
                                                     <outlet property="addressLabel" destination="IoS-xW-iNW" id="Rf8-Xy-a0b"/>
                                                     <outlet property="categoriesLabel" destination="zd9-hH-xip" id="uAv-Et-d37"/>
                                                     <outlet property="distanceLabel" destination="6k1-eH-gIy" id="D6D-2y-0pz"/>
-                                                    <outlet property="nameLabel" destination="1WE-sK-Gbo" id="8hC-CY-ivk"/>
                                                     <outlet property="ratingImageView" destination="At2-BD-ujO" id="6a7-Ob-4YN"/>
                                                     <outlet property="reviewsCountLabel" destination="FN8-uI-84l" id="f4d-DZ-xzx"/>
                                                     <outlet property="thumbImageView" destination="KXv-7s-8xg" id="8Mq-aa-hN0"/>
