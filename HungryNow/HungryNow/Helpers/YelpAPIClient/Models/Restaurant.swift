@@ -8,30 +8,20 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
-class Restaurant {
-    var id: String!
+struct Restaurant: Identifiable {
+    var id: String
     var name: String!
     var address: String!
+    var city: String!
     var rating: Float!
     var reviewCount: Int!
     var phone: String?
-    var image: UIImage?
+    var imageURL: String?
     var categories: [String: String]!
     
     init(data: [String: Any]) {
-//        do {
-//            let types: [String: String] = data[""] as! [String]
-//
-//            // if data passed in is not a restaurant
-//            if !types.contains("restaurant") {
-//                throw GoogleAPIError.NotRestaurant
-//            }
-//        } catch GoogleAPIError.NotRestaurant {
-//            print(GoogleAPIError.NotRestaurant.localizedDescription)
-//        } catch {
-//            print(error)
-//        }
         
         id = data["id"] as? String ?? "N/A"
         name = data["name"] as? String ?? "N/A"
@@ -40,14 +30,7 @@ class Restaurant {
         phone = data["phone"] as? String ?? "No number"
         categories = data["categories"] as? [String: String] ?? ["alias": "food",
                                                                     "title": "food"]
-        
-        // Get image
-        getData(from: URL(fileURLWithPath: data["image_url"] as! String)) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() {
-                self.image = UIImage(data: data)
-            }
-        }
+        imageURL = data["image_url"] as? String
         
         // Address string
         if let locationInfo = data["location"] as? [String: Any] {
@@ -56,12 +39,13 @@ class Restaurant {
             let state = locationInfo["state"]!
             let address = locationInfo["address1"]!
             
-            self.address = "\(String(describing: address)), \(String(describing: city)), \(String(describing: state))"
+            self.address = "\(String(describing: address))"
+            self.city = "\(String(describing: city)), \(String(describing: state))"
         }
         
     }
     
-    class func restaurants(dictionaries: [[String: Any]]) -> [Restaurant] {
+    static func restaurants(dictionaries: [[String: Any]]) -> [Restaurant] {
         var restaurants: [Restaurant] = []
         for dictionary in dictionaries {
             let restaurant = Restaurant(data: dictionary)

@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum GoogleAPIError: Error {
+enum YelpAPIError: Error {
     case NotRestaurant
 }
 
-extension GoogleAPIError: LocalizedError {
+extension YelpAPIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .NotRestaurant:

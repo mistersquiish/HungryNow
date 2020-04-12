@@ -9,15 +9,17 @@
 import Foundation
 import CoreLocation
 import UIKit
+import Alamofire
+import AlamofireImage
+import SwiftUI
 
 class RestaurantListViewModel: NSObject, ObservableObject {
     @Published var restaurants = [RestaurantViewModel]()
+    
     var locationManager = LocationManager()
     
     override init() {
-        super.init()
-        // Ask for location permission
-        
+        super.init()        
     }
     
     func onSearchTapped(query: String) {
@@ -27,13 +29,13 @@ class RestaurantListViewModel: NSObject, ObservableObject {
                     print(error!)
                 } else if let restaurants = restaurants {
                     self.restaurants = restaurants.map(RestaurantViewModel.init)
+                    
                 }
             }
         } else {
             print("no location enabled")
         }
     }
-
 }
 
 struct RestaurantViewModel {
@@ -42,6 +44,8 @@ struct RestaurantViewModel {
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
     }
+    
+    
     
     var id: String {
         return self.restaurant.id
@@ -53,6 +57,10 @@ struct RestaurantViewModel {
     
     var address: String {
         return self.restaurant.address
+    }
+    
+    var city: String {
+        return self.restaurant.city
     }
     
     var rating: Float {
@@ -67,8 +75,8 @@ struct RestaurantViewModel {
         return self.restaurant.phone ?? "No phone"
     }
     
-    var image: UIImage {
-        return self.restaurant.image ?? UIImage(named: "missing-restaurant")!
+    var imageURL: String {
+        return self.restaurant.imageURL ?? ""
     }
     
     var categories: [String: String] {

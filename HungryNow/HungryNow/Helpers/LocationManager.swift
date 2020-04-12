@@ -38,7 +38,7 @@ class LocationManager: NSObject {
             
             // if haven't show location permission dialog before, show it to user
             if(status == .notDetermined){
-                Location.locationManager.requestWhenInUseAuthorization()
+                locationManager.requestWhenInUseAuthorization()
                 
                 // if you want the app to retrieve location data even in background, use requestAlwaysAuthorization
                 // locationManager.requestAlwaysAuthorization()

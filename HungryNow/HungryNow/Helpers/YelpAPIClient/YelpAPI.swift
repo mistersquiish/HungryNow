@@ -30,7 +30,8 @@ class YelpAPI {
             "longitude": cllocation.coordinate.longitude,
             "radius": radius,
             "sort_by": "distance",
-            "limit": 40
+            "limit": 20,
+            "categories": "(food, All)"
         ] as [String : Any]
         
         Alamofire.request(requestURL,

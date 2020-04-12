@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="919" y="-573"/>
         </scene>
-        <!--AddVC-->
+        <!--SearchVC-->
         <scene sceneID="q3d-FQ-aoZ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="AddVC" storyboardName="Add" referencedIdentifier="AddVC" id="foT-Gg-qgz" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="SearchVC" storyboardName="Search" referencedIdentifier="SearchVC" id="foT-Gg-qgz" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqk-EB-cmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="22" y="-78"/>
@@ -136,6 +136,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-UA-5BJ">
+                                <rect key="frame" x="184" y="631" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -144,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-846.37681159420299" y="107.8125"/>
+            <point key="canvasLocation" x="-846.37681159420299" y="118.52678571428571"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="K9x-eF-enW">
@@ -188,7 +193,7 @@
         <!--Add-->
         <scene sceneID="518-5A-zqQ">
             <objects>
-                <viewController id="Zas-aY-qIg" customClass="AddTransitionVC" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Zas-aY-qIg" customClass="SearchTransitionVC" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fyA-7g-tcI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -1,21 +1,15 @@
 //
-//  AddViewController.swift
+//  SearchTransitionVC.swift
 //  HungryNow
 //
-//  Created by Henry Vuong on 4/11/20.
+//  Created by Henry Vuong on 4/9/20.
 //  Copyright © 2020 Henry Vuong. All rights reserved.
 //
 
 import UIKit
-import SwiftUI
 
-class AddViewController: UIViewController {
+class SearchTransitionVC: UIViewController {
 
-    @IBSegueAction func addSwiftUIView(_ coder: NSCoder) -> UIViewController? {
-        return UIHostingController(coder: coder, rootView: SearchView())
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
