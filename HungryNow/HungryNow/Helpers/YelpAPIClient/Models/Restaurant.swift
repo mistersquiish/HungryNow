@@ -19,7 +19,7 @@ struct Restaurant: Identifiable {
     var reviewCount: Int!
     var phone: String?
     var imageURL: String?
-    var categories: [String: String]!
+    var categories: [[String: String]]!
     
     init(data: [String: Any]) {
         
@@ -28,8 +28,8 @@ struct Restaurant: Identifiable {
         rating = data["rating"] as? Float ?? 0.0
         reviewCount = data["review_count"] as? Int ?? 0
         phone = data["phone"] as? String ?? "No number"
-        categories = data["categories"] as? [String: String] ?? ["alias": "food",
-                                                                    "title": "food"]
+        categories = data["categories"] as? [[String: String]] ?? [["alias": "food",
+                                                                    "title": "food"]]
         imageURL = data["image_url"] as? String
         
         // Address string

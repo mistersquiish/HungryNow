@@ -20,31 +20,49 @@ struct SearchView : View {
 
     var body: some View {
         VStack (alignment: .leading) {
-            DismissButton(vcDelegate: vcDelegate)
-            SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
-            List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
-                RestaurantRowView(restaurant: restaurant)
+            NavigationView {
+                VStack (alignment: .leading) {
+                    SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
+                    List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
+                        NavigationLink(destination: SearchAddView(restaurant: restaurant)) {
+                            RestaurantRowView(restaurant: restaurant)
+                        }
+                    }
+                }
+                .navigationBarTitle(Text("Add a Restaurant"))
+                .navigationBarItems(leading:
+                DismissButton(vcDelegate: vcDelegate))
             }
         }
-        
     }
 }
 
 struct RestaurantRowView: View {
+    @State var showingAddView = false
     let restaurant: RestaurantViewModel
+    var categories: String {
+        get {
+            var categories: String = ""
+            for category in restaurant.categories {
+                categories += category["title"]! + ", "
+            }
+            return String(categories.dropLast())
+        }
+    }
     
     var body: some View {
         HStack (alignment: .top) {
             ImageViewWidget(imageURL: restaurant.imageURL)
             .frame(width: 125, height: 125)
             VStack (alignment: .leading) {
-                Text(restaurant.name).font(.title)
+                Text(restaurant.name).font(.headline)
                 HStack {
                     Text(String("\(restaurant.rating) rating,"))
                     Text(String("\(restaurant.reviewCount) reviews"))
                 }
                 Text(restaurant.address)
                 Text(restaurant.city)
+                Text(categories).font(.subheadline)
             }
         }
     }
@@ -62,8 +80,6 @@ struct DismissButton: View {
                 .frame(width: 25, height: 25)
                 .accentColor(Color(UIColor.black))
         }
-        .padding(.top, 50)
-        .padding(.leading)
     }
 }
 

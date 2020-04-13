@@ -79,7 +79,7 @@ struct RestaurantViewModel {
         return self.restaurant.imageURL ?? ""
     }
     
-    var categories: [String: String] {
+    var categories: [[String: String]] {
         return self.restaurant.categories
     }
     
