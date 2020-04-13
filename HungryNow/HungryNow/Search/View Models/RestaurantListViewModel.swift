@@ -45,8 +45,6 @@ struct RestaurantViewModel {
         self.restaurant = restaurant
     }
     
-    
-    
     var id: String {
         return self.restaurant.id
     }
@@ -73,6 +71,14 @@ struct RestaurantViewModel {
     
     var phone: String {
         return self.restaurant.phone ?? "No phone"
+    }
+    
+    var price: String {
+        return self.restaurant.price ?? "$"
+    }
+    
+    var distance: Float {
+        return self.restaurant.distance
     }
     
     var imageURL: String {

@@ -31,7 +31,7 @@ class YelpAPI {
             "radius": radius,
             "sort_by": "distance",
             "limit": 20,
-            "categories": "(food, All)"
+            "categories": "food,restaurants"
         ] as [String : Any]
         
         Alamofire.request(requestURL,
@@ -49,6 +49,10 @@ class YelpAPI {
                                 completion(nil, response.error)
                             }
         }
+    }
+    
+    static func getDetails(restaurant: Restaurant, completion: @escaping (Restaurant, Error?) -> ()) {
+        
     }
 }
 

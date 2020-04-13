@@ -46,7 +46,7 @@ struct RestaurantRowView: View {
             for category in restaurant.categories {
                 categories += category["title"]! + ", "
             }
-            return String(categories.dropLast())
+            return String(categories.dropLast().dropLast())
         }
     }
     
@@ -59,9 +59,11 @@ struct RestaurantRowView: View {
                 HStack {
                     Text(String("\(restaurant.rating) rating,"))
                     Text(String("\(restaurant.reviewCount) reviews"))
+                    Text(restaurant.price)
                 }
                 Text(restaurant.address)
                 Text(restaurant.city)
+                Text(String(format: "%.2f mi", restaurant.distance)).font(.footnote)
                 Text(categories).font(.subheadline)
             }
         }

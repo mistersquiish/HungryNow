@@ -18,8 +18,13 @@ struct Restaurant: Identifiable {
     var rating: Float!
     var reviewCount: Int!
     var phone: String?
+    var price: String?
+    var distance: Float! //(converted to miles)
     var imageURL: String?
     var categories: [[String: String]]!
+    
+    // detailed vars. requires an additional API request
+    
     
     init(data: [String: Any]) {
         
@@ -30,6 +35,11 @@ struct Restaurant: Identifiable {
         phone = data["phone"] as? String ?? "No number"
         categories = data["categories"] as? [[String: String]] ?? [["alias": "food",
                                                                     "title": "food"]]
+        price = data["price"] as? String
+        
+        // convert distance to meters
+        let distanceMeters = Measurement(value: data["distance"] as? Double ?? 0.0, unit: UnitLength.meters)
+        distance = Float(round(100*distanceMeters.converted(to: UnitLength.miles).value)/100)
         imageURL = data["image_url"] as? String
         
         // Address string
