@@ -17,7 +17,7 @@ class RestaurantAddViewModel: NSObject, ObservableObject {
         self.restaurantVM = restaurantVM
         super.init()
         
-        YelpAPI.getHours(restaurant: restaurantVM.restaurant) { (hours: Hours?, error: Error?) in
+        YelpAPI.getHours(restaurantID: restaurantVM.restaurant.id) { (hours: Hours?, error: Error?) in
             if error != nil {
                 print(error!)
             } else if let hours = hours {

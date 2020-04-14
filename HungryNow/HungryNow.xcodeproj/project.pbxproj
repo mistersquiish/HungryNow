@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820716E2443CA5900174DEF /* ImageWidgetView.swift */; };
+		282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6C24462A9700901D1B /* HungryNowTests.swift */; };
+		282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6E24464F5600901D1B /* YelpAPITests.swift */; };
 		286F97C424423AFB00BC2DED /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C324423AFB00BC2DED /* SearchView.swift */; };
 		286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C524423C2800BC2DED /* SearchViewController.swift */; };
 		28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A1A243FD448007F6CCA /* AppDelegate.swift */; };
@@ -15,7 +17,6 @@
 		28758A20243FD448007F6CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A1E243FD448007F6CCA /* Main.storyboard */; };
 		28758A22243FD449007F6CCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28758A21243FD449007F6CCA /* Assets.xcassets */; };
 		28758A25243FD449007F6CCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A23243FD449007F6CCA /* LaunchScreen.storyboard */; };
-		28758A30243FD449007F6CCA /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A2F243FD449007F6CCA /* HungryNowTests.swift */; };
 		28758A3B243FD449007F6CCA /* HungryNowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A3A243FD449007F6CCA /* HungryNowUITests.swift */; };
 		28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4A243FD53A007F6CCA /* YelpAPI.swift */; };
 		28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4C243FD716007F6CCA /* Restaurant.swift */; };
@@ -56,6 +57,9 @@
 		08171D9FB4B49018149F883D /* Pods_HungryNowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		188184C43F39B9A27C556E70 /* Pods-HungryNowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNowUITests.release.xcconfig"; path = "Target Support Files/Pods-HungryNowUITests/Pods-HungryNowUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2820716E2443CA5900174DEF /* ImageWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidgetView.swift; sourceTree = "<group>"; };
+		282E4E6B24462A9700901D1B /* HungryNowTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HungryNowTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		282E4E6C24462A9700901D1B /* HungryNowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowTests.swift; sourceTree = "<group>"; };
+		282E4E6E24464F5600901D1B /* YelpAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPITests.swift; sourceTree = "<group>"; };
 		286F97C324423AFB00BC2DED /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		286F97C524423C2800BC2DED /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		28758A17243FD448007F6CCA /* HungryNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HungryNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +70,6 @@
 		28758A24243FD449007F6CCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28758A26243FD449007F6CCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28758A2B243FD449007F6CCA /* HungryNowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HungryNowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28758A2F243FD449007F6CCA /* HungryNowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowTests.swift; sourceTree = "<group>"; };
 		28758A31243FD449007F6CCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28758A36243FD449007F6CCA /* HungryNowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HungryNowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28758A3A243FD449007F6CCA /* HungryNowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowUITests.swift; sourceTree = "<group>"; };
@@ -197,8 +200,10 @@
 		28758A2E243FD449007F6CCA /* HungryNowTests */ = {
 			isa = PBXGroup;
 			children = (
-				28758A2F243FD449007F6CCA /* HungryNowTests.swift */,
 				28758A31243FD449007F6CCA /* Info.plist */,
+				282E4E6C24462A9700901D1B /* HungryNowTests.swift */,
+				282E4E6E24464F5600901D1B /* YelpAPITests.swift */,
+				282E4E6B24462A9700901D1B /* HungryNowTests-Bridging-Header.h */,
 			);
 			path = HungryNowTests;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 					};
 					28758A2A243FD449007F6CCA = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1140;
 						TestTargetID = 28758A16243FD448007F6CCA;
 					};
 					28758A35243FD449007F6CCA = {
@@ -533,7 +539,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28758A30243FD449007F6CCA /* HungryNowTests.swift in Sources */,
+				282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */,
+				282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,7 +638,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -686,7 +693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -742,6 +749,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V786S5U359;
 				INFOPLIST_FILE = HungryNowTests/Info.plist;
@@ -752,6 +760,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = HungryNow.HungryNowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HungryNowTests/HungryNowTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HungryNow.app/HungryNow";
@@ -764,6 +774,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V786S5U359;
 				INFOPLIST_FILE = HungryNowTests/Info.plist;
@@ -774,6 +785,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = HungryNow.HungryNowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HungryNowTests/HungryNowTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HungryNow.app/HungryNow";

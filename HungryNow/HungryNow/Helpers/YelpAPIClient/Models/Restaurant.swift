@@ -59,7 +59,7 @@ class Restaurant: Identifiable {
             let state = locationInfo["state"]!
             let address = locationInfo["address1"]!
             
-            country = locationInfo["country"]! as! String
+            country = locationInfo["country"]! as? String
             
             self.address = "\(String(describing: address))"
             self.city = "\(String(describing: city)), \(String(describing: state))"

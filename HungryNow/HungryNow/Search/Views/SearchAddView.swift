@@ -12,19 +12,16 @@ import SwiftUI
 /// View for the search add view of a searched restaurant
 struct SearchAddView : View {
     
-    @ObservedObject var restaurantAddVM: RestaurantAddViewModel
+    //@ObservedObject var restaurantAddVM: RestaurantAddViewModel
     var restaurantVM: RestaurantViewModel
     init(restaurantVM: RestaurantViewModel) {
         self.restaurantVM = restaurantVM
-        self.restaurantAddVM = RestaurantAddViewModel(restaurantVM: restaurantVM)
+        //self.restaurantAddVM = RestaurantAddViewModel(restaurantVM: restaurantVM)
     }
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("day")
-                Text(String(restaurantAddVM.hoursVM.days[0]![0].day))
-            }
+            Text("hi")
         }
         
     }
