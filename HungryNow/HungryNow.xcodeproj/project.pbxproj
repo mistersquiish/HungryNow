@@ -10,6 +10,7 @@
 		2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820716E2443CA5900174DEF /* ImageWidgetView.swift */; };
 		282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6C24462A9700901D1B /* HungryNowTests.swift */; };
 		282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6E24464F5600901D1B /* YelpAPITests.swift */; };
+		282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E702446604C00901D1B /* DurationPickerView.swift */; };
 		286F97C424423AFB00BC2DED /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C324423AFB00BC2DED /* SearchView.swift */; };
 		286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C524423C2800BC2DED /* SearchViewController.swift */; };
 		28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A1A243FD448007F6CCA /* AppDelegate.swift */; };
@@ -60,6 +61,7 @@
 		282E4E6B24462A9700901D1B /* HungryNowTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HungryNowTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		282E4E6C24462A9700901D1B /* HungryNowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowTests.swift; sourceTree = "<group>"; };
 		282E4E6E24464F5600901D1B /* YelpAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPITests.swift; sourceTree = "<group>"; };
+		282E4E702446604C00901D1B /* DurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerView.swift; sourceTree = "<group>"; };
 		286F97C324423AFB00BC2DED /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		286F97C524423C2800BC2DED /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		28758A17243FD448007F6CCA /* HungryNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HungryNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				2820716E2443CA5900174DEF /* ImageWidgetView.swift */,
+				282E4E702446604C00901D1B /* DurationPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 			files = (
 				28A9783B24424FEA007BF823 /* SearchBar.swift in Sources */,
 				28C190512444FB6E001119E5 /* SearchAddView.swift in Sources */,
+				282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */,
 				286F97C424423AFB00BC2DED /* SearchView.swift in Sources */,
 				28A9784024427319007BF823 /* LocationManager.swift in Sources */,
 				28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */,

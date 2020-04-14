@@ -56,7 +56,7 @@ struct RestaurantRowView: View {
     var body: some View {
         HStack (alignment: .top) {
             ImageViewWidget(imageURL: restaurant.imageURL)
-            .frame(width: 125, height: 125)
+                .frame(width: 125, height: 125)
             VStack (alignment: .leading) {
                 Text(restaurant.name).font(.headline)
                 HStack {

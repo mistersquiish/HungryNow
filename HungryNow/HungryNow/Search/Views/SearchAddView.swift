@@ -14,6 +14,8 @@ struct SearchAddView : View {
     
     //@ObservedObject var restaurantAddVM: RestaurantAddViewModel
     var restaurantVM: RestaurantViewModel
+    @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
+    
     init(restaurantVM: RestaurantViewModel) {
         self.restaurantVM = restaurantVM
         //self.restaurantAddVM = RestaurantAddViewModel(restaurantVM: restaurantVM)
@@ -21,8 +23,43 @@ struct SearchAddView : View {
     
     var body: some View {
         NavigationView {
-            Text("hi")
+            VStack (alignment: .center) {
+                Text("When would you like to be notified?")
+                    .frame(minWidth: 0, maxHeight: .infinity)
+                    .font(.title)
+                DurationPickerView(time: $selectedTime)
+                .padding(30)
+                
+                Text("Daily")
+                
+                SaveButton()
+            }
         }
         
     }
 }
+
+struct SaveButton: View {
+    var body: some View {
+        Button( action: {
+            print("save")
+        }) {
+            HStack {
+                Text("Save")
+                    .fontWeight(.semibold)
+                    .font(.title)
+            }
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding()
+            .foregroundColor(.white)
+            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+            .cornerRadius(40)
+        }
+    }
+}
+
+//struct SearchAddView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchAddView(restaurantVM: RestaurantViewModel(restaurant: <#Restaurant#>))
+//    }
+//}
