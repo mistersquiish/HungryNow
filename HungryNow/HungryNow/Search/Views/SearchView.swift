@@ -32,10 +32,10 @@ struct SearchView : View {
                         
                     }
                 }
-                .navigationBarTitle(Text("Add a Restaurant"))
-                .navigationBarItems(leading:
-                DismissButton(vcDelegate: vcDelegate))
+                .navigationBarTitle(Text("Restaurants"))
+                .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
             }
+            .padding(.top, 25)
         }
     }
 }

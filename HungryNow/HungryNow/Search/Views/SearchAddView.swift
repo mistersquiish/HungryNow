@@ -11,7 +11,7 @@ import SwiftUI
 
 /// View for the search add view of a searched restaurant
 struct SearchAddView : View {
-    
+        
     //@ObservedObject var restaurantAddVM: RestaurantAddViewModel
     var restaurantVM: RestaurantViewModel
     @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
@@ -22,21 +22,19 @@ struct SearchAddView : View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack (alignment: .center) {
-                Text("When would you like to be notified?")
-                    .frame(minWidth: 0, maxHeight: .infinity)
-                    .font(.title)
-                DurationPickerView(time: $selectedTime)
-                .padding(30)
-                
-                Text("Daily")
-                
-                SaveButton()
-            }
+        VStack (alignment: .center) {
+            Text("When would you like to be notified?")
+                .frame(maxHeight: 100, alignment: .top)
+                .font(.title)
+            DurationPickerView(time: $selectedTime)
+            
+            Text("Daily")
+            
+            SaveButton()
         }
-        
+        .navigationBarTitle(Text(""), displayMode: .inline)
     }
+        
 }
 
 struct SaveButton: View {
@@ -54,7 +52,7 @@ struct SaveButton: View {
             .foregroundColor(.white)
             .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(40)
-        }
+        }.padding()
     }
 }
 
