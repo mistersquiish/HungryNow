@@ -1,5 +1,5 @@
 //
-//  AddTransitionVC.swift
+//  SearchTransitionVC.swift
 //  HungryNow
 //
 //  Created by Henry Vuong on 4/9/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTransitionVC: UIViewController {
+class SearchTransitionVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

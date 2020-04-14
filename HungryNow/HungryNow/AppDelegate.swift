@@ -42,8 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController is AddTransitionVC {
-            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "AddVC") {
+        if viewController is SearchTransitionVC {
+            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "SearchVC") {
+                newVC.modalPresentationStyle = .fullScreen
                 tabBarController.present(newVC, animated: true)
                 return false
             }
