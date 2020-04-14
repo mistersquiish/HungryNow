@@ -9,14 +9,14 @@
 import Foundation
 
 enum YelpAPIError: Error {
-    case NotRestaurant
+    case NoHours
 }
 
 extension YelpAPIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .NotRestaurant:
-            return NSLocalizedString("Tried to make a restaurant object with non-restaurant place", comment: "")
+        case .NoHours:
+            return NSLocalizedString("No hours retrieved from business detail API call", comment: "")
         }
     }
 }

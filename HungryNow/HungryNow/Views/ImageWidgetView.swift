@@ -18,6 +18,7 @@ struct ImageViewWidget: View {
     
     var body: some View {
         Image(uiImage: (UIImage(data: imageLoader.data) ?? UIImage(named: "missing-restaurant")!))
+        .renderingMode(.original)
         .resizable()
     }
 }

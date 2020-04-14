@@ -24,12 +24,11 @@ class RestaurantListViewModel: NSObject, ObservableObject {
     
     func onSearchTapped(query: String) {
         if let location = locationManager.getCurrentLocation() {
-            YelpAPI.getSearch(query: query, cllocation: location ) { (restaurants: [Restaurant]?, error: Error?) in
+            YelpAPI.getSearch(query: query, cllocation: location) { (restaurants: [Restaurant]?, error: Error?) in
                 if error != nil {
                     print(error!)
                 } else if let restaurants = restaurants {
                     self.restaurants = restaurants.map(RestaurantViewModel.init)
-                    
                 }
             }
         } else {

@@ -621,5 +621,229 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4674B736-3E14-4E00-B403-E670F82486E4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Helpers/YelpAPIClient/Models/Restaurant.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "restaurants(dictionaries:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "368DB7A3-B224-4A66-B7D2-8DCC3EFF6623"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Helpers/YelpAPIClient/Models/Restaurant.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "restaurants(dictionaries:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8317B551-EE0A-4C0E-B5FA-AEB15062C5EA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Search/View Models/RestaurantAddViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "init(restaurantVM:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8317B551-EE0A-4C0E-B5FA-AEB15062C5EA - c213af00faebe9a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.RestaurantAddViewModel.init(restaurantVM: HungryNow.RestaurantViewModel) -&gt; HungryNow.RestaurantAddViewModel"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/View%20Models/RestaurantAddViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "578">
+               </Location>
+               <Location
+                  uuid = "8317B551-EE0A-4C0E-B5FA-AEB15062C5EA - 91a70bda2ce3d4c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;HungryNow.Hours&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in HungryNow.RestaurantAddViewModel.init(restaurantVM: HungryNow.RestaurantViewModel) -&gt; HungryNow.RestaurantAddViewModel"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/View%20Models/RestaurantAddViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "137">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E807E3C-7D38-435F-A12C-DEBBD3AE4FF3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Search/View Models/RestaurantAddViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init(restaurantVM:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "507F72EB-F09F-4911-A377-45C5CF1E104B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Search/Views/SearchAddView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "init(restaurantVM:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "00775349-D88A-4057-BC6F-41B7046F3BBF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Search/Views/SearchView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "00775349-D88A-4057-BC6F-41B7046F3BBF - 46a6dbeab1a6420a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (HungryNow.RestaurantViewModel) -&gt; SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(HungryNow.SearchBar, SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;HungryNow.RestaurantViewModel&gt;, Swift.String, SwiftUI.HStack&lt;SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt;&gt;&gt;&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.NavigationView&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0&gt; in HungryNow.SearchView.body.getter : some"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/Views/SearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "00775349-D88A-4057-BC6F-41B7046F3BBF - 9cabd59066459f2e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; HungryNow.RestaurantRowView in closure #1 (HungryNow.RestaurantViewModel) -&gt; SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(HungryNow.SearchBar, SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;HungryNow.RestaurantViewModel&gt;, Swift.String, SwiftUI.HStack&lt;SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt;&gt;&gt;&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.NavigationView&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0&gt; in HungryNow.SearchView.body.getter : some"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/Views/SearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ABE3D8DB-A7E8-42B5-9074-FC5E044D2864"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Search/View Models/RestaurantAddViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init(restaurantVM:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20B19BDC-689D-4EBB-9830-2042E2A54066"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Search/View Models/RestaurantAddViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "init(restaurantVM:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "20B19BDC-689D-4EBB-9830-2042E2A54066 - 91a70bda2ce3d4c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;HungryNow.Hours&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in HungryNow.RestaurantAddViewModel.init(restaurantVM: HungryNow.RestaurantViewModel) -&gt; HungryNow.RestaurantAddViewModel"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/View%20Models/RestaurantAddViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "584">
+               </Location>
+               <Location
+                  uuid = "20B19BDC-689D-4EBB-9830-2042E2A54066 - 91a70bda2ce3d4c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;HungryNow.Hours&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in HungryNow.RestaurantAddViewModel.init(restaurantVM: HungryNow.RestaurantViewModel) -&gt; HungryNow.RestaurantAddViewModel"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/View%20Models/RestaurantAddViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "619">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

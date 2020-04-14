@@ -23,10 +23,13 @@ struct SearchView : View {
             NavigationView {
                 VStack (alignment: .leading) {
                     SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
+                    
                     List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
-                        NavigationLink(destination: SearchAddView(restaurant: restaurant)) {
+                        NavigationLink(destination: SearchAddView(restaurantVM: restaurant)) {
+
                             RestaurantRowView(restaurant: restaurant)
                         }
+                        
                     }
                 }
                 .navigationBarTitle(Text("Add a Restaurant"))
