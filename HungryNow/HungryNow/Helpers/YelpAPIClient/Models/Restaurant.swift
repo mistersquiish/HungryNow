@@ -26,8 +26,8 @@ class Restaurant: Identifiable {
     var categories: [[String: String]]!
     
     // detailed vars. requires an additional API request
-    fileprivate var _hours: Hours?
-    var hours: Hours? {
+    fileprivate var _hours: RestaurantHours?
+    var hours: RestaurantHours? {
         get {
             return _hours
         }

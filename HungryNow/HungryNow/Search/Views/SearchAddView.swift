@@ -11,10 +11,48 @@ import SwiftUI
 
 /// View for the search add view of a searched restaurant
 struct SearchAddView : View {
+    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
         
     //@ObservedObject var restaurantAddVM: RestaurantAddViewModel
     var restaurantVM: RestaurantViewModel
     @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
+    private var selectedDays: [Day] {
+        get {
+            var days: [Day] = []
+            if moToggled {
+                days.append(Day.Monday)
+            }
+            if tuToggled {
+                days.append(Day.Tuesday)
+            }
+            if weToggled {
+                days.append(Day.Wednesday)
+            }
+            if thToggled {
+                days.append(Day.Thursday)
+            }
+            if frToggled {
+                days.append(Day.Friday)
+            }
+            if saToggled {
+                days.append(Day.Saturday)
+            }
+            if suToggled {
+                days.append(Day.Sunday)
+            }
+            return days
+        }
+    }
+    
+    // Day Button toggles
+    @State private var moToggled: Bool = false
+    @State private var tuToggled: Bool = false
+    @State private var weToggled: Bool = false
+    @State private var thToggled: Bool = false
+    @State private var frToggled: Bool = false
+    @State private var saToggled: Bool = false
+    @State private var suToggled: Bool = false
     
     init(restaurantVM: RestaurantViewModel) {
         self.restaurantVM = restaurantVM
@@ -24,23 +62,82 @@ struct SearchAddView : View {
     var body: some View {
         VStack (alignment: .center) {
             Text("When would you like to be notified?")
-                .frame(maxHeight: 100, alignment: .top)
+                .frame(maxHeight: 100)
+                .multilineTextAlignment(.center)
                 .font(.title)
             DurationPickerView(time: $selectedTime)
             
-            Text("Daily")
+            Text("What days do you want to be notified")
+            HStack {
+                DayButton(day: "Mo", toggled: $moToggled)
+                DayButton(day: "Tu", toggled: $tuToggled)
+                DayButton(day: "We", toggled: $weToggled)
+                DayButton(day: "Th", toggled: $thToggled)
+                DayButton(day: "Fr", toggled: $frToggled)
+                DayButton(day: "Sa", toggled: $saToggled)
+                DayButton(day: "Su", toggled: $suToggled)
+            }
             
-            SaveButton()
+            SaveButton(restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
         }
         .navigationBarTitle(Text(""), displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action : {
+            self.mode.wrappedValue.dismiss()
+        }){
+            Image(systemName: "arrow.left")
+        })
     }
         
 }
 
+struct DayButton: View {
+    
+    let day: String
+    @Binding var toggled: Bool
+    @State var buttonHighlighting = Color.gray
+
+    var body: some View {
+        Button(action: {
+            self.toggled.toggle()
+            if self.toggled {
+                self.buttonHighlighting = Color.blue
+            } else {
+                self.buttonHighlighting = Color.gray
+            }
+        }) {
+            Text(day)
+                .font(.system(size: 18))
+                .padding(10)
+                .background(buttonHighlighting)
+                .foregroundColor(Color.black)
+                .mask(Circle())
+        }
+    }
+}
+
 struct SaveButton: View {
+    
+    var restaurantVM: RestaurantViewModel
+    var selectedDays: [Day]
+    @Binding var selectedTime: DurationPickerTime
+    
     var body: some View {
         Button( action: {
-            print("save")
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                
+                if let error = error {
+                    print(error)
+                    // Handle the error here.
+                }
+                
+                if granted {
+                    NotificationManager.createRestaurantNotification(restaurantID: self.restaurantVM.restaurant.id, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
+                    }
+                }
+            }
+            
         }) {
             HStack {
                 Text("Save")
@@ -50,7 +147,7 @@ struct SaveButton: View {
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding()
             .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+            .background(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.blue]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(40)
         }.padding()
     }

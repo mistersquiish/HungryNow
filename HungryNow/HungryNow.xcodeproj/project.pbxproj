@@ -25,6 +25,7 @@
 		28758A53243FE96E007F6CCA /* SearchTransitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A52243FE96E007F6CCA /* SearchTransitionVC.swift */; };
 		28758A56243FF0BB007F6CCA /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A55243FF0BB007F6CCA /* Search.storyboard */; };
 		28758A58243FF0CE007F6CCA /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A57243FF0CE007F6CCA /* Tutorial.storyboard */; };
+		2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2880EBE12447AA7A000BBA4F /* NotificationManager.swift */; };
 		28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A97838244241A5007BF823 /* RestaurantListViewModel.swift */; };
 		28A9783B24424FEA007BF823 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783A24424FEA007BF823 /* SearchBar.swift */; };
 		28A9784024427319007BF823 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783F24427319007BF823 /* LocationManager.swift */; };
@@ -82,6 +83,7 @@
 		28758A52243FE96E007F6CCA /* SearchTransitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTransitionVC.swift; sourceTree = "<group>"; };
 		28758A55243FF0BB007F6CCA /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		28758A57243FF0CE007F6CCA /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		2880EBE12447AA7A000BBA4F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		28960E7224412CA8006F0AB6 /* CurlCommands.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CurlCommands.sh; sourceTree = "<group>"; };
 		28A97838244241A5007BF823 /* RestaurantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewModel.swift; sourceTree = "<group>"; };
 		28A9783A24424FEA007BF823 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -186,9 +188,9 @@
 		28758A19243FD448007F6CCA /* HungryNow */ = {
 			isa = PBXGroup;
 			children = (
+				28758A59243FF422007F6CCA /* Views */,
 				28A9783C24426703007BF823 /* Helpers */,
 				286F97C224423AB500BC2DED /* Search */,
-				28758A59243FF422007F6CCA /* Views */,
 				28758A48243FD50C007F6CCA /* View Controllers */,
 				28758A1A243FD448007F6CCA /* AppDelegate.swift */,
 				28758A54243FF09B007F6CCA /* Storyboards */,
@@ -272,6 +274,7 @@
 				28758A49243FD52B007F6CCA /* YelpAPIClient */,
 				28A9783F24427319007BF823 /* LocationManager.swift */,
 				28A9784324429FDB007BF823 /* ImageLoader.swift */,
+				2880EBE12447AA7A000BBA4F /* NotificationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				28C19053244518D8001119E5 /* Hours.swift in Sources */,
 				28758A53243FE96E007F6CCA /* SearchTransitionVC.swift in Sources */,
 				28758A4F243FDDDC007F6CCA /* Errors.swift in Sources */,
+				2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */,
 				28A9784424429FDB007BF823 /* ImageLoader.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,

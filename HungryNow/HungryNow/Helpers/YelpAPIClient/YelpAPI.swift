@@ -89,7 +89,7 @@ class YelpAPI {
         }
     }
     
-    static func getHours(restaurantID: String, completion: @escaping (Hours?, Error?) -> ()) {
+    static func getHours(restaurantID: String, completion: @escaping (RestaurantHours?, Error?) -> ()) {
         let requestURL: String = yelpAPI + "businesses/" + restaurantID
         
         let header = [
@@ -115,7 +115,7 @@ class YelpAPI {
                                     completion(nil, YelpAPIError.NoHours)
                                     return
                                 }
-                                completion(Hours(times: hoursDictionary), nil)
+                                completion(RestaurantHours(times: hoursDictionary), nil)
                                 
                             } else {
                                 print("error: no data")
