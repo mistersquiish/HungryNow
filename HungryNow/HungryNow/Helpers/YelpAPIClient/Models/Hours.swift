@@ -16,6 +16,26 @@ enum Day {
     case Friday
     case Saturday
     case Sunday
+    
+    var dayNum: Int {
+        switch self {
+        case .Sunday:
+            return 1
+        case .Monday:
+            return 2
+        case .Tuesday:
+            return 3
+        case .Wednesday:
+            return 4
+        case .Thursday:
+            return 5
+        case .Friday:
+            return 6
+        case .Saturday:
+            return 7
+        }
+        
+    }
 }
 
 class RestaurantHours {
@@ -39,14 +59,14 @@ class RestaurantHours {
 
 class RestaurantTime {
     var isOvernight: Bool
-    var start: Int
-    var end: Int
+    var start: String
+    var end: String
     var day: Day
     
     init(timeData: [String: Any]) {
         self.isOvernight = timeData["is_overnight"] as! Bool
-        self.start = Int(timeData["start"] as! String)!
-        self.end = Int(timeData["end"] as! String)!
+        self.start = timeData["start"] as! String
+        self.end = timeData["end"] as! String
         let dayNum = timeData["day"] as! Int
         switch dayNum {
         case 0:

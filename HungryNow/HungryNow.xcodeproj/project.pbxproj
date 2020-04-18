@@ -33,6 +33,7 @@
 		28C190512444FB6E001119E5 /* SearchAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C190502444FB6E001119E5 /* SearchAddView.swift */; };
 		28C19053244518D8001119E5 /* Hours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C19052244518D8001119E5 /* Hours.swift */; };
 		28C190552445324C001119E5 /* RestaurantAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C190542445324C001119E5 /* RestaurantAddViewModel.swift */; };
+		28DB62BB244B63FC0051371A /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB62BA244B63FC0051371A /* NotificationTests.swift */; };
 		936CAA022480651B71C3CC76 /* Pods_HungryNowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */; };
 		DF84A3A5C444A447C1F7594C /* Pods_HungryNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */; };
 		FAD9CF2BEC83C5264FB88FC0 /* Pods_HungryNowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08171D9FB4B49018149F883D /* Pods_HungryNowTests.framework */; };
@@ -92,6 +93,7 @@
 		28C190502444FB6E001119E5 /* SearchAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddView.swift; sourceTree = "<group>"; };
 		28C19052244518D8001119E5 /* Hours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hours.swift; sourceTree = "<group>"; };
 		28C190542445324C001119E5 /* RestaurantAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAddViewModel.swift; sourceTree = "<group>"; };
+		28DB62BA244B63FC0051371A /* NotificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTests.swift; sourceTree = "<group>"; };
 		3D9BD93922F087EEC69A8349 /* Pods-HungryNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNow.debug.xcconfig"; path = "Target Support Files/Pods-HungryNow/Pods-HungryNow.debug.xcconfig"; sourceTree = "<group>"; };
 		3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				28758A31243FD449007F6CCA /* Info.plist */,
 				282E4E6C24462A9700901D1B /* HungryNowTests.swift */,
 				282E4E6E24464F5600901D1B /* YelpAPITests.swift */,
+				28DB62BA244B63FC0051371A /* NotificationTests.swift */,
 				282E4E6B24462A9700901D1B /* HungryNowTests-Bridging-Header.h */,
 			);
 			path = HungryNowTests;
@@ -548,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */,
+				28DB62BB244B63FC0051371A /* NotificationTests.swift in Sources */,
 				282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -69,13 +69,13 @@ struct SearchAddView : View {
             
             Text("What days do you want to be notified")
             HStack {
+                DayButton(day: "Su", toggled: $suToggled)
                 DayButton(day: "Mo", toggled: $moToggled)
                 DayButton(day: "Tu", toggled: $tuToggled)
                 DayButton(day: "We", toggled: $weToggled)
                 DayButton(day: "Th", toggled: $thToggled)
                 DayButton(day: "Fr", toggled: $frToggled)
                 DayButton(day: "Sa", toggled: $saToggled)
-                DayButton(day: "Su", toggled: $suToggled)
             }
             
             SaveButton(restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
@@ -133,7 +133,7 @@ struct SaveButton: View {
                 }
                 
                 if granted {
-                    NotificationManager.createRestaurantNotification(restaurantID: self.restaurantVM.restaurant.id, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
+                    NotificationManager.createRestaurantNotification(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
                     }
                 }
             }

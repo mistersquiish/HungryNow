@@ -48,4 +48,8 @@ struct DurationPickerTime {
     var hour: Int
     var minute: Int
     var second: Int = 0
+    
+    public var description: String {
+        return "\(hour)hr \(minute)min"
+    }
 }
