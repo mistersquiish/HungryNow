@@ -11,10 +11,11 @@
 		282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6C24462A9700901D1B /* HungryNowTests.swift */; };
 		282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6E24464F5600901D1B /* YelpAPITests.swift */; };
 		282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E702446604C00901D1B /* DurationPickerView.swift */; };
+		2854EA6E244B975900ADC239 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854EA6D244B975900ADC239 /* FavoriteView.swift */; };
 		286F97C424423AFB00BC2DED /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C324423AFB00BC2DED /* SearchView.swift */; };
 		286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C524423C2800BC2DED /* SearchViewController.swift */; };
 		28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A1A243FD448007F6CCA /* AppDelegate.swift */; };
-		28758A1D243FD448007F6CCA /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A1C243FD448007F6CCA /* RestaurantVC.swift */; };
+		28758A1D243FD448007F6CCA /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A1C243FD448007F6CCA /* FavoriteVC.swift */; };
 		28758A20243FD448007F6CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A1E243FD448007F6CCA /* Main.storyboard */; };
 		28758A22243FD449007F6CCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28758A21243FD449007F6CCA /* Assets.xcassets */; };
 		28758A25243FD449007F6CCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A23243FD449007F6CCA /* LaunchScreen.storyboard */; };
@@ -64,11 +65,12 @@
 		282E4E6C24462A9700901D1B /* HungryNowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowTests.swift; sourceTree = "<group>"; };
 		282E4E6E24464F5600901D1B /* YelpAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPITests.swift; sourceTree = "<group>"; };
 		282E4E702446604C00901D1B /* DurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerView.swift; sourceTree = "<group>"; };
+		2854EA6D244B975900ADC239 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		286F97C324423AFB00BC2DED /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		286F97C524423C2800BC2DED /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		28758A17243FD448007F6CCA /* HungryNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HungryNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28758A1A243FD448007F6CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		28758A1C243FD448007F6CCA /* RestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVC.swift; sourceTree = "<group>"; };
+		28758A1C243FD448007F6CCA /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		28758A1F243FD448007F6CCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28758A21243FD449007F6CCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28758A24243FD449007F6CCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -144,6 +146,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2854EA6C244B974400ADC239 /* Favorite Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				2854EA6F244B975D00ADC239 /* Views */,
+			);
+			path = "Favorite Restaurant";
+			sourceTree = "<group>";
+		};
+		2854EA6F244B975D00ADC239 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2854EA6D244B975900ADC239 /* FavoriteView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		286F97C224423AB500BC2DED /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +210,7 @@
 			children = (
 				28758A59243FF422007F6CCA /* Views */,
 				28A9783C24426703007BF823 /* Helpers */,
+				2854EA6C244B974400ADC239 /* Favorite Restaurant */,
 				286F97C224423AB500BC2DED /* Search */,
 				28758A48243FD50C007F6CCA /* View Controllers */,
 				28758A1A243FD448007F6CCA /* AppDelegate.swift */,
@@ -227,7 +246,7 @@
 		28758A48243FD50C007F6CCA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				28758A1C243FD448007F6CCA /* RestaurantVC.swift */,
+				28758A1C243FD448007F6CCA /* FavoriteVC.swift */,
 				28758A52243FE96E007F6CCA /* SearchTransitionVC.swift */,
 			);
 			path = "View Controllers";
@@ -532,7 +551,7 @@
 				28A9784024427319007BF823 /* LocationManager.swift in Sources */,
 				28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */,
 				28C190552445324C001119E5 /* RestaurantAddViewModel.swift in Sources */,
-				28758A1D243FD448007F6CCA /* RestaurantVC.swift in Sources */,
+				28758A1D243FD448007F6CCA /* FavoriteVC.swift in Sources */,
 				286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */,
 				28C19053244518D8001119E5 /* Hours.swift in Sources */,
 				28758A53243FE96E007F6CCA /* SearchTransitionVC.swift in Sources */,
@@ -542,6 +561,7 @@
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,
 				2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */,
+				2854EA6E244B975900ADC239 /* FavoriteView.swift in Sources */,
 				28758A1B243FD448007F6CCA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
