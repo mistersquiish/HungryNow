@@ -8,15 +8,20 @@
 
 import SwiftUI
 
-class FavoriteVC: UIViewController {
+class SavedVC: UIViewController {
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBSegueAction func addSwiftUIView(_ coder: NSCoder) -> UIViewController? {
-        return UIHostingController(coder: coder, rootView: FavoriteView())
+        let rootView = SavedView().environment(\.managedObjectContext, context)
+        return UIHostingController(coder: coder, rootView: rootView)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // delegates
         self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
