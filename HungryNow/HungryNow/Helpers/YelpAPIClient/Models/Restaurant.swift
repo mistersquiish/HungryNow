@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import CoreLocation
 
 class Restaurant: Identifiable {
     var id: String
@@ -16,18 +17,20 @@ class Restaurant: Identifiable {
     var address: String!
     var city: String!
     var country: String!
-    var rating: Float!
-    var reviewCount: Int!
+    var rating: Float?
+    var reviewCount: Int?
     var phone: String?
     var price: String?
-    var distance: Float! //(converted to miles)
-    var isClosed: Bool!
+    var distance: Float? //(converted to miles)
+    var isClosed: Bool?
     var imageURL: String?
     var categories: [[String: String]]!
+    var latitude: Double?
+    var longitude: Double?
     
     // detailed vars. requires an additional API request
-    fileprivate var _hours: Hours?
-    var hours: Hours? {
+    fileprivate var _hours: RestaurantHours?
+    var hours: RestaurantHours? {
         get {
             return _hours
         }
@@ -44,11 +47,11 @@ class Restaurant: Identifiable {
         reviewCount = data["review_count"] as? Int ?? 0
         phone = data["phone"] as? String ?? "No number"
         categories = data["categories"] as? [[String: String]] ?? [["alias": "food",
-                                                                    "title": "food"]]
+                                                                    "title": "Food"]]
         price = data["price"] as? String
         
         // convert distance to meters
-        let distanceMeters = Measurement(value: data["distance"] as? Double ?? 0.0, unit: UnitLength.meters)
+        var distanceMeters = Measurement(value: data["distance"] as? Double ?? 0.0, unit: UnitLength.meters)
         distance = Float(round(100*distanceMeters.converted(to: UnitLength.miles).value)/100)
         isClosed = data["is_closed"] as? Bool ?? true
         imageURL = data["image_url"] as? String
@@ -64,6 +67,52 @@ class Restaurant: Identifiable {
             self.address = "\(String(describing: address))"
             self.city = "\(String(describing: city)), \(String(describing: state))"
         }
+        
+        // Coordinates
+        if let coordinates = data["coordinates"] as? [String: Double] {
+            latitude = coordinates["latitude"]
+            longitude = coordinates["longitude"]
+            let locManager = LocationManager()
+            if let currentLoc = locManager.getCurrentLocation() {
+                let restaurantLoc = CLLocation(latitude: latitude!, longitude: longitude!)
+                distanceMeters = Measurement(value: currentLoc.distance(from: restaurantLoc), unit: UnitLength.meters)
+                distance = Float(round(100*distanceMeters.converted(to: UnitLength.miles).value)/100)
+            }
+            
+        }
+    }
+    
+    init(savedRestaurant: SavedRestaurant) {
+        id = savedRestaurant.businessId!
+        name = savedRestaurant.name
+        phone = savedRestaurant.phone
+        price = savedRestaurant.price
+        city = savedRestaurant.city
+        address = savedRestaurant.address
+        country = savedRestaurant.country
+        imageURL = savedRestaurant.imageURL
+        
+        categories = []
+        for categoryObject in savedRestaurant.categories! {
+            let category: Category = categoryObject as! Category
+            let categoryValues = [
+                "alias": category.alias!,
+                "title": category.title!
+            ]
+            categories.append(categoryValues)
+        }
+        
+        hours = RestaurantHours()
+        for savedTimeObject in savedRestaurant.savedTimes! {
+            let savedTime: SavedTime = savedTimeObject as! SavedTime
+            let restaurantTime = RestaurantTime(savedTime: savedTime)
+            if hours!.days[restaurantTime.day] == nil {
+                hours!.days[restaurantTime.day] = [restaurantTime]
+            } else {
+                hours!.days[restaurantTime.day]!.append(restaurantTime)
+            }
+            
+        }
     }
 }
 
@@ -72,7 +121,7 @@ extension Restaurant {
         var restaurants: [Restaurant] = []
         for dictionary in dictionaries {
             let restaurant = Restaurant(data: dictionary)
-            if !restaurant.isClosed {
+            if !restaurant.isClosed! {
                 restaurants.append(restaurant)
             }
         }

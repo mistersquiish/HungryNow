@@ -18,6 +18,7 @@ enum YelpAPIError: Error {
     case ValidationError(responseDescription: String)
     case ValidatinoErrorLocation
     case BusinessNotFound
+    // need to add request timed out error
     case Unknown
 }
 

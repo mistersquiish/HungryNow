@@ -8,12 +8,42 @@
 
 import Foundation
 
-class Hours {
-    var days: [Int: [Time]] = [:]
+enum Day {
+    case Monday
+    case Tuesday
+    case Wednesday
+    case Thursday
+    case Friday
+    case Saturday
+    case Sunday
+    
+    var dayNum: Int {
+        switch self {
+        case .Sunday:
+            return 1
+        case .Monday:
+            return 2
+        case .Tuesday:
+            return 3
+        case .Wednesday:
+            return 4
+        case .Thursday:
+            return 5
+        case .Friday:
+            return 6
+        case .Saturday:
+            return 7
+        }
+        
+    }
+}
+
+class RestaurantHours {
+    var days: [Day: [RestaurantTime]] = [:]
     
     init(times: [[String: Any]]) {
         for timeData in times {
-            let time = Time(timeData: timeData)
+            let time = RestaurantTime(timeData: timeData)
             
             if days[time.day] == nil {
                 days[time.day] = [time]
@@ -24,28 +54,58 @@ class Hours {
         }
     }
     
-    init() {
-        days[-1] = [Time()]
-    }
+    init() { }
 }
 
-class Time {
+class RestaurantTime {
     var isOvernight: Bool
-    var start: Int
-    var end: Int
-    var day: Int
+    var start: String
+    var end: String
+    var day: Day
     
     init(timeData: [String: Any]) {
         self.isOvernight = timeData["is_overnight"] as! Bool
-        self.start = Int(timeData["start"] as! String)!
-        self.end = Int(timeData["end"] as! String)!
-        self.day = timeData["day"] as! Int
+        self.start = timeData["start"] as! String
+        self.end = timeData["end"] as! String
+        let dayNum = timeData["day"] as! Int
+        switch dayNum {
+        case 0:
+            self.day = Day.Monday
+        case 1:
+            self.day = Day.Tuesday
+        case 2:
+            self.day = Day.Wednesday
+        case 3:
+            self.day = Day.Thursday
+        case 4:
+            self.day = Day.Friday
+        case 5:
+            self.day = Day.Saturday
+        default:
+            self.day = Day.Sunday
+        }
     }
     
-    init() {
-        self.isOvernight = true
-        self.start = -1
-        self.end = -1
-        self.day = -1
+    init(savedTime: SavedTime) {
+        self.isOvernight = savedTime.isOvernight
+        self.start = savedTime.start!
+        self.end = savedTime.end!
+        let dayNum = savedTime.day
+        switch dayNum {
+        case 1:
+            self.day = Day.Sunday
+        case 2:
+            self.day = Day.Monday
+        case 3:
+            self.day = Day.Tuesday
+        case 4:
+            self.day = Day.Wednesday
+        case 5:
+            self.day = Day.Thursday
+        case 6:
+            self.day = Day.Friday
+        default:
+            self.day = Day.Saturday
+        }
     }
 }

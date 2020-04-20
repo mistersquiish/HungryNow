@@ -89,7 +89,7 @@ class YelpAPI {
         }
     }
     
-    static func getHours(restaurantID: String, completion: @escaping (Hours?, Error?) -> ()) {
+    static func getHours(restaurantID: String, completion: @escaping (RestaurantHours?, Error?) -> ()) {
         let requestURL: String = yelpAPI + "businesses/" + restaurantID
         
         let header = [
@@ -115,7 +115,47 @@ class YelpAPI {
                                     completion(nil, YelpAPIError.NoHours)
                                     return
                                 }
-                                completion(Hours(times: hoursDictionary), nil)
+                                completion(RestaurantHours(times: hoursDictionary), nil)
+                                
+                            } else {
+                                print("error: no data")
+                                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
+                            }
+        }
+    }
+    
+    static func getDetails(restaurantID: String, completion: @escaping (Restaurant?, Error?) -> ()) {
+        let requestURL: String = yelpAPI + "businesses/" + restaurantID
+        
+        let header = [
+            "Authorization": "Bearer \(yelpAPIKey)"
+        ]
+        
+        Alamofire.request(requestURL,
+                          method: .get,
+                          headers: header).response { response in
+                            if let data = response.data {
+                                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                                
+                                // check if returned response error
+                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                    completion(nil, error)
+                                }
+                                
+                                let restaurant = Restaurant(data: dataDictionary)
+                                
+                                // check if hours is in the request call
+                                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else { completion(nil, YelpAPIError.NoHours)
+                                    return
+                                }
+                                guard let hoursDictionary = openDictionary[0]["open"] as? [[String: Any]] else {
+                                    completion(nil, YelpAPIError.NoHours)
+                                    return
+                                }
+                                
+                                restaurant.hours = RestaurantHours(times: hoursDictionary)
+                                
+                                completion(restaurant, nil)
                                 
                             } else {
                                 print("error: no data")

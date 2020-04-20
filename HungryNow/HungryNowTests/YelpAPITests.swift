@@ -70,9 +70,9 @@ class YelpAPITests: XCTestCase {
         
         // var to check
         var errorCheck: Error?
-        var hoursCheck: Hours?
+        var hoursCheck: RestaurantHours?
         
-        YelpAPI.getHours(restaurantID: restaurantID) { (hours: Hours?, error: Error?) in
+        YelpAPI.getHours(restaurantID: restaurantID) { (hours: RestaurantHours?, error: Error?) in
             errorCheck = error
             hoursCheck = hours
             apiCallExpectation?.fulfill()
@@ -87,15 +87,23 @@ class YelpAPITests: XCTestCase {
             XCTAssert(hours.days.count == 7)
           
             // test each day for hours
-            for i in 0...6 {
-                XCTAssert(hours.days[i] != nil)
-                guard let day = hours.days[i] else { return }
-                XCTAssert(day.count > 0)
-                
-                XCTAssert(day[0].start >= 0 && day[0].end <= 2400)
-                XCTAssert(day[0].end >= 0 && day[0].end <= 2400)
-                XCTAssert(day[0].day == i)
-            }
+            testDay(testDay: Day.Monday, hours: hours)
+            testDay(testDay: Day.Tuesday, hours: hours)
+            testDay(testDay: Day.Wednesday, hours: hours)
+            testDay(testDay: Day.Thursday, hours: hours)
+            testDay(testDay: Day.Friday, hours: hours)
+            testDay(testDay: Day.Saturday, hours: hours)
+            testDay(testDay: Day.Sunday, hours: hours)
+        }
+        
+        func testDay(testDay: Day, hours: RestaurantHours) {
+            XCTAssert(hours.days[testDay] != nil)
+            guard let day = hours.days[testDay] else { return }
+            XCTAssert(day.count > 0)
+            
+            XCTAssert(Int(day[0].start)! >= 0 && Int(day[0].end)! <= 2400)
+            XCTAssert(Int(day[0].end)! >= 0 && Int(day[0].end)! <= 2400)
+            XCTAssert(day[0].day == testDay)
         }
     }
 
@@ -106,9 +114,9 @@ class YelpAPITests: XCTestCase {
         
         // var to check
         var errorCheck: Error?
-        var hoursCheck: Hours?
+        var hoursCheck: RestaurantHours?
         
-        YelpAPI.getHours(restaurantID: restaurantID) { (hours: Hours?, error: Error?) in
+        YelpAPI.getHours(restaurantID: restaurantID) { (hours: RestaurantHours?, error: Error?) in
             errorCheck = error
             hoursCheck = hours
             apiCallExpectation?.fulfill()
