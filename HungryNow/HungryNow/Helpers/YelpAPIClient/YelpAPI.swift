@@ -144,6 +144,17 @@ class YelpAPI {
                                 
                                 let restaurant = Restaurant(data: dataDictionary)
                                 
+                                // check if hours is in the request call
+                                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else { completion(nil, YelpAPIError.NoHours)
+                                    return
+                                }
+                                guard let hoursDictionary = openDictionary[0]["open"] as? [[String: Any]] else {
+                                    completion(nil, YelpAPIError.NoHours)
+                                    return
+                                }
+                                
+                                restaurant.hours = RestaurantHours(times: hoursDictionary)
+                                
                                 completion(restaurant, nil)
                                 
                             } else {

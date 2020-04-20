@@ -45,22 +45,31 @@ struct SavedRowView: View {
     }
     
     var body: some View {
-        HStack (alignment: .top) {
-            ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
-                .frame(width: 125, height: 125)
-            VStack (alignment: .leading) {
-                Text(savedRestaurantVM.name).font(.headline)
-                HStack {
-                    Text(String("\(savedRestaurantVM.rating) rating,"))
-                    Text(String("\(savedRestaurantVM.reviewCount) reviews"))
-                    Text(savedRestaurantVM.price)
+        VStack {
+            HStack (alignment: .top) {
+                ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
+                    .frame(width: 125, height: 125)
+                VStack (alignment: .leading) {
+                    Text(savedRestaurantVM.name).font(.headline)
+                    HStack {
+                        Text(String("\(savedRestaurantVM.rating) rating,"))
+                        Text(String("\(savedRestaurantVM.reviewCount) reviews"))
+                        Text(savedRestaurantVM.price)
+                    }
+                    Text(savedRestaurantVM.address)
+                    Text(savedRestaurantVM.city)
+                    Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
+                    Text(categories).font(.subheadline)
                 }
-                Text(savedRestaurantVM.address)
-                Text(savedRestaurantVM.city)
-                Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
-                Text(categories).font(.subheadline)
             }
+            Text(String(savedRestaurantVM.restaurantHours.days[.Monday]?[0].day.dayNum ?? 0))
+            Text(savedRestaurantVM.restaurantHours.days[.Monday]?[0].start ?? "")
+            
+            Text(String(savedRestaurantVM.restaurantHours.days[.Saturday]?[0].day.dayNum ?? 0))
+            Text(savedRestaurantVM.restaurantHours.days[.Saturday]?[0].start ?? "")
+            
         }
+        
     }
 }
 

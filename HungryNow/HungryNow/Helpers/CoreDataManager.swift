@@ -12,7 +12,7 @@ import UIKit
 
 class CoreDataManager {
     
-    static func saveRestaurant(restaurant: Restaurant, notificatonID: String) {
+    static func saveRestaurant(restaurant: Restaurant, restaurantHours: RestaurantHours) {
         let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let savedRestaurants = NSEntityDescription.entity(forEntityName: "SavedRestaurant", in: moc)
         let savedRestaurant = SavedRestaurant(entity: savedRestaurants!, insertInto: moc)
@@ -38,6 +38,22 @@ class CoreDataManager {
             categories.append(categoryObject)
         }
         savedRestaurant.categories = NSSet.init(array: categories)
+        
+        var savedTimes: [SavedTime] = []
+        for (day, times) in restaurantHours.days {
+            for time in times {
+                let hourEntity = NSEntityDescription.entity(forEntityName: "SavedTime", in: moc)
+                let hourObject = SavedTime(entity: hourEntity!, insertInto: moc)
+                hourObject.id = UUID()
+                hourObject.start = time.start
+                hourObject.end = time.end
+                hourObject.isOvernight = time.isOvernight
+                hourObject.day = Int16(time.day.dayNum)
+                savedTimes.append(hourObject)
+            }
+            
+        }
+        savedRestaurant.savedTimes = NSSet.init(array: savedTimes)
 
         try? moc.save()
     }

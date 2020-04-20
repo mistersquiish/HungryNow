@@ -15,7 +15,7 @@ class NotificationManager {
         
         YelpAPI.getHours(restaurantID: restaurant.id) { (hours: RestaurantHours?, error: Error?) in
             if let hours = hours {
-                for (day, restaurantTimes) in hours.days {
+//                for (day, restaurantTimes) in hours.days {
 //                    for restaurantTime in restaurantTimes {
 //                        print(day)
 //                        print(restaurantTime.isOvernight)
@@ -24,7 +24,7 @@ class NotificationManager {
 //                        print("----")
 //                        completion(true, nil)
 //                    }
-                }
+//                }
                 // Create notifications for selected days
                 for day in selectedDays {
                     guard let restaurantTimes = hours.days[day] else {
@@ -36,6 +36,8 @@ class NotificationManager {
                         createNotification(restaurant: restaurant, restaurantTime: restaurantTime, selectedTime: selectedTime)
                     }
                 }
+                // Save restaurant info and notification id
+                CoreDataManager.saveRestaurant(restaurant: restaurant, restaurantHours: hours)
                 
                 completion(true, nil)
             }
@@ -52,8 +54,11 @@ class NotificationManager {
         let content = UNMutableNotificationContent()
         content.title = "\(restaurant.name!) is closing in \(selectedTime)"
         content.body = "\(restaurant.name!) closes at "
-        content.categoryIdentifier = "alarm"
-        content.userInfo = ["customData": "fizzbuzz"]
+        content.categoryIdentifier = "notification"
+        content.userInfo = [
+            "restaurant_id": restaurant.id,
+            "day": restaurantTime.day.dayNum
+        ]
         content.sound = UNNotificationSound.default
 
         let dateComponents = calculateNotificationTime(restaurantTime: restaurantTime, selectedTime: selectedTime)

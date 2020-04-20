@@ -71,4 +71,8 @@ class SavedRestaurantViewModel: ObservableObject {
         return self.restaurant.categories ?? [["title": "Food", "alias": "food"]]
     }
     
+    var restaurantHours: RestaurantHours {
+        return self.restaurant.hours ?? RestaurantHours()
+    }
+    
 }

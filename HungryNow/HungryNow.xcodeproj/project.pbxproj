@@ -152,6 +152,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		28242B8F244D3FA100EB109B /* ImageWidget */ = {
+			isa = PBXGroup;
+			children = (
+				2820716E2443CA5900174DEF /* ImageWidgetView.swift */,
+				28A9784324429FDB007BF823 /* ImageLoader.swift */,
+			);
+			path = ImageWidget;
+			sourceTree = "<group>";
+		};
 		2854EA6C244B974400ADC239 /* Saved Restaurant */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,7 +292,6 @@
 		28758A59243FF422007F6CCA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2820716E2443CA5900174DEF /* ImageWidgetView.swift */,
 				282E4E702446604C00901D1B /* DurationPickerView.swift */,
 			);
 			path = Views;
@@ -301,9 +309,9 @@
 		28A9783C24426703007BF823 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				28242B8F244D3FA100EB109B /* ImageWidget */,
 				28758A49243FD52B007F6CCA /* YelpAPIClient */,
 				28A9783F24427319007BF823 /* LocationManager.swift */,
-				28A9784324429FDB007BF823 /* ImageLoader.swift */,
 				2880EBE12447AA7A000BBA4F /* NotificationManager.swift */,
 				2874D500244D0264004DC4B7 /* CoreDataManager.swift */,
 			);

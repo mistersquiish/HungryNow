@@ -101,6 +101,18 @@ class Restaurant: Identifiable {
             ]
             categories.append(categoryValues)
         }
+        
+        hours = RestaurantHours()
+        for savedTimeObject in savedRestaurant.savedTimes! {
+            let savedTime: SavedTime = savedTimeObject as! SavedTime
+            let restaurantTime = RestaurantTime(savedTime: savedTime)
+            if hours!.days[restaurantTime.day] == nil {
+                hours!.days[restaurantTime.day] = [restaurantTime]
+            } else {
+                hours!.days[restaurantTime.day]!.append(restaurantTime)
+            }
+            
+        }
     }
 }
 

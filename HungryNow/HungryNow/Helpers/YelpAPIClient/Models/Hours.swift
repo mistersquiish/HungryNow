@@ -85,4 +85,27 @@ class RestaurantTime {
             self.day = Day.Sunday
         }
     }
+    
+    init(savedTime: SavedTime) {
+        self.isOvernight = savedTime.isOvernight
+        self.start = savedTime.start!
+        self.end = savedTime.end!
+        let dayNum = savedTime.day
+        switch dayNum {
+        case 1:
+            self.day = Day.Sunday
+        case 2:
+            self.day = Day.Monday
+        case 3:
+            self.day = Day.Tuesday
+        case 4:
+            self.day = Day.Wednesday
+        case 5:
+            self.day = Day.Thursday
+        case 6:
+            self.day = Day.Friday
+        default:
+            self.day = Day.Saturday
+        }
+    }
 }

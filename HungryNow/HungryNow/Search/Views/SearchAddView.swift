@@ -133,8 +133,6 @@ struct SaveButton: View {
                 if granted {
                     NotificationManager.createRestaurantNotification(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
                         
-                        // Save restaurant info and notification id
-                        CoreDataManager.saveRestaurant(restaurant: self.restaurantVM.restaurant, notificatonID: "placeholder")
                     }
                 }
             }
