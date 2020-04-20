@@ -62,12 +62,43 @@ struct SavedRowView: View {
                     Text(categories).font(.subheadline)
                 }
             }
-            Text(String(savedRestaurantVM.restaurantHours.days[.Monday]?[0].day.dayNum ?? 0))
-            Text(savedRestaurantVM.restaurantHours.days[.Monday]?[0].start ?? "")
+            HoursView(savedRestaurantVM: savedRestaurantVM)
             
-            Text(String(savedRestaurantVM.restaurantHours.days[.Saturday]?[0].day.dayNum ?? 0))
-            Text(savedRestaurantVM.restaurantHours.days[.Saturday]?[0].start ?? "")
-            
+        }
+        
+    }
+}
+
+struct HoursView: View {
+    @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
+    
+    var body: some View {
+        HStack {
+            VStack {
+                HourView(dayStr: "Sunday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
+                HourView(dayStr: "Monday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Monday])
+                HourView(dayStr: "Tuesday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Tuesday])
+                HourView(dayStr: "Wednesday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Wednesday])
+            }
+            VStack {
+                HourView(dayStr: "Thursday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Thursday])
+                HourView(dayStr: "Friday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Friday])
+                HourView(dayStr: "Saturday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
+            }
+        }
+        
+    }
+}
+
+struct HourView: View {
+    var dayStr: String
+    var restaurantTimes: [RestaurantTime]?
+    
+    var body: some View {
+        HStack {
+            Text(dayStr + ":")
+            Text(restaurantTimes?[0].start ?? "N/A")
+            Text(restaurantTimes?[0].end ?? "N/A")
         }
         
     }
