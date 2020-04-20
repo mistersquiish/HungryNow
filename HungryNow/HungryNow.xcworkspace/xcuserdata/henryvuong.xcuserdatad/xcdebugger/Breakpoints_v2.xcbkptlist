@@ -631,8 +631,8 @@
             filePath = "HungryNow/Helpers/YelpAPIClient/Models/Restaurant.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "restaurants(dictionaries:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -647,8 +647,8 @@
             filePath = "HungryNow/Helpers/YelpAPIClient/Models/Restaurant.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "restaurants(dictionaries:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -727,8 +727,8 @@
             filePath = "HungryNow/Search/Views/SearchAddView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "init(restaurantVM:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -903,8 +903,8 @@
             filePath = "HungryNow/Helpers/NotificationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "calculateNotificationTime(restaurantTime:selectedTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -919,8 +919,8 @@
             filePath = "HungryNow/Helpers/NotificationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "calculateNotificationTime(restaurantTime:selectedTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -935,8 +935,8 @@
             filePath = "HungryNow/Helpers/NotificationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "calculateNotificationTime(restaurantTime:selectedTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1041,7 +1041,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0A433117-D7BF-414A-A368-206D0CE6A28D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HungryNow/Helpers/NotificationManager.swift"
@@ -1050,6 +1050,54 @@
             startingLineNumber = "36"
             endingLineNumber = "36"
             landmarkName = "createRestaurantNotification(restaurant:selectedDays:selectedTime:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "251232E9-3087-4481-A5A7-A740E237C687"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "init(savedRestaurant:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1025F566-F49F-4474-A28A-39783F0BC608"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Helpers/YelpAPIClient/Models/Restaurant.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "init(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8B406C9-9E8C-4DD5-A754-80EC01901DC8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Helpers/YelpAPIClient/Models/Restaurant.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "init(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

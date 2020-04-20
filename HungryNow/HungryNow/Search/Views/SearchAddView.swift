@@ -11,10 +11,8 @@ import SwiftUI
 
 /// View for the search add view of a searched restaurant
 struct SearchAddView : View {
-    
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
         
-    //@ObservedObject var restaurantAddVM: RestaurantAddViewModel
     var restaurantVM: RestaurantViewModel
     @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
     private var selectedDays: [Day] {
@@ -134,6 +132,9 @@ struct SaveButton: View {
                 
                 if granted {
                     NotificationManager.createRestaurantNotification(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
+                        
+                        // Save restaurant info and notification id
+                        CoreDataManager.saveRestaurant(restaurant: self.restaurantVM.restaurant, notificatonID: "placeholder")
                     }
                 }
             }

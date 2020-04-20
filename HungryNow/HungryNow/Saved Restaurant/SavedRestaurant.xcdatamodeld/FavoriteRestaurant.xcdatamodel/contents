@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="SavedRestaurant" representedClassName=".SavedRestaurant" syncable="YES" codeGenerationType="class">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="alias" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="ofSavedRestaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SavedRestaurant" inverseName="categories" inverseEntity="SavedRestaurant"/>
+    </entity>
+    <entity name="SavedHour" representedClassName="SavedHour" syncable="YES" codeGenerationType="class">
+        <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="end" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="is_overnight" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="start" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="ofSavedRestaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SavedRestaurant" inverseName="savedHours" inverseEntity="SavedRestaurant"/>
+    </entity>
+    <entity name="SavedRestaurant" representedClassName=".SavedRestaurant" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="businessId" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Category" inverseName="ofSavedRestaurant" inverseEntity="Category"/>
+        <relationship name="savedHours" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SavedHour" inverseName="ofSavedRestaurant" inverseEntity="SavedHour"/>
     </entity>
     <elements>
-        <element name="SavedRestaurant" positionX="-54" positionY="9" width="128" height="73"/>
+        <element name="Category" positionX="-36" positionY="81" width="128" height="103"/>
+        <element name="SavedHour" positionX="-54" positionY="27" width="128" height="133"/>
+        <element name="SavedRestaurant" positionX="-54" positionY="9" width="128" height="208"/>
     </elements>
 </model>

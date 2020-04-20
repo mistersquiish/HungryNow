@@ -61,11 +61,11 @@ struct RestaurantViewModel {
     }
     
     var rating: Float {
-        return self.restaurant.rating
+        return self.restaurant.rating ?? 0
     }
     
     var reviewCount: Int {
-        return self.restaurant.reviewCount
+        return self.restaurant.reviewCount ?? 0
     }
     
     var phone: String {
@@ -77,7 +77,7 @@ struct RestaurantViewModel {
     }
     
     var distance: Float {
-        return self.restaurant.distance
+        return self.restaurant.distance ?? 0.0
     }
     
     var imageURL: String {

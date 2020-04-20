@@ -14,18 +14,9 @@ struct SavedView: View {
     
     var body: some View {
         NavigationView {
-//            Button(action: {
-//                let rest = SavedRestaurant(context: self.moc)
-//                rest.id = UUID()
-//                rest.name = "popeyes"
-//
-//                try? self.moc.save()
-//            }) {
-//                Text("add")
-//            }
             VStack (alignment: .leading) {
-                List(restaurants, id: \.id) { restaurant in
-                    SavedRowView(restaurant: restaurant)
+                List(restaurants, id: \.id) { savedRestaurant in
+                    SavedRowView(savedRestaurant: savedRestaurant)
                 }
             }
             .navigationBarTitle(Text("Saved Restaurants"))
@@ -36,35 +27,39 @@ struct SavedView: View {
 
 
 struct SavedRowView: View {
-    @State var showingAddView = false
-    let restaurant: SavedRestaurant
-//    var categories: String {
-//        get {
-//            var categories: String = ""
-//            for category in restaurant.categories {
-//                categories += category["title"]! + ", "
-//            }
-//            return String(categories.dropLast().dropLast())
-//        }
-//    }
+    
+    @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
+    var categories: String {
+        get {
+            var categories: String = ""
+            for category in savedRestaurantVM.categories {
+                categories += category["title"]! + ", "
+            }
+            return String(categories.dropLast().dropLast())
+        }
+    }
+    
+    init(savedRestaurant: SavedRestaurant) {
+        let restaurant = Restaurant(savedRestaurant: savedRestaurant)
+        savedRestaurantVM = SavedRestaurantViewModel(savedRestaurant: restaurant)
+    }
     
     var body: some View {
         HStack (alignment: .top) {
-//            ImageViewWidget(imageURL: restaurant.imageURL)
-//                .frame(width: 125, height: 125)
-//            VStack (alignment: .leading) {
-//                Text(restaurant.name!).font(.headline)
-//                HStack {
-//                    Text(String("\(restaurant.rating) rating,"))
-//                    Text(String("\(restaurant.reviewCount) reviews"))
-//                    Text(restaurant.price)
-//                }
-//                Text(restaurant.address)
-//                Text(restaurant.city)
-//                Text(String(format: "%.2f mi", restaurant.distance)).font(.footnote)
-//                Text(categories).font(.subheadline)
-//            }
-            Text("hi")
+            ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
+                .frame(width: 125, height: 125)
+            VStack (alignment: .leading) {
+                Text(savedRestaurantVM.name).font(.headline)
+                HStack {
+                    Text(String("\(savedRestaurantVM.rating) rating,"))
+                    Text(String("\(savedRestaurantVM.reviewCount) reviews"))
+                    Text(savedRestaurantVM.price)
+                }
+                Text(savedRestaurantVM.address)
+                Text(savedRestaurantVM.city)
+                Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
+                Text(categories).font(.subheadline)
+            }
         }
     }
 }

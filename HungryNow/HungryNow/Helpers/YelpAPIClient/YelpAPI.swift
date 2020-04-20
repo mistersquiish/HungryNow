@@ -123,5 +123,34 @@ class YelpAPI {
                             }
         }
     }
+    
+    static func getDetails(restaurantID: String, completion: @escaping (Restaurant?, Error?) -> ()) {
+        let requestURL: String = yelpAPI + "businesses/" + restaurantID
+        
+        let header = [
+            "Authorization": "Bearer \(yelpAPIKey)"
+        ]
+        
+        Alamofire.request(requestURL,
+                          method: .get,
+                          headers: header).response { response in
+                            if let data = response.data {
+                                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                                
+                                // check if returned response error
+                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                    completion(nil, error)
+                                }
+                                
+                                let restaurant = Restaurant(data: dataDictionary)
+                                
+                                completion(restaurant, nil)
+                                
+                            } else {
+                                print("error: no data")
+                                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
+                            }
+        }
+    }
 }
 
