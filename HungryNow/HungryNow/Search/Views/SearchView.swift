@@ -14,6 +14,7 @@ import SwiftUI
 struct SearchView : View {
     
     @ObservedObject var restaurantListVM = RestaurantListViewModel()
+    @ObservedObject var notifications: Notifications
     @State private var searchText: String = ""
     
     var vcDelegate: UIViewController
@@ -25,7 +26,7 @@ struct SearchView : View {
                     SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
                     
                     List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
-                        NavigationLink(destination: SearchAddView(restaurantVM: restaurant)) {
+                        NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: restaurant)) {
 
                             RestaurantRowView(restaurant: restaurant)
                         }
@@ -85,11 +86,5 @@ struct DismissButton: View {
                 .frame(width: 25, height: 25)
                 .accentColor(Color(UIColor.black))
         }
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView(vcDelegate: UIViewController.init())
     }
 }
