@@ -18,9 +18,8 @@ struct SavedView: View {
         NavigationView {
             VStack (alignment: .leading) {
                 List(restaurants, id: \.id) { savedRestaurant in
-                    SavedRowView(savedRestaurant: savedRestaurant)
+                    SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications)
                 }
-                Text(String(notifications.notifications.count))
             }
             .navigationBarTitle(Text("Saved Restaurants"))
         }
@@ -32,6 +31,9 @@ struct SavedView: View {
 struct SavedRowView: View {
     
     @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
+    @ObservedObject var notifications: Notifications
+    var nextNotification: String?
+    
     var categories: String {
         get {
             var categories: String = ""
@@ -42,9 +44,25 @@ struct SavedRowView: View {
         }
     }
     
-    init(savedRestaurant: SavedRestaurant) {
+    init(savedRestaurant: SavedRestaurant, notifications: Notifications) {
+        self.notifications = notifications
         let restaurant = Restaurant(savedRestaurant: savedRestaurant)
         savedRestaurantVM = SavedRestaurantViewModel(savedRestaurant: restaurant)
+        
+        // create next notification string
+        if let nextNotification = notifications.getNextNotification(restaurantID: restaurant.id) {
+            let dateComponents = (nextNotification.trigger as! UNCalendarNotificationTrigger).dateComponents
+            let day = Day(rawValue: dateComponents.weekday!)!
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "h:mma"
+            
+            let timeNoFormat = DateComponents(hour: dateComponents.hour, minute: dateComponents.minute)
+            
+            let time = dateFormatter.string(from: NSCalendar.current.date(from: timeNoFormat)!)
+            
+            self.nextNotification = "Next notification on \(String(describing: day)) at \(time)"
+        }
     }
     
     var body: some View {
@@ -66,7 +84,9 @@ struct SavedRowView: View {
                 }
             }
             HoursView(savedRestaurantVM: savedRestaurantVM)
-            
+            if (nextNotification != nil) {
+                Text(nextNotification!)
+            }
         }
         
     }

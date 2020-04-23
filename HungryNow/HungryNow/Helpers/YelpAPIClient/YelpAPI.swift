@@ -105,6 +105,7 @@ class YelpAPI {
                                 // check if returned response error
                                 if let error = checkErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
+                                    return
                                 }
                                 
                                 // check if hours is in the request call
@@ -140,6 +141,7 @@ class YelpAPI {
                                 // check if returned response error
                                 if let error = checkErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
+                                    return
                                 }
                                 
                                 let restaurant = Restaurant(data: dataDictionary)

@@ -129,4 +129,18 @@ class Notifications: ObservableObject {
             }
         })
     }
+    
+    func getNextNotification(restaurantID: String) -> UNNotificationRequest? {
+
+        var restaurantNotifications = notifications.filter { $0.content.userInfo["restaurant_id"] as! String == restaurantID}
+        guard restaurantNotifications.count > 0 else { return nil }
+        
+        
+        restaurantNotifications = restaurantNotifications.sorted(by: {
+            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()! >
+            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()!
+        })
+        
+        return restaurantNotifications[0]
+    }
 }
