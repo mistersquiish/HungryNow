@@ -12,6 +12,7 @@ import SwiftUI
 /// View for the search add view of a searched restaurant
 struct SearchAddView : View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @ObservedObject var notifications: Notifications
         
     var restaurantVM: RestaurantViewModel
     @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
@@ -52,11 +53,6 @@ struct SearchAddView : View {
     @State private var saToggled: Bool = false
     @State private var suToggled: Bool = false
     
-    init(restaurantVM: RestaurantViewModel) {
-        self.restaurantVM = restaurantVM
-        //self.restaurantAddVM = RestaurantAddViewModel(restaurantVM: restaurantVM)
-    }
-    
     var body: some View {
         VStack (alignment: .center) {
             Text("When would you like to be notified?")
@@ -76,7 +72,7 @@ struct SearchAddView : View {
                 DayButton(day: "Sa", toggled: $saToggled)
             }
             
-            SaveButton(restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
+            SaveButton(notifications: notifications, restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
         }
         .navigationBarTitle(Text(""), displayMode: .inline)
         .navigationBarBackButtonHidden(true)
@@ -116,6 +112,8 @@ struct DayButton: View {
 
 struct SaveButton: View {
     
+    var notifications: Notifications
+    
     var restaurantVM: RestaurantViewModel
     var selectedDays: [Day]
     @Binding var selectedTime: DurationPickerTime
@@ -132,7 +130,9 @@ struct SaveButton: View {
                 
                 if granted {
                     NotificationManager.createRestaurantNotification(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
-                        
+                        if success {
+                            self.notifications.getCurrentNotifications()
+                        }
                     }
                 }
             }
@@ -151,9 +151,3 @@ struct SaveButton: View {
         }.padding()
     }
 }
-
-//struct SearchAddView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchAddView(restaurantVM: RestaurantViewModel(restaurant: <#Restaurant#>))
-//    }
-//}

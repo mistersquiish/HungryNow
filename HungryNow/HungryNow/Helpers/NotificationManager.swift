@@ -8,6 +8,7 @@
 
 import Foundation
 import NotificationCenter
+import SwiftUI
 
 class NotificationManager {
     static func createRestaurantNotification(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, completion: @escaping
@@ -15,16 +16,6 @@ class NotificationManager {
         
         YelpAPI.getHours(restaurantID: restaurant.id) { (hours: RestaurantHours?, error: Error?) in
             if let hours = hours {
-//                for (day, restaurantTimes) in hours.days {
-//                    for restaurantTime in restaurantTimes {
-//                        print(day)
-//                        print(restaurantTime.isOvernight)
-//                        print(restaurantTime.start)
-//                        print(restaurantTime.end)
-//                        print("----")
-//                        completion(true, nil)
-//                    }
-//                }
                 // Create notifications for selected days
                 for day in selectedDays {
                     guard let restaurantTimes = hours.days[day] else {
@@ -65,19 +56,21 @@ class NotificationManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
         // temporary clear notifications
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
         
-        getCurrentNotifications()
-    }
-    
-    static func getCurrentNotifications() {
-        let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests(completionHandler: { requests in
+        getCurrentNotifications() { (requests: [UNNotificationRequest]) in
             for request in requests {
                 print(request)
             }
+        }
+    }
+    
+    static func getCurrentNotifications(completion: @escaping ([UNNotificationRequest]) -> ()) {
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            completion(requests)
         })
     }
     
@@ -120,5 +113,20 @@ class NotificationManager {
         // make day nil as it was only used to calculate if selected time went back a day
         notificationComponents.day = nil
         return notificationComponents
+    }
+    
+    init() {}
+}
+
+class Notifications: ObservableObject {
+    @Published var notifications = [UNNotificationRequest]()
+    
+    func getCurrentNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            DispatchQueue.main.async {
+                self.notifications = requests
+            }
+        })
     }
 }

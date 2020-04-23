@@ -8,15 +8,26 @@
 
 import UIKit
 import CoreData
+import SwiftUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var window: UIWindow?
-
+    var notifications = Notifications()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        notifications.getCurrentNotifications()
+        guard let tabBarController = window?.rootViewController as? UITabBarController,
+            let viewControllers = tabBarController.viewControllers else {
+                return true
+        }
+        for (index, viewController) in viewControllers.enumerated() {
+            if let navigationController = viewController as? UINavigationController,
+                let savedVC = navigationController.viewControllers.first as? SavedVC {
+                savedVC.notifications = notifications
+            }
+        }
         return true
     }
 
@@ -45,8 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     // MARK: - Tab bar
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is SearchTransitionVC {
-            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "SearchVC") {
-                //newVC.modalPresentationStyle = .fullScreen
+            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as? SearchViewController {
+                newVC.notifications = notifications
                 tabBarController.present(newVC, animated: true)
                 return false
             }

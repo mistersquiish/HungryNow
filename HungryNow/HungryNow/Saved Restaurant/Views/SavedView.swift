@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import NotificationCenter
 
 struct SavedView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: SavedRestaurant.entity(), sortDescriptors: []) var restaurants: FetchedResults<SavedRestaurant>
+    @ObservedObject var notifications: Notifications
     
     var body: some View {
         NavigationView {
@@ -18,6 +20,7 @@ struct SavedView: View {
                 List(restaurants, id: \.id) { savedRestaurant in
                     SavedRowView(savedRestaurant: savedRestaurant)
                 }
+                Text(String(notifications.notifications.count))
             }
             .navigationBarTitle(Text("Saved Restaurants"))
         }
@@ -73,20 +76,19 @@ struct HoursView: View {
     @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
     
     var body: some View {
-        HStack {
-            VStack {
-                HourView(dayStr: "Sunday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
-                HourView(dayStr: "Monday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Monday])
-                HourView(dayStr: "Tuesday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Tuesday])
-                HourView(dayStr: "Wednesday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Wednesday])
+        HStack (alignment: .top) {
+            VStack (alignment: .leading) {
+                HourView(dayStr: "Sun", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
+                HourView(dayStr: "Mon", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Monday])
+                HourView(dayStr: "Tue", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Tuesday])
+                HourView(dayStr: "Wed", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Wednesday])
             }
-            VStack {
-                HourView(dayStr: "Thursday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Thursday])
-                HourView(dayStr: "Friday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Friday])
-                HourView(dayStr: "Saturday", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
+            VStack (alignment: .leading) {
+                HourView(dayStr: "Thu", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Thursday])
+                HourView(dayStr: "Fri", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Friday])
+                HourView(dayStr: "Sat", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
             }
         }
-        
     }
 }
 
@@ -95,20 +97,32 @@ struct HourView: View {
     var restaurantTimes: [RestaurantTime]?
     
     var body: some View {
-        HStack {
+        HStack (alignment: .top) {
             Text(dayStr + ":")
             Text(restaurantTimes?[0].start ?? "N/A")
             Text(restaurantTimes?[0].end ?? "N/A")
         }
-        
     }
 }
 
+/// deprecated?
+//struct NextNotificationView: View {
+//    @ObservedObject var pendingNotifications: WrapperPendingNotifications
+//    var nextNotification: String = ""
+//
+//    init(businessID: String) {
+//        pendingNotifications = WrapperPendingNotifications(businessID: businessID)
+//    }
+//
+//    var body: some View {
+//        Text(nextNotification)
+//    }
+//}
 
-#if DEBUG
-struct FavoriteView_Previews: PreviewProvider {
-    static var previews: some View {
-        SavedView()
-    }
-}
-#endif
+//#if DEBUG
+//struct FavoriteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SavedView()
+//    }
+//}
+//#endif
