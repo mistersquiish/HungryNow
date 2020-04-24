@@ -9,6 +9,8 @@
 import Foundation
 
 class SavedRestaurantViewModel: ObservableObject {
+    // static vars for updating core data of restaurants if information has changed on Yelp
+    static var updated: [String: Bool] = [:]
     static var savedRestaurantList: [SavedRestaurantViewModel] = []
     static var savedRestaurantIndex: [String] = []
     static var firstTime = true
@@ -17,16 +19,38 @@ class SavedRestaurantViewModel: ObservableObject {
     
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
-
-        getDetails()
+        
+        // code to fetch for updates from Yelp and add restaurant to update queue if information has changed
+        if SavedRestaurantViewModel.savedRestaurantIndex.firstIndex(of: restaurant.id) == nil {
+            SavedRestaurantViewModel.savedRestaurantList.append(self)
+            SavedRestaurantViewModel.savedRestaurantIndex.append(restaurant.id)
+        }
+        if SavedRestaurantViewModel.firstTime {
+            // Update the saved restaurants once by making API call in background
+            if SavedRestaurantViewModel.updated[restaurant.id] == nil {
+                DispatchQueue.global(qos: .background).async {
+                    self.updateDetailsInBackground()
+                }
+                SavedRestaurantViewModel.updated[restaurant.id] = true
+            }
+            SavedRestaurantViewModel.firstTime = false
+        }
+        
         
     }
     
-    func getDetails() {
-        YelpAPI.getDetails(restaurantID: restaurant.id, completion: { (restaurant: Restaurant?, error: Error?) in
+    func updateDetailsInBackground() {
+        
+        YelpAPI.getDetails(restaurantID: self.restaurant.id, completion: { (restaurant: Restaurant?, error: Error?) in
             
+            // code to run next restaurant request
+            let index = SavedRestaurantViewModel.savedRestaurantIndex.firstIndex(of: self.restaurant.id)! + 1
+            if index < SavedRestaurantViewModel.savedRestaurantIndex.count {
+                SavedRestaurantViewModel.savedRestaurantList[index].updateDetailsInBackground()
+            }
             if let restaurant = restaurant {
-                self.restaurant = restaurant
+                // Update core data if necessary
+                CoreDataManager.addRestaurantToUpdate(savedRestaurant: self.restaurant, updatedRestaurant: restaurant)
             }
             
             if let error = error {

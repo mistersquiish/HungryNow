@@ -51,6 +51,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        // Update Core data if any restaurants update their information
+        if !CoreDataManager.updateQueue.isEmpty {
+            for restaurant in CoreDataManager.updateQueue {
+                CoreDataManager.updateRestaurant(restaurant: restaurant)
+            }
+        }
+        
     }
     
     // MARK: - Tab bar

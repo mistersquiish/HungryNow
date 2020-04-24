@@ -1216,258 +1216,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0ADF42F0-1381-452C-9057-A4EA6DD3783D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "init(restaurant:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0ADF42F0-1381-452C-9057-A4EA6DD3783D - 2d1b190815f0f07c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HungryNow.SavedRestaurantViewModel.init(savedRestaurant: HungryNow.Restaurant) -&gt; HungryNow.SavedRestaurantViewModel"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "674">
-               </Location>
-               <Location
-                  uuid = "0ADF42F0-1381-452C-9057-A4EA6DD3783D - 64421e84aeaca986"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;HungryNow.Restaurant&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in HungryNow.SavedRestaurantViewModel.init(savedRestaurant: HungryNow.Restaurant) -&gt; HungryNow.SavedRestaurantViewModel"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "198">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BDB729AD-965D-4B98-BB71-A444D72C1F32"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "init(restaurant:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "848DA209-B6AA-4A6A-B57E-65952CC7F0B6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "getDetails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "12A4C4B4-7267-4D05-8B57-B2657D50F480"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "getDetails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2D35BC37-D7BD-4C2C-9F55-FA5DB6112BBC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "getDetails()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2D35BC37-D7BD-4C2C-9F55-FA5DB6112BBC - f338de8e6e2dcf3a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HungryNow.SavedRestaurantViewModel.getDetails() -&gt; ()"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "30">
-               </Location>
-               <Location
-                  uuid = "2D35BC37-D7BD-4C2C-9F55-FA5DB6112BBC - c5d476fffe702b19"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;HungryNow.Restaurant&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in HungryNow.SavedRestaurantViewModel.getDetails() -&gt; ()"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "156">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3668151F-B12D-456E-AC5E-E58CA5CE2842"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "SavedRestaurantViewModel"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "3668151F-B12D-456E-AC5E-E58CA5CE2842 - a7b0852f6a3fd6ca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "property wrapper backing initializer of HungryNow.SavedRestaurantViewModel.restaurant : HungryNow.Restaurant"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "3668151F-B12D-456E-AC5E-E58CA5CE2842 - ab9e672e77e2f883"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HungryNow.SavedRestaurantViewModel.restaurant.getter : HungryNow.Restaurant"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "3668151F-B12D-456E-AC5E-E58CA5CE2842 - ea8ae9d3c3aca897"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HungryNow.SavedRestaurantViewModel.restaurant.setter : HungryNow.Restaurant"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "130">
-               </Location>
-               <Location
-                  uuid = "3668151F-B12D-456E-AC5E-E58CA5CE2842 - 81fd6a8745a15c86"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HungryNow.SavedRestaurantViewModel.restaurant.modify : HungryNow.Restaurant"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "58">
-               </Location>
-               <Location
-                  uuid = "3668151F-B12D-456E-AC5E-E58CA5CE2842 - b1f35248671fa081"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HungryNow.SavedRestaurantViewModel.restaurant.modify : HungryNow.Restaurant with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3668151F-B12D-456E-AC5E-E58CA5CE2842 - 1b9d7a5ce13d9470"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HungryNow.SavedRestaurantViewModel.$restaurant.getter : Combine.Published&lt;HungryNow.Restaurant&gt;.Publisher"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Saved%20Restaurant/SavedRestaurantViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "110">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1685D95A-6DC2-4A94-8B82-7E1617BEE756"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1475,8 +1223,8 @@
             filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "SavedRestaurantViewModel"
             landmarkType = "3">
             <Locations>
@@ -1624,38 +1372,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B0CF198B-8F51-4500-A08E-B52CE3DCE856"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "getDetails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "46008B56-0317-4B8D-A884-726B3EF2029C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "getDetails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "32CBCA30-93FA-4DEC-B190-A4C398DE9A05"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1795,6 +1511,22 @@
             endingLineNumber = "133"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28C4400A-B0E6-4805-8A47-E172E30A347E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Saved Restaurant/SavedRestaurantViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "updateDetailsInBackground()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
