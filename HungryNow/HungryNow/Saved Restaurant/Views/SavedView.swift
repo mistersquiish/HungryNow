@@ -47,8 +47,7 @@ struct SavedRowView: View {
     init(savedRestaurant: SavedRestaurant, notifications: Notifications) {
         self.notifications = notifications
         let restaurant = Restaurant(savedRestaurant: savedRestaurant)
-        savedRestaurantVM = SavedRestaurantViewModel(savedRestaurant: restaurant)
-        
+        savedRestaurantVM = SavedRestaurantViewModel(restaurant: restaurant)
         // create next notification string
         if let nextNotification = notifications.getNextNotification(restaurantID: restaurant.id) {
             let dateComponents = (nextNotification.trigger as! UNCalendarNotificationTrigger).dateComponents
@@ -66,29 +65,30 @@ struct SavedRowView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack (alignment: .top) {
-                ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
-                    .frame(width: 125, height: 125)
-                VStack (alignment: .leading) {
-                    Text(savedRestaurantVM.name).font(.headline)
-                    HStack {
-                        Text(String("\(savedRestaurantVM.rating) rating,"))
-                        Text(String("\(savedRestaurantVM.reviewCount) reviews"))
-                        Text(savedRestaurantVM.price)
+        NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM)) {
+            VStack {
+                HStack (alignment: .top) {
+                    ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
+                        .frame(width: 125, height: 125)
+                    VStack (alignment: .leading) {
+                        Text(savedRestaurantVM.name).font(.headline)
+                        HStack {
+                            Text(String("\(savedRestaurantVM.rating) rating,"))
+                            Text(String("\(savedRestaurantVM.reviewCount) reviews"))
+                            Text(savedRestaurantVM.price)
+                        }
+                        Text(savedRestaurantVM.address)
+                        Text(savedRestaurantVM.city)
+                        Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
+                        Text(categories).font(.subheadline)
                     }
-                    Text(savedRestaurantVM.address)
-                    Text(savedRestaurantVM.city)
-                    Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
-                    Text(categories).font(.subheadline)
+                }
+                HoursView(savedRestaurantVM: savedRestaurantVM)
+                if (nextNotification != nil) {
+                    Text(nextNotification!)
                 }
             }
-            HoursView(savedRestaurantVM: savedRestaurantVM)
-            if (nextNotification != nil) {
-                Text(nextNotification!)
-            }
         }
-        
     }
 }
 

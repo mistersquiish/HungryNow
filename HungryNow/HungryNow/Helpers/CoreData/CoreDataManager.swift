@@ -27,6 +27,10 @@ class CoreDataManager {
         savedRestaurant.phone = restaurant.phone
         savedRestaurant.price = restaurant.price
         savedRestaurant.imageURL = restaurant.imageURL
+        savedRestaurant.rating = restaurant.rating ?? 0.0
+        savedRestaurant.reviewCount = Int64(restaurant.reviewCount ?? 0)
+        savedRestaurant.latitude = restaurant.latitude
+        savedRestaurant.longitude = restaurant.longitude
         
         var categories: [Category] = []
         for category in restaurant.categories {

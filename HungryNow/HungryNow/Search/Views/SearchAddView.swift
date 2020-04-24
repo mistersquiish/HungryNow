@@ -132,6 +132,8 @@ struct SaveButton: View {
                     NotificationManager.createRestaurantNotification(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
                         if success {
                             self.notifications.getCurrentNotifications()
+                        } else if let error = error {
+                            print(error)
                         }
                     }
                 }

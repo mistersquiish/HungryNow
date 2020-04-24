@@ -25,8 +25,8 @@ class Restaurant: Identifiable {
     var isClosed: Bool?
     var imageURL: String?
     var categories: [[String: String]]!
-    var latitude: Double?
-    var longitude: Double?
+    var latitude: Double!
+    var longitude: Double!
     
     // detailed vars. requires an additional API request
     fileprivate var _hours: RestaurantHours?
@@ -91,6 +91,10 @@ class Restaurant: Identifiable {
         address = savedRestaurant.address
         country = savedRestaurant.country
         imageURL = savedRestaurant.imageURL
+        rating = savedRestaurant.rating
+        reviewCount = Int(savedRestaurant.reviewCount)
+        latitude = savedRestaurant.latitude
+        longitude = savedRestaurant.longitude
         
         categories = []
         for categoryObject in savedRestaurant.categories! {
@@ -112,6 +116,13 @@ class Restaurant: Identifiable {
                 hours!.days[restaurantTime.day]!.append(restaurantTime)
             }
             
+        }
+        
+        let locManager = LocationManager()
+        if let currentLoc = locManager.getCurrentLocation() {
+            let restaurantLoc = CLLocation(latitude: latitude!, longitude: longitude!)
+            let distanceMeters = Measurement(value: currentLoc.distance(from: restaurantLoc), unit: UnitLength.meters)
+            distance = Float(round(100*distanceMeters.converted(to: UnitLength.miles).value)/100)
         }
     }
 }

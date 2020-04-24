@@ -34,7 +34,7 @@ class NotificationManager {
             }
             
             if let error = error {
-                completion(true, error)
+                completion(false, error)
             }
         }
     }

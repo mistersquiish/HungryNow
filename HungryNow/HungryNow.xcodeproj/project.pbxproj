@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820716E2443CA5900174DEF /* ImageWidgetView.swift */; };
 		28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */; };
+		282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282CBAB2245265F300C35F4A /* SavedDetailView.swift */; };
 		282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6C24462A9700901D1B /* HungryNowTests.swift */; };
 		282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6E24464F5600901D1B /* YelpAPITests.swift */; };
 		282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E702446604C00901D1B /* DurationPickerView.swift */; };
@@ -66,6 +67,7 @@
 		188184C43F39B9A27C556E70 /* Pods-HungryNowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNowUITests.release.xcconfig"; path = "Target Support Files/Pods-HungryNowUITests/Pods-HungryNowUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2820716E2443CA5900174DEF /* ImageWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidgetView.swift; sourceTree = "<group>"; };
 		28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRestaurantViewModel.swift; sourceTree = "<group>"; };
+		282CBAB2245265F300C35F4A /* SavedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDetailView.swift; sourceTree = "<group>"; };
 		282E4E6B24462A9700901D1B /* HungryNowTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HungryNowTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		282E4E6C24462A9700901D1B /* HungryNowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowTests.swift; sourceTree = "<group>"; };
 		282E4E6E24464F5600901D1B /* YelpAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPITests.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				2854EA6D244B975900ADC239 /* SavedView.swift */,
+				282CBAB2245265F300C35F4A /* SavedDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */,
 				28A9784424429FDB007BF823 /* ImageLoader.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
+				282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,
 				283CCC2A244F6FC900EDF9E3 /* AppView.swift in Sources */,
 				2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */,
