@@ -12,35 +12,7 @@ import SwiftUI
 
 class NotificationManager {
     static var center = UNUserNotificationCenter.current()
-    
-    static func createRestaurantNotification(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, completion: @escaping
-        (Bool, Error?) -> ()) {
-        
-        YelpAPI.getHours(restaurantID: restaurant.id) { (hours: RestaurantHours?, error: Error?) in
-            if let hours = hours {
-                // Create notifications for selected days
-                for day in selectedDays {
-                    guard let restaurantTimes = hours.days[day] else {
-                        // Hours not available for selected times
-                        // completion(nil, no hours for selected)
-                        return
-                    }
-                    for restaurantTime in restaurantTimes {
-                        createNotification(restaurant: restaurant, restaurantTime: restaurantTime, selectedTime: selectedTime)
-                    }
-                }
-                // Save restaurant info and notification id
-                CoreDataManager.saveRestaurant(restaurant: restaurant, restaurantHours: hours)
-                
-                completion(true, nil)
-            }
-            
-            if let error = error {
-                completion(false, error)
-            }
-        }
-    }
-    
+
     static func createNotification(restaurant: Restaurant, restaurantTime: RestaurantTime, selectedTime: DurationPickerTime) {
         let center = UNUserNotificationCenter.current()
 
@@ -50,7 +22,9 @@ class NotificationManager {
         content.categoryIdentifier = "notification"
         content.userInfo = [
             "restaurant_id": restaurant.id,
-            "day": restaurantTime.day.dayNum
+            "day": restaurantTime.day.dayNum,
+            "selectedHour": selectedTime.hour,
+            "selectedMinute": selectedTime.minute
         ]
         content.sound = UNNotificationSound.default
 
@@ -120,7 +94,6 @@ class NotificationManager {
     static func removeNotification(identifier: String) {
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
-    
 }
 
 class Notifications: ObservableObject {
@@ -142,7 +115,7 @@ class Notifications: ObservableObject {
         
         
         restaurantNotifications = restaurantNotifications.sorted(by: {
-            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()! >
+            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()! <
             ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()!
         })
         
@@ -153,10 +126,18 @@ class Notifications: ObservableObject {
         var restaurantNotifications = notifications.filter { $0.content.userInfo["restaurant_id"] as! String == restaurantID}
         
         restaurantNotifications = restaurantNotifications.sorted(by: {
-            ($0.trigger as! UNCalendarNotificationTrigger).dateComponents.weekday! >
-            ($1.trigger as! UNCalendarNotificationTrigger).dateComponents.weekday!
+            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()! <
+            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()!
         })
         
         return restaurantNotifications
+    }
+    
+    func removeNotifications(restaurantID: String) {
+        let restaurantNotifications = notifications.filter { $0.content.userInfo["restaurant_id"] as! String == restaurantID}
+        
+        for notification in restaurantNotifications {
+            NotificationManager.removeNotification(identifier: notification.identifier)
+        }
     }
 }

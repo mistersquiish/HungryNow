@@ -11,6 +11,8 @@ import SwiftUI
 
 struct SavedDetailView: View {
     
+    @State var showingAdd = false
+    
     var savedRestaurantVM: SavedRestaurantViewModel
     @ObservedObject var notifications: Notifications
     var currentNotifications = [UNNotificationRequest]()
@@ -25,16 +27,18 @@ struct SavedDetailView: View {
         VStack (alignment: .leading) {
             List {
                 ForEach(currentNotifications, id: \.identifier) { notification in
-                    SavedDetailRowView(dateComponents: (notification.trigger as! UNCalendarNotificationTrigger).dateComponents)
+                    SavedDetailRowView(notification: notification)
                 }.onDelete(perform: removeRow)
             }
         }
         .navigationBarTitle(Text(""), displayMode: .inline)
         .navigationBarItems(trailing: Button(action : {
-            print("test")
+            self.showingAdd.toggle()
         }) {
             Image(systemName: "plus")
-        })
+        }).sheet(isPresented: $showingAdd) {
+            SavedDetailAddView(notifications: self.notifications, savedRestaurantVM: self.savedRestaurantVM)
+        }
         
     }
     
@@ -50,9 +54,10 @@ struct SavedDetailRowView: View {
     var time: String
     var timeBefore: String
     
-    init(dateComponents: DateComponents) {
+    init(notification: UNNotificationRequest) {
+        let dateComponents = (notification.trigger as! UNCalendarNotificationTrigger).dateComponents
         let day = Day(rawValue: dateComponents.weekday!)!
-        timeBefore = "\(String(describing: day)) - \(dateComponents.hour!)hr \(dateComponents.minute!)min before closing"
+        timeBefore = "\(String(describing: day)) - \(notification.content.userInfo["selectedHour"]!)hr \(notification.content.userInfo["selectedMinute"]!)min before closing"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mma"

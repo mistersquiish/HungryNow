@@ -166,4 +166,9 @@ class CoreDataManager {
             print("Failed")
         }
     }
+    
+    static func deleteRestaurant(savedRestaurant: SavedRestaurant) {
+        moc.delete(savedRestaurant as NSManagedObject)
+        try? moc.save()
+    }
 }

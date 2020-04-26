@@ -81,9 +81,9 @@ struct DismissButton: View {
         Button( action: {
             self.vcDelegate.dismiss(animated: true)
         }) {
-            Image("exit-button")
+            Image(systemName: "xmark")
                 .resizable()
-                .frame(width: 25, height: 25)
+                .frame(width: 20, height: 20)
                 .accentColor(Color(UIColor.black))
         }
     }

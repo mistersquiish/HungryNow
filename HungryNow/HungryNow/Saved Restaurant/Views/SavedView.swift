@@ -17,13 +17,27 @@ struct SavedView: View {
     var body: some View {
         NavigationView {
             VStack (alignment: .leading) {
-                List(restaurants, id: \.id) { savedRestaurant in
-                    SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications)
+                List {
+                    ForEach(restaurants, id: \.id) { savedRestaurant in
+                        SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications)
+                    }.onDelete(perform: removeRow)
                 }
+                
             }
             .navigationBarTitle(Text("Saved Restaurants"))
         }
         
+    }
+    
+    func removeRow(at offsets: IndexSet) {
+        let indexes = offsets.map({$0})
+        let savedRestaurant = restaurants[indexes[0]]
+        
+        // clear notification
+        notifications.removeNotifications(restaurantID: savedRestaurant.businessId!)
+        
+        // clear core data
+        CoreDataManager.deleteRestaurant(savedRestaurant: savedRestaurant)
     }
 }
 

@@ -13,6 +13,8 @@
 		282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6C24462A9700901D1B /* HungryNowTests.swift */; };
 		282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6E24464F5600901D1B /* YelpAPITests.swift */; };
 		282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E702446604C00901D1B /* DurationPickerView.swift */; };
+		2833D6DC24550F1200B4207C /* SavedDetailAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6DB24550F1200B4207C /* SavedDetailAddView.swift */; };
+		2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6DD2455107300B4207C /* HungryNowManager.swift */; };
 		283CCC28244F6FA000EDF9E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CCC27244F6FA000EDF9E3 /* SceneDelegate.swift */; };
 		283CCC2A244F6FC900EDF9E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CCC29244F6FC900EDF9E3 /* AppView.swift */; };
 		2854EA6E244B975900ADC239 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854EA6D244B975900ADC239 /* SavedView.swift */; };
@@ -72,6 +74,8 @@
 		282E4E6C24462A9700901D1B /* HungryNowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowTests.swift; sourceTree = "<group>"; };
 		282E4E6E24464F5600901D1B /* YelpAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPITests.swift; sourceTree = "<group>"; };
 		282E4E702446604C00901D1B /* DurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerView.swift; sourceTree = "<group>"; };
+		2833D6DB24550F1200B4207C /* SavedDetailAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDetailAddView.swift; sourceTree = "<group>"; };
+		2833D6DD2455107300B4207C /* HungryNowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowManager.swift; sourceTree = "<group>"; };
 		283CCC27244F6FA000EDF9E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		283CCC29244F6FC900EDF9E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		2854EA6D244B975900ADC239 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			children = (
 				2854EA6D244B975900ADC239 /* SavedView.swift */,
 				282CBAB2245265F300C35F4A /* SavedDetailView.swift */,
+				2833D6DB24550F1200B4207C /* SavedDetailAddView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				28758A49243FD52B007F6CCA /* YelpAPIClient */,
 				28A9783F24427319007BF823 /* LocationManager.swift */,
 				2880EBE12447AA7A000BBA4F /* NotificationManager.swift */,
+				2833D6DD2455107300B4207C /* HungryNowManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -580,11 +586,13 @@
 				28C190512444FB6E001119E5 /* SearchAddView.swift in Sources */,
 				282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */,
 				286F97C424423AFB00BC2DED /* SearchView.swift in Sources */,
+				2833D6DC24550F1200B4207C /* SavedDetailAddView.swift in Sources */,
 				28A9784024427319007BF823 /* LocationManager.swift in Sources */,
 				283CCC28244F6FA000EDF9E3 /* SceneDelegate.swift in Sources */,
 				28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */,
 				28758A1D243FD448007F6CCA /* SavedVC.swift in Sources */,
 				286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */,
+				2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */,
 				28C19053244518D8001119E5 /* Hours.swift in Sources */,
 				28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */,
 				28758A53243FE96E007F6CCA /* SearchTransitionVC.swift in Sources */,

@@ -19,7 +19,7 @@ enum YelpAPIError: Error {
     case ValidatinoErrorLocation
     case BusinessNotFound
     // need to add request timed out error
-    case Unknown
+    case Unknown(errorDescription: String)
 }
 
 extension YelpAPIError: LocalizedError {
@@ -43,8 +43,8 @@ extension YelpAPIError: LocalizedError {
             return NSLocalizedString("Validation error. Please specify a location or a latitude and longitude", comment: "")
         case .BusinessNotFound:
             return NSLocalizedString("Business not found from API call", comment: "")
-        default:
-            return NSLocalizedString("Unknown Error", comment: "")
+        case .Unknown(let errorDescription):
+            return NSLocalizedString("Unknown Error: " + errorDescription, comment: "")
         }
     }
 }

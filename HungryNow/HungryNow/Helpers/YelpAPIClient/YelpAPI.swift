@@ -41,7 +41,7 @@ class YelpAPI {
                 return YelpAPIError.ValidationError(responseDescription: errorDescription)
             }
             
-            return YelpAPIError.Unknown
+            return YelpAPIError.Unknown(errorDescription: errorDescription)
         }
         // no error
         return nil
