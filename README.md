@@ -10,3 +10,4 @@ Thanks to Savong Tan for logo
 - [x] Location based search results
 - [x] User Notifications for specified times
 - [x] Yelp API to deliver great results and information
+- [x] Restaurant info update done using background thread to maximize user experience

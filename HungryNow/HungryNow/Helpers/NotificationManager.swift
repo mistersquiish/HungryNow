@@ -11,6 +11,8 @@ import NotificationCenter
 import SwiftUI
 
 class NotificationManager {
+    static var center = UNUserNotificationCenter.current()
+    
     static func createRestaurantNotification(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, completion: @escaping
         (Bool, Error?) -> ()) {
         
@@ -115,7 +117,10 @@ class NotificationManager {
         return notificationComponents
     }
     
-    init() {}
+    static func removeNotification(identifier: String) {
+        center.removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+    
 }
 
 class Notifications: ObservableObject {
@@ -142,5 +147,16 @@ class Notifications: ObservableObject {
         })
         
         return restaurantNotifications[0]
+    }
+    
+    func getNotifications(restaurantID: String) -> [UNNotificationRequest] {
+        var restaurantNotifications = notifications.filter { $0.content.userInfo["restaurant_id"] as! String == restaurantID}
+        
+        restaurantNotifications = restaurantNotifications.sorted(by: {
+            ($0.trigger as! UNCalendarNotificationTrigger).dateComponents.weekday! >
+            ($1.trigger as! UNCalendarNotificationTrigger).dateComponents.weekday!
+        })
+        
+        return restaurantNotifications
     }
 }

@@ -65,7 +65,7 @@ struct SavedRowView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM)) {
+        NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications)) {
             VStack {
                 HStack (alignment: .top) {
                     ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
@@ -125,19 +125,6 @@ struct HourView: View {
     }
 }
 
-/// deprecated?
-//struct NextNotificationView: View {
-//    @ObservedObject var pendingNotifications: WrapperPendingNotifications
-//    var nextNotification: String = ""
-//
-//    init(businessID: String) {
-//        pendingNotifications = WrapperPendingNotifications(businessID: businessID)
-//    }
-//
-//    var body: some View {
-//        Text(nextNotification)
-//    }
-//}
 
 //#if DEBUG
 //struct FavoriteView_Previews: PreviewProvider {
