@@ -11,6 +11,7 @@ import Foundation
 enum NotificationError: Error {
     case TwentyFourHours
     case NoHours
+    case NoSelectedDays
 }
 
 extension NotificationError: LocalizedError {
@@ -20,6 +21,8 @@ extension NotificationError: LocalizedError {
             return NSLocalizedString("Restaurant is 24hours", comment: "")
         case .NoHours:
             return NSLocalizedString("Restaurant has no hours", comment: "")
+        case .NoSelectedDays:
+            return NSLocalizedString("User selected no days", comment: "")
         }
         
     }

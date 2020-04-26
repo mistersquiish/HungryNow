@@ -13,11 +13,11 @@ import SwiftUI
 class NotificationManager {
     static var center = UNUserNotificationCenter.current()
     
-    static func createNotifications(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, hours: RestaurantHours, completion: @escaping (Error?) -> ()) {
+    static func createNotifications(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, hours: RestaurantHours, completion: @escaping (Bool, Error?) -> ()) {
         
         // Check if user selections are valid
         if let error = checkErrors(selectedDays: selectedDays, selectedTime: selectedTime, hours: hours) {
-            completion(error)
+            completion(false, error)
             return
         }
         
@@ -26,13 +26,15 @@ class NotificationManager {
             guard let restaurantTimes = hours.days[day] else {
                 // Hours not available for selected times
                 // completion(nil, no hours for selected)
+                completion(false, NotificationError.NoHours)
                 return
             }
             for restaurantTime in restaurantTimes {
                 createNotification(restaurant: restaurant, restaurantTime: restaurantTime, selectedTime: selectedTime)
             }
         }
-        completion(nil)
+        completion(true, nil)
+        return
     }
 
     static func createNotification(restaurant: Restaurant, restaurantTime: RestaurantTime, selectedTime: DurationPickerTime) {
@@ -143,6 +145,10 @@ class NotificationManager {
     }
     
     private static func checkErrors(selectedDays: [Day], selectedTime: DurationPickerTime, hours: RestaurantHours) -> Error? {
+        if selectedDays.count == 0 {
+            return NotificationError.NoSelectedDays
+        }
+        
         for day in selectedDays {
             guard let restaurantTimes = hours.days[day] else {
                 // Hours not available for selected times

@@ -15,16 +15,20 @@ class HungryNowManager {
         
         YelpAPI.getHours(restaurantID: restaurant.id) { (hours: RestaurantHours?, error: Error?) in
             if let hours = hours {
-                NotificationManager.createNotifications(restaurant: restaurant, selectedDays: selectedDays, selectedTime: selectedTime, hours: hours) { (error: Error?) in
-                    if let error = error {
-                        completion(false, error)
-                        return
+                NotificationManager.createNotifications(restaurant: restaurant, selectedDays: selectedDays, selectedTime: selectedTime, hours: hours) { (success: Bool, error: Error?) in
+                    if success {
+                        // Save restaurant info and notification id
+                        CoreDataManager.saveRestaurant(restaurant: restaurant, restaurantHours: hours)
+                        
+                        completion(true, nil)
+                    } else {
+                        if let error = error {
+                            completion(false, error)
+                            return
+                        }
                     }
                     
-                    // Save restaurant info and notification id
-                    CoreDataManager.saveRestaurant(restaurant: restaurant, restaurantHours: hours)
                     
-                    completion(true, nil)
                 }
             }
             
@@ -35,11 +39,13 @@ class HungryNowManager {
     }
     
     static func addNotification(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, hours: RestaurantHours, completion: @escaping (Bool, Error?) -> ()) {
-        NotificationManager.createNotifications(restaurant: restaurant, selectedDays: selectedDays, selectedTime: selectedTime, hours: hours) { (error: Error?) in
-            if let error = error {
-                completion(false, error)
-            } else {
+        NotificationManager.createNotifications(restaurant: restaurant, selectedDays: selectedDays, selectedTime: selectedTime, hours: hours) { (success: Bool, error: Error?) in
+            if success {
                 completion(true, nil)
+            } else {
+                if let error = error {
+                    completion(false, error)
+                }
             }
         }
     }
