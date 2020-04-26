@@ -125,8 +125,13 @@ struct AddButton: View {
                 }
                 
                 if granted {
-                    HungryNowManager.addNotification(restaurant: self.savedRestaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime, hours: self.savedRestaurantVM.restaurantHours)
-                    self.notifications.getCurrentNotifications()
+                    HungryNowManager.addNotification(restaurant: self.savedRestaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime, hours: self.savedRestaurantVM.restaurantHours) { (success: Bool, error: Error?) in
+                        if success {
+                            self.notifications.getCurrentNotifications()
+                        } else if let error = error {
+                            print(error)
+                        }
+                    }
                 }
             }
         }) {
