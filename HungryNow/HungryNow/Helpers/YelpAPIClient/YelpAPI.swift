@@ -16,7 +16,7 @@ class YelpAPI {
     static let yelpClientID: String = "linRbg0iHogjirbBxD-omw"
     static let yelpAPIKey: String = "KT_bxS5gMkwkqOweJ-DLtwJg3WaTwwLvQhaPINQgx7bGHyP3EZi_K7ZjfmCfD9xPXE8ACtxjseKOchixoxxTrsyjQjtqVmeyJiLGQ8Km9DYGF9bwD_BXx35bb3OPXnYx"
     
-    static func checkErrors(dataDictionary: [String: Any]) -> YelpAPIError? {
+    static func checkYelpErrors(dataDictionary: [String: Any]) -> YelpAPIError? {
         if let error = dataDictionary["error"] as? [String: Any] {
             guard let errorCode = error["code"] as? String else {
                 return YelpAPIError.NoErrorCode
@@ -47,6 +47,14 @@ class YelpAPI {
         return nil
     }
     
+    static func checkRequestErrors(response: DefaultDataResponse) -> YelpAPIError? {
+        if let error = response.error {
+            print(error)
+            return YelpAPIError.RequestFailed(error: error)
+        }
+        return nil
+    }
+    
     static func getSearch(query: String, cllocation: CLLocation, completion: @escaping ([Restaurant]?, Error?) -> ()) {
         let requestURL: String = yelpAPI + "businesses/search"
         let radius: Int = 40000
@@ -69,11 +77,17 @@ class YelpAPI {
                           method: .get,
                           parameters: parameters,
                           headers: header).response { response in
+                            if let error = checkRequestErrors(response: response) {
+                                completion(nil, error)
+                                return
+                            }
+                            
                             if let data = response.data {
                                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                                 // check if returned response error
-                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
+                                    return
                                 }
                                 
                                 guard let restaurantsDictionary = dataDictionary["businesses"] as? [[String: Any]] else {
@@ -100,10 +114,15 @@ class YelpAPI {
                           method: .get,
                           headers: header).response { response in
                             if let data = response.data {
+                                if let error = checkRequestErrors(response: response) {
+                                    completion(nil, error)
+                                    return
+                                }
+                                
                                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                                 
                                 // check if returned response error
-                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
                                     return
                                 }
@@ -135,11 +154,16 @@ class YelpAPI {
         Alamofire.request(requestURL,
                           method: .get,
                           headers: header).response { response in
+                            if let error = checkRequestErrors(response: response) {
+                                completion(nil, error)
+                                return
+                            }
+                            
                             if let data = response.data {
                                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                                 
                                 // check if returned response error
-                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
                                     return
                                 }
