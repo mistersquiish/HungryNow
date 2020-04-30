@@ -26,7 +26,13 @@ extension YelpAPIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .RequestFailed(let error):
-            return NSLocalizedString("Request failed." + error.localizedDescription, comment: "")
+            var errorMessage = error.localizedDescription
+            
+            if let failureReason = (error as NSError).localizedFailureReason {
+                errorMessage = failureReason
+            }
+            
+            return NSLocalizedString("Request failed." + errorMessage, comment: "")
         case .NoHours:
             return NSLocalizedString("Restaurant has no hours listed.", comment: "")
         case .NoBusinesses:

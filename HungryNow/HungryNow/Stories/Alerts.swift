@@ -17,12 +17,17 @@ struct ErrorAlert: View {
         VStack {
             if (error != nil) {
                 if error is YelpAPIError {
-                    Text(String(describing: error!.self))
+                    Text("Error")
                     Text(error!.localizedDescription)
                 }
                 
                 if error is NotificationError {
-                    Text(String(describing: error!.self))
+                    Text("Error")
+                    Text(error!.localizedDescription)
+                }
+                
+                if error is SearchError {
+                    Text("Error")
                     Text(error!.localizedDescription)
                 }
                 
@@ -46,6 +51,7 @@ struct ErrorAlert: View {
 
 struct SuccessAlert: View {
     @Binding var showingSuccessPopup: Bool
+    var vcDelegate: UIViewController?
     
     var body: some View {
         VStack {
@@ -53,7 +59,11 @@ struct SuccessAlert: View {
             Text("Your notification has been added")
             
             Button(action: {
-                self.showingSuccessPopup = false
+                if (self.vcDelegate != nil) {
+                    self.vcDelegate!.dismiss(animated: true, completion: nil)
+                } else {
+                    self.showingSuccessPopup = false
+                }
             }) {
                 Text("Ok")
                 .frame(width: 200, height: 50)

@@ -55,18 +55,12 @@ class NotificationManager {
         let dateComponents = calculateNotificationTime(restaurantTime: restaurantTime, selectedTime: selectedTime)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
-        // temporary clear notifications
-        //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
         
-        getCurrentNotifications() { (requests: [UNNotificationRequest]) in
-            for request in requests {
-                print(request)
-            }
-        }
     }
     
+    /// Gets all user notifications. Used for debugging
     static func getCurrentNotifications(completion: @escaping ([UNNotificationRequest]) -> ()) {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests(completionHandler: { requests in

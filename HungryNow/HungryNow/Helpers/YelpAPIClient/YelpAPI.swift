@@ -69,7 +69,7 @@ class YelpAPI {
             "longitude": cllocation.coordinate.longitude,
             "radius": radius,
             "sort_by": "distance",
-            "limit": 5,
+            "limit": 10,
             "categories": "food,restaurants"
         ] as [String : Any]
         

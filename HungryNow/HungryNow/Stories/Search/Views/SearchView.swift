@@ -20,22 +20,30 @@ struct SearchView : View {
     @State private var searchText: String = ""
     
     var vcDelegate: UIViewController
+    
+    // State variables for popups
+    //@State var showingErrorPopup = false
 
     var body: some View {
-        VStack (alignment: .leading) {
-            NavigationView {
-                VStack (alignment: .leading) {
-                    SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
-                    
-                    List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
-                        RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants)
+        ZStack {
+            VStack (alignment: .leading) {
+                NavigationView {
+                    VStack (alignment: .leading) {
+                        SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
                         
+                        List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
+                            RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
+                            
+                        }
                     }
+                    .navigationBarTitle(Text("Restaurants"))
+                    .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
                 }
-                .navigationBarTitle(Text("Restaurants"))
-                .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
+                .padding(.top, 25)
             }
-            .padding(.top, 25)
+        }
+        .popup(isPresented: $restaurantListVM.showingErrorPopup, autohideIn: 2) {
+            ErrorAlert(error: self.restaurantListVM.error, showingErrorPopup: self.$restaurantListVM.showingErrorPopup)
         }
     }
 }
@@ -45,6 +53,7 @@ struct RestaurantRowView: View {
     let notifications: Notifications
     var isSaved = false
     let restaurantVM: RestaurantViewModel
+    var vcDelegate: UIViewController
     let imageViewWidget: ImageViewWidget
     
     var categories: String {
@@ -57,8 +66,9 @@ struct RestaurantRowView: View {
         }
     }
     
-    init(restaurantVM: RestaurantViewModel, notifications: Notifications, restaurants: FetchedResults<SavedRestaurant>) {
+    init(restaurantVM: RestaurantViewModel, notifications: Notifications, restaurants: FetchedResults<SavedRestaurant>, vcDelegate: UIViewController) {
         self.restaurantVM = restaurantVM
+        self.vcDelegate = vcDelegate
         self.notifications = notifications
         self.imageViewWidget = ImageViewWidget(imageURL: self.restaurantVM.imageURL)
         
@@ -87,7 +97,7 @@ struct RestaurantRowView: View {
                 Text(self.categories).font(.subheadline)
             }
             VStack (alignment: .trailing) {
-                NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM), isActive: self.$showingAddView) {
+                NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
                     EmptyView()
                 }.disabled(self.showingAddView == false)
                 if (self.isSaved) {

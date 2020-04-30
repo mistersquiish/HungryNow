@@ -21,6 +21,8 @@ struct SearchAddView : View {
     @State var error: Error?
         
     var restaurantVM: RestaurantViewModel
+    var vcDelegate: UIViewController
+    
     @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
     private var selectedDays: [Day] {
         get {
@@ -89,7 +91,7 @@ struct SearchAddView : View {
         }
             
         .popup(isPresented: $showingSuccessPopup, autohideIn: 2) {
-            SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup)
+            SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup, vcDelegate: self.vcDelegate)
         }
         
         
@@ -147,31 +149,17 @@ struct SaveButton: View {
     
     var body: some View {
         Button( action: {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                
-                // Notification Error
-                if let error = error {
+            HungryNowManager.addNewRestaurant(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
+                if success {
+                    self.showingSuccessPopup = true
+                    self.notifications.getCurrentNotifications()
+                } else if let error = error {
+                    // Notification and YelpAPI Errors
                     print(error)
                     self.error = error
                     self.showingErrorPopup = true
                 }
-                
-                if granted {
-                    HungryNowManager.addNewRestaurant(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
-                        if success {
-                            self.showingSuccessPopup = true
-                            self.notifications.getCurrentNotifications()
-                        } else if let error = error {
-                            // Notification and YelpAPI Errors
-                            print(error)
-                            self.error = error
-                            self.showingErrorPopup = true
-                        }
-                    }
-                }
             }
-            
         }) {
             HStack {
                 Text("Save")

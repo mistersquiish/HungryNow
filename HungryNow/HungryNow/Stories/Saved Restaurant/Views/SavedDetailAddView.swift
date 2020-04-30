@@ -108,7 +108,7 @@ struct SavedDetailAddView : View {
         }
             
         .popup(isPresented: $showingSuccessPopup, autohideIn: 2) {
-            SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup)
+            SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup, vcDelegate: nil)
         }
         
         
@@ -131,26 +131,14 @@ struct AddButton: View {
     
     var body: some View {
         Button( action: {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                
-                if let error = error {
+            HungryNowManager.addNotification(restaurant: self.savedRestaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime, hours: self.savedRestaurantVM.restaurantHours) { (success: Bool, error: Error?) in
+                if success {
+                    self.showingSuccessPopup = true
+                    self.notifications.getCurrentNotifications()
+                } else if let error = error {
                     print(error)
                     self.error = error
                     self.showingErrorPopup = true
-                }
-                
-                if granted {
-                    HungryNowManager.addNotification(restaurant: self.savedRestaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime, hours: self.savedRestaurantVM.restaurantHours) { (success: Bool, error: Error?) in
-                        if success {
-                            self.showingSuccessPopup = true
-                            self.notifications.getCurrentNotifications()
-                        } else if let error = error {
-                            print(error)
-                            self.error = error
-                            self.showingErrorPopup = true
-                        }
-                    }
                 }
             }
         }) {
