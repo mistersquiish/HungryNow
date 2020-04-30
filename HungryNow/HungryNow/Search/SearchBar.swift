@@ -26,6 +26,10 @@ struct SearchBar: UIViewRepresentable {
             _text = text
             self.control = control
         }
+        
+        func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            searchBar.setShowsCancelButton(true, animated: true)
+        }
 
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             text = searchText
@@ -33,6 +37,13 @@ struct SearchBar: UIViewRepresentable {
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             control.onSearchButtonClicked?(text)
+            searchBar.endEditing(true)
+            searchBar.setShowsCancelButton(false, animated: true)
+        }
+        
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.endEditing(true)
+            searchBar.setShowsCancelButton(false, animated: true)
         }
     }
 
