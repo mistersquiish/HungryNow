@@ -14,8 +14,12 @@ struct SavedDetailAddView : View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @ObservedObject var notifications: Notifications
-        
     var savedRestaurantVM: SavedRestaurantViewModel
+    
+    // State variables for popups
+    @State var showingErrorPopup = false
+    @State var showingSuccessPopup = false
+    @State var error: Error?
     @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
     private var selectedDays: [Day] {
         get {
@@ -90,7 +94,7 @@ struct SavedDetailAddView : View {
                         DayButton(day: "Sa", toggled: $saToggled)
                     }
 
-                    AddButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
+                    AddButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM, selectedDays: selectedDays, showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, selectedTime: $selectedTime)
                 }
             }
             .navigationBarTitle(Text(""), displayMode: .inline)
@@ -99,7 +103,14 @@ struct SavedDetailAddView : View {
             }){
                 Image(systemName: "xmark")
             })
+        }.popup(isPresented: $showingErrorPopup, autohideIn: 2) {
+            ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
         }
+            
+        .popup(isPresented: $showingSuccessPopup, autohideIn: 2) {
+            SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup)
+        }
+        
         
         
     }
@@ -112,6 +123,10 @@ struct AddButton: View {
     
     var savedRestaurantVM: SavedRestaurantViewModel
     var selectedDays: [Day]
+    
+    @Binding var showingSuccessPopup: Bool
+    @Binding var showingErrorPopup: Bool
+    @Binding var error: Error?
     @Binding var selectedTime: DurationPickerTime
     
     var body: some View {
@@ -121,15 +136,19 @@ struct AddButton: View {
                 
                 if let error = error {
                     print(error)
-                    // Handle the error here.
+                    self.error = error
+                    self.showingErrorPopup = true
                 }
                 
                 if granted {
                     HungryNowManager.addNotification(restaurant: self.savedRestaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime, hours: self.savedRestaurantVM.restaurantHours) { (success: Bool, error: Error?) in
                         if success {
+                            self.showingSuccessPopup = true
                             self.notifications.getCurrentNotifications()
                         } else if let error = error {
                             print(error)
+                            self.error = error
+                            self.showingErrorPopup = true
                         }
                     }
                 }

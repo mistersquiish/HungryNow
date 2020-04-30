@@ -2,21 +2,25 @@ PODS:
   - Alamofire (4.8.2)
   - AlamofireImage (3.5.2):
     - Alamofire (~> 4.8)
+  - ExytePopupView (0.0.1)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
+  - ExytePopupView
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
   trunk:
     - AlamofireImage
+    - ExytePopupView
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
+  ExytePopupView: 731fe82b58e1725ea80e1acc23f995ad9e9a2382
 
-PODFILE CHECKSUM: 426a5d266da990af36318632963adc9762054c76
+PODFILE CHECKSUM: dc62a7bb9049ab1a0c1a307d1db0e0a5a50300f3
 
 COCOAPODS: 1.9.1

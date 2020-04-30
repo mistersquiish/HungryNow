@@ -8,6 +8,7 @@ target 'HungryNow' do
   # Pods for HungryNow
   pod 'Alamofire'
   pod 'AlamofireImage'
+  pod 'ExytePopupView'
 
   target 'HungryNowTests' do
     inherit! :search_paths

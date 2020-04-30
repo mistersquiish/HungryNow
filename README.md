@@ -2,7 +2,7 @@
 
 App that notifies users when their favorite restaurants are closing soon.
 
-Henry Vuong - Lead Developer and Designer
+Henry Vuong - Lead Developer
 Thanks to Savong Tan for logo
 
 
@@ -14,3 +14,7 @@ Thanks to Savong Tan for logo
 - [x] MVVM architecture using SwiftUI
 - [x] Heavy use of asynchronous functions and view updating
 - [x] Core Data
+
+# Dependencies
+- [x] ExytePopupView
+- [x] Alamofire

@@ -37,6 +37,7 @@
 		28758A56243FF0BB007F6CCA /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A55243FF0BB007F6CCA /* Search.storyboard */; };
 		28758A58243FF0CE007F6CCA /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A57243FF0CE007F6CCA /* Tutorial.storyboard */; };
 		2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2880EBE12447AA7A000BBA4F /* NotificationManager.swift */; };
+		289FEFEF245B2F8500A9EC41 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289FEFEE245B2F8500A9EC41 /* Alerts.swift */; };
 		28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A97838244241A5007BF823 /* RestaurantListViewModel.swift */; };
 		28A9783B24424FEA007BF823 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783A24424FEA007BF823 /* SearchBar.swift */; };
 		28A9784024427319007BF823 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783F24427319007BF823 /* LocationManager.swift */; };
@@ -107,6 +108,7 @@
 		28758A57243FF0CE007F6CCA /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		2880EBE12447AA7A000BBA4F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		28960E7224412CA8006F0AB6 /* CurlCommands.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CurlCommands.sh; sourceTree = "<group>"; };
+		289FEFEE245B2F8500A9EC41 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		28A97838244241A5007BF823 /* RestaurantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewModel.swift; sourceTree = "<group>"; };
 		28A9783A24424FEA007BF823 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		28A9783F24427319007BF823 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -261,8 +263,7 @@
 				28758A1A243FD448007F6CCA /* AppDelegate.swift */,
 				283CCC29244F6FC900EDF9E3 /* AppView.swift */,
 				28A9783C24426703007BF823 /* Helpers */,
-				2854EA6C244B974400ADC239 /* Saved Restaurant */,
-				286F97C224423AB500BC2DED /* Search */,
+				289FEFED245B2F5E00A9EC41 /* Stories */,
 				28758A48243FD50C007F6CCA /* Controllers */,
 				28758A54243FF09B007F6CCA /* Storyboards */,
 				28758A21243FD449007F6CCA /* Assets.xcassets */,
@@ -328,6 +329,16 @@
 				282E4E702446604C00901D1B /* DurationPickerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		289FEFED245B2F5E00A9EC41 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				289FEFEE245B2F8500A9EC41 /* Alerts.swift */,
+				2854EA6C244B974400ADC239 /* Saved Restaurant */,
+				286F97C224423AB500BC2DED /* Search */,
+			);
+			path = Stories;
 			sourceTree = "<group>";
 		};
 		28A9783724424181007BF823 /* View Models */ = {
@@ -607,6 +618,7 @@
 				28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */,
 				2833D6E124553E4A00B4207C /* NotificationErrors.swift in Sources */,
 				28758A1D243FD448007F6CCA /* SavedVC.swift in Sources */,
+				289FEFEF245B2F8500A9EC41 /* Alerts.swift in Sources */,
 				286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */,
 				2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */,
 				28C19053244518D8001119E5 /* Hours.swift in Sources */,

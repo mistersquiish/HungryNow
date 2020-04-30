@@ -18,26 +18,33 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Pods-HungryNow.xcscheme</key>
+		<key>ExytePopupView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Pods-HungryNowTests.xcscheme</key>
+		<key>Pods-HungryNow.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>Pods-HungryNowUITests.xcscheme</key>
+		<key>Pods-HungryNowTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
+		</dict>
+		<key>Pods-HungryNowUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

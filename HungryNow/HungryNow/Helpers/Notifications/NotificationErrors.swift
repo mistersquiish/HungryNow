@@ -18,11 +18,11 @@ extension NotificationError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .TwentyFourHours:
-            return NSLocalizedString("Restaurant is 24hours", comment: "")
+            return NSLocalizedString("Restaurant is 24 hours for selected days.", comment: "")
         case .NoHours:
-            return NSLocalizedString("Restaurant has no hours", comment: "")
+            return NSLocalizedString("Restaurant has no hours for selected days.", comment: "")
         case .NoSelectedDays:
-            return NSLocalizedString("User selected no days", comment: "")
+            return NSLocalizedString("Please select a day.", comment: "")
         }
         
     }

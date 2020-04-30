@@ -26,23 +26,23 @@ extension YelpAPIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .RequestFailed(let error):
-            return NSLocalizedString("Request failed" + error.localizedDescription, comment: "")
+            return NSLocalizedString("Request failed." + error.localizedDescription, comment: "")
         case .NoHours:
-            return NSLocalizedString("No hours retrieved from business detail API call", comment: "")
+            return NSLocalizedString("Restaurant has no hours listed.", comment: "")
         case .NoBusinesses:
-            return NSLocalizedString("No businesses kye from business search API call", comment: "")
+            return NSLocalizedString("No businesses from business search API call.", comment: "")
         case .NoErrorCode:
-            return NSLocalizedString("No error code or error description retrieved from API call", comment: "")
+            return NSLocalizedString("No error code or error description retrieved from API call.", comment: "")
         case .AccessLimitReached:
-            return NSLocalizedString("Access limit reached for Yelp API", comment: "")
+            return NSLocalizedString("Access limit reached for Yelp API.", comment: "")
         case .TooManyRequestsPerSecond:
-            return NSLocalizedString("Too many requests per second", comment: "")
+            return NSLocalizedString("Too many requests per second. Please try again later.", comment: "")
         case .ValidationError(let responseDescription):
             return NSLocalizedString("Validation error" + responseDescription, comment: "")
         case .ValidatinoErrorLocation:
-            return NSLocalizedString("Validation error. Please specify a location or a latitude and longitude", comment: "")
+            return NSLocalizedString("Validation error. Please specify a location or a latitude and longitude.", comment: "")
         case .BusinessNotFound:
-            return NSLocalizedString("Business not found from API call", comment: "")
+            return NSLocalizedString("Business not found from API call.", comment: "")
         case .Unknown(let errorDescription):
             return NSLocalizedString("Unknown Error: " + errorDescription, comment: "")
         }
