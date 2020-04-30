@@ -720,54 +720,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "00775349-D88A-4057-BC6F-41B7046F3BBF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Search/Views/SearchView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "00775349-D88A-4057-BC6F-41B7046F3BBF - 46a6dbeab1a6420a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (HungryNow.RestaurantViewModel) -&gt; SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(HungryNow.SearchBar, SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;HungryNow.RestaurantViewModel&gt;, Swift.String, SwiftUI.HStack&lt;SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt;&gt;&gt;&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.NavigationView&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0&gt; in HungryNow.SearchView.body.getter : some"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/Views/SearchView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "00775349-D88A-4057-BC6F-41B7046F3BBF - 9cabd59066459f2e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; HungryNow.RestaurantRowView in closure #1 (HungryNow.RestaurantViewModel) -&gt; SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(HungryNow.SearchBar, SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;HungryNow.RestaurantViewModel&gt;, Swift.String, SwiftUI.HStack&lt;SwiftUI.NavigationLink&lt;HungryNow.RestaurantRowView, HungryNow.SearchAddView&gt;&gt;&gt;&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.NavigationView&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A where A1: SwiftUI.View&gt;(leading: A1) -&gt; some&gt;&gt;.0&gt; in HungryNow.SearchView.body.getter : some"
-                  moduleName = "HungryNow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Search/Views/SearchView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "ABE3D8DB-A7E8-42B5-9074-FC5E044D2864"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1677,7 +1629,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "FC052E60-D12E-4354-9505-C8AE684ECDFA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HungryNow/Helpers/HungryNowManager.swift"
@@ -1702,6 +1654,54 @@
             startingLineNumber = "25"
             endingLineNumber = "25"
             landmarkName = "addNewRestaurant(restaurant:selectedDays:selectedTime:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A266E7DA-32AB-40F9-ADEE-05B430C3915E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Search/Views/SearchView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "init(restaurantVM:notifications:restaurants:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9FA08F8A-80CE-4E43-86F2-58B38A39F8CB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Helpers/ImageWidget/ImageLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init(imageURL:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57637299-4E64-4713-9617-0B65CB6C8494"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Helpers/ImageWidget/ImageWidgetView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "init(imageURL:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

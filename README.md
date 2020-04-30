@@ -11,3 +11,6 @@ Thanks to Savong Tan for logo
 - [x] User Notifications for specified times
 - [x] Yelp API to deliver great results and information
 - [x] Restaurant info update done using background thread to maximize user experience
+- [x] MVVM architecture using SwiftUI
+- [x] Heavy use of asynchronous functions and view updating
+- [x] Core Data

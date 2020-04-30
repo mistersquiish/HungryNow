@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             let viewControllers = tabBarController.viewControllers else {
                 return true
         }
-        for (index, viewController) in viewControllers.enumerated() {
+        for (_, viewController) in viewControllers.enumerated() {
             if let navigationController = viewController as? UINavigationController,
                 let savedVC = navigationController.viewControllers.first as? SavedVC {
                 savedVC.notifications = notifications
