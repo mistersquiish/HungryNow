@@ -88,15 +88,23 @@ class SavedRestaurantViewModel: ObservableObject {
     }
 
     var phone: String {
-        return self.restaurant.phone ?? ""//?? savedRestaurant.phone ?? ""
+        return self.restaurant.phone ?? ""
     }
 
     var price: String {
-        return self.restaurant.price ?? ""// ?? savedRestaurant.price ?? ""
+        return self.restaurant.price ?? ""
     }
 
     var distance: Float {
         return self.restaurant.distance ?? 0.0
+    }
+    
+    var latitude: Double {
+        return self.restaurant.latitude
+    }
+    
+    var longitude: Double {
+        return self.restaurant.longitude
     }
 
     var imageURL: String {

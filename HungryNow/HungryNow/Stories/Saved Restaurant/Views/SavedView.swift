@@ -8,19 +8,22 @@
 
 import SwiftUI
 import NotificationCenter
+import CoreLocation
 
 struct SavedView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: SavedRestaurant.entity(), sortDescriptors: []) var restaurants: FetchedResults<SavedRestaurant>
     @ObservedObject var notifications: Notifications
-    
+        
     var body: some View {
         NavigationView {
             VStack (alignment: .leading) {
                 List {
                     ForEach(restaurants, id: \.id) { savedRestaurant in
                         SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications)
-                    }.onDelete(perform: removeRow)
+                    }
+                    .onDelete(perform: removeRow)
+                    .buttonStyle(BorderlessButtonStyle())
                 }
                 
             }
@@ -46,7 +49,11 @@ struct SavedRowView: View {
     
     @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
     @ObservedObject var notifications: Notifications
+    
+    @State var showingNotifications = false
+    
     var nextNotification: String?
+    let imageViewWidget: ImageViewWidget
     
     var categories: String {
         get {
@@ -61,7 +68,10 @@ struct SavedRowView: View {
     init(savedRestaurant: SavedRestaurant, notifications: Notifications) {
         self.notifications = notifications
         let restaurant = Restaurant(savedRestaurant: savedRestaurant)
-        savedRestaurantVM = SavedRestaurantViewModel(restaurant: restaurant)
+        let savedRestaurantVM = SavedRestaurantViewModel(restaurant: restaurant)
+        self.savedRestaurantVM = savedRestaurantVM
+        self.imageViewWidget = ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
+        
         // create next notification string
         if let nextNotification = notifications.getNextNotification(restaurantID: restaurant.id) {
             let dateComponents = (nextNotification.trigger as! UNCalendarNotificationTrigger).dateComponents
@@ -79,30 +89,37 @@ struct SavedRowView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications)) {
-            VStack {
-                HStack (alignment: .top) {
-                    ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
-                        .frame(width: 125, height: 125)
-                    VStack (alignment: .leading) {
-                        Text(savedRestaurantVM.name).font(.headline)
-                        HStack {
-                            Text(String("\(savedRestaurantVM.rating) rating,"))
-                            Text(String("\(savedRestaurantVM.reviewCount) reviews"))
-                            Text(savedRestaurantVM.price)
-                        }
-                        Text(savedRestaurantVM.address)
-                        Text(savedRestaurantVM.city)
-                        Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
-                        Text(categories).font(.subheadline)
+        VStack (alignment: .leading) {
+            HStack (alignment: .top) {
+                imageViewWidget.frame(width: 125, height: 125)
+                VStack (alignment: .leading) {
+                    Text(savedRestaurantVM.name).font(.headline)
+                    HStack {
+                        Text(String("\(savedRestaurantVM.rating) rating,"))
+                        Text(String("\(savedRestaurantVM.reviewCount) reviews"))
+                        Text(savedRestaurantVM.price)
                     }
-                }
-                HoursView(savedRestaurantVM: savedRestaurantVM)
-                if (nextNotification != nil) {
-                    Text(nextNotification!)
+                    Text(savedRestaurantVM.address)
+                    Text(savedRestaurantVM.city)
+                    Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
+                    Text(categories).font(.subheadline)
                 }
             }
+            HoursView(savedRestaurantVM: savedRestaurantVM)
+            HStack {
+                DirectionsButton(savedRestaurantVM: savedRestaurantVM)
+                PhoneButton(savedRestaurantVM: savedRestaurantVM)
+                EditButton(showingNotifications: $showingNotifications)
+            }
+            NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications), isActive: self.$showingNotifications) {
+                EmptyView()
+            }.disabled(self.showingNotifications == false)
+            
+            if (nextNotification != nil) {
+                Text(nextNotification!)
+            }
         }
+        
     }
 }
 
@@ -140,10 +157,69 @@ struct HourView: View {
 }
 
 
-//#if DEBUG
-//struct FavoriteView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SavedView()
-//    }
-//}
-//#endif
+struct DirectionsButton: View {
+    var savedRestaurantVM: SavedRestaurantViewModel
+    var query: String
+    
+    init(savedRestaurantVM: SavedRestaurantViewModel) {
+        self.savedRestaurantVM = savedRestaurantVM
+        
+        var query = savedRestaurantVM.name + " " + savedRestaurantVM.address + " " + savedRestaurantVM.city
+        query = query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+        self.query = query
+    }
+    
+    var body: some View {
+        Button(action: {
+            // Try GoogleMaps first
+            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                UIApplication.shared.open(URL(string:"comgooglemaps://?daddr=\(self.query)")!, options: [:], completionHandler: nil)
+            }
+            // Try AppleMaps
+            else if  UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com/")!) {
+                UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(self.query)")!, options: [:], completionHandler: nil)
+            }
+            // Open Google Maps on browser
+            else {
+                UIApplication.shared.open(URL(string: "http://maps.google.com/maps?daddr=\(self.query)")!, options: [:], completionHandler: nil)
+            }
+        }) {
+            Text("Directions").foregroundColor(.white)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(30.0)
+        }
+    }
+}
+
+struct PhoneButton: View {
+    var savedRestaurantVM: SavedRestaurantViewModel
+    
+    var body: some View {
+        Button(action: {
+            if let url = URL(string: "tel://\(self.savedRestaurantVM.phone)") {
+               UIApplication.shared.open(url)
+             }
+        }) {
+            Text("Call").foregroundColor(.white)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(30.0)
+        }
+    }
+}
+
+struct EditButton: View {
+    @Binding var showingNotifications: Bool
+    
+    var body: some View {
+        Button(action: {
+            self.showingNotifications.toggle()
+        }) {
+            Text("Edit").foregroundColor(.white)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(30.0)
+        }
+    }
+}
