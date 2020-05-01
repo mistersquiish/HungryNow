@@ -29,6 +29,7 @@ Savong Tan - Designer
 
 ## Youtubers
 - Kavsoft for awesome SwiftUI tutorials
+- Exyte group for creating great open-sourced SwiftUI libraries
 - Hacking with Swift for general SwiftUI
 - Let's Build That App by Brian Voong for detailed and flushed out lessons on SwiftUI and Swift
 
