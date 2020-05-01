@@ -1,20 +1,46 @@
-# HungrySoon
+# HungryNow
 
 App that notifies users when their favorite restaurants are closing soon.
 
-Henry Vuong - Lead Developer
-Thanks to Savong Tan for logo
-
+Henry Vuong - Lead Developer 
+Savong Tan - Designer
 
 # Features
 - [x] Location based search results
-- [x] User Notifications for specified times
+- [x] User notifications for specified times
 - [x] Yelp API to deliver great results and information
 - [x] Restaurant info update done using background thread to maximize user experience
 - [x] MVVM architecture using SwiftUI
 - [x] Heavy use of asynchronous functions and view updating
 - [x] Core Data
+- [x] Popups for various errors
+
+# Challenges
+- [x] Synthesizing SwiftUI with vanilla Swift UIKit and storyboard
+- [x] Asynchronous programming
+- [x] Learning SwiftUI
+- [x] Enhancing user experience
 
 # Dependencies
 - [x] ExytePopupView
 - [x] Alamofire
+
+# Thank you
+
+## Youtubers
+- Kavsoft for awesome SwiftUI tutorials
+- Hacking with Swift for general SwiftUI
+- Let's Build That App by Brian Voong for detailed and flushed out lessons on SwiftUI and Swift
+
+## People
+- CodePath for teaching me how to program my first app
+- Benny Singer for being my CodePath teacher and an inspiration
+
+# License
+Copyright [2020] [Henry Vuong]
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
