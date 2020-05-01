@@ -8,13 +8,21 @@
 
 import Foundation
 import SwiftUI
+import ExytePopupView
 
 /// View for the search add view of a searched restaurant
 struct SearchAddView : View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var notifications: Notifications
+    
+    // State variables for popups
+    @State var showingErrorPopup = false
+    @State var showingSuccessPopup = false
+    @State var error: Error?
         
     var restaurantVM: RestaurantViewModel
+    var vcDelegate: UIViewController
+    
     @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
     private var selectedDays: [Day] {
         get {
@@ -54,26 +62,39 @@ struct SearchAddView : View {
     @State private var suToggled: Bool = false
     
     var body: some View {
-        VStack (alignment: .center) {
-            Text("When would you like to be notified?")
-                .frame(maxHeight: 100)
-                .multilineTextAlignment(.center)
-                .font(.title)
-            DurationPickerView(time: $selectedTime)
-            
-            Text("What days do you want to be notified")
-            HStack {
-                DayButton(day: "Su", toggled: $suToggled)
-                DayButton(day: "Mo", toggled: $moToggled)
-                DayButton(day: "Tu", toggled: $tuToggled)
-                DayButton(day: "We", toggled: $weToggled)
-                DayButton(day: "Th", toggled: $thToggled)
-                DayButton(day: "Fr", toggled: $frToggled)
-                DayButton(day: "Sa", toggled: $saToggled)
+        // Popup Views
+        ZStack {
+            VStack (alignment: .center) {
+                Text("When would you like to be notified?")
+                    .frame(maxHeight: 100)
+                    .multilineTextAlignment(.center)
+                    .font(.title)
+                DurationPickerView(time: $selectedTime)
+                
+                Text("What days do you want to be notified")
+                HStack {
+                    DayButton(day: "Su", toggled: $suToggled)
+                    DayButton(day: "Mo", toggled: $moToggled)
+                    DayButton(day: "Tu", toggled: $tuToggled)
+                    DayButton(day: "We", toggled: $weToggled)
+                    DayButton(day: "Th", toggled: $thToggled)
+                    DayButton(day: "Fr", toggled: $frToggled)
+                    DayButton(day: "Sa", toggled: $saToggled)
+                }
+                
+                SaveButton(showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, notifications: notifications, restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
+                
+                
             }
-            
-            SaveButton(notifications: notifications, restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
+        }.popup(isPresented: $showingErrorPopup, autohideIn: 2) {
+            ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
         }
+            
+        .popup(isPresented: $showingSuccessPopup, autohideIn: 2) {
+            SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup, vcDelegate: self.vcDelegate)
+        }
+        
+        
         .navigationBarTitle(Text(""), displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action : {
@@ -81,6 +102,10 @@ struct SearchAddView : View {
         }){
             Image(systemName: "arrow.left")
         })
+        
+        
+        
+        
     }
         
 }
@@ -112,6 +137,10 @@ struct DayButton: View {
 
 struct SaveButton: View {
     
+    @Binding var showingSuccessPopup: Bool
+    @Binding var showingErrorPopup: Bool
+    @Binding var error: Error?
+    
     var notifications: Notifications
     
     var restaurantVM: RestaurantViewModel
@@ -120,23 +149,17 @@ struct SaveButton: View {
     
     var body: some View {
         Button( action: {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                
-                if let error = error {
+            HungryNowManager.addNewRestaurant(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
+                if success {
+                    self.showingSuccessPopup = true
+                    self.notifications.getCurrentNotifications()
+                } else if let error = error {
+                    // Notification and YelpAPI Errors
                     print(error)
-                    // Handle the error here.
-                }
-                
-                if granted {
-                    NotificationManager.createRestaurantNotification(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
-                        if success {
-                            self.notifications.getCurrentNotifications()
-                        }
-                    }
+                    self.error = error
+                    self.showingErrorPopup = true
                 }
             }
-            
         }) {
             HStack {
                 Text("Save")

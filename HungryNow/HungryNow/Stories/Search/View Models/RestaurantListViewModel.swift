@@ -15,24 +15,43 @@ import SwiftUI
 
 class RestaurantListViewModel: NSObject, ObservableObject {
     @Published var restaurants = [RestaurantViewModel]()
+    @Published var error: Error?
+    @Published var showingErrorPopup = false
+    @Published var isLoading = false
     
     var locationManager = LocationManager()
     
     override init() {
-        super.init()        
+        super.init()
     }
     
     func onSearchTapped(query: String) {
+        self.isLoading = true
         if let location = locationManager.getCurrentLocation() {
             YelpAPI.getSearch(query: query, cllocation: location) { (restaurants: [Restaurant]?, error: Error?) in
                 if error != nil {
                     print(error!)
+                    self.error = error
+                    self.showingErrorPopup = true
+                    self.isLoading = false
+                    return
                 } else if let restaurants = restaurants {
+                    // no restaurants found
+                    if restaurants.count == 0 {
+                        self.error = SearchError.NoBusinesses
+                        self.showingErrorPopup = true
+                    }
+                    
                     self.restaurants = restaurants.map(RestaurantViewModel.init)
+                    self.isLoading = false
                 }
             }
         } else {
             print("no location enabled")
+            self.error = NotificationError.LocationNotEnabled
+            self.showingErrorPopup = true
+            self.isLoading = false
+            return
         }
     }
 }

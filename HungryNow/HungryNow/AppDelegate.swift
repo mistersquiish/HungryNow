@@ -22,9 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             let viewControllers = tabBarController.viewControllers else {
                 return true
         }
-        for (index, viewController) in viewControllers.enumerated() {
-            if let navigationController = viewController as? UINavigationController,
-                let savedVC = navigationController.viewControllers.first as? SavedVC {
+        for (_, viewController) in viewControllers.enumerated() {
+            if let savedVC = viewController as? SavedVC {
                 savedVC.notifications = notifications
             }
         }
@@ -51,6 +50,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        // Update Core data if any restaurants update their information
+        if !CoreDataManager.updateQueue.isEmpty {
+            for restaurant in CoreDataManager.updateQueue {
+                CoreDataManager.updateRestaurant(restaurant: restaurant)
+            }
+        }
+        
     }
     
     // MARK: - Tab bar

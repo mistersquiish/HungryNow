@@ -17,13 +17,27 @@ struct SavedView: View {
     var body: some View {
         NavigationView {
             VStack (alignment: .leading) {
-                List(restaurants, id: \.id) { savedRestaurant in
-                    SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications)
+                List {
+                    ForEach(restaurants, id: \.id) { savedRestaurant in
+                        SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications)
+                    }.onDelete(perform: removeRow)
                 }
+                
             }
             .navigationBarTitle(Text("Saved Restaurants"))
         }
         
+    }
+    
+    func removeRow(at offsets: IndexSet) {
+        let indexes = offsets.map({$0})
+        let savedRestaurant = restaurants[indexes[0]]
+        
+        // clear notification
+        notifications.removeNotifications(restaurantID: savedRestaurant.businessId!)
+        
+        // clear core data
+        CoreDataManager.deleteRestaurant(savedRestaurant: savedRestaurant)
     }
 }
 
@@ -47,8 +61,7 @@ struct SavedRowView: View {
     init(savedRestaurant: SavedRestaurant, notifications: Notifications) {
         self.notifications = notifications
         let restaurant = Restaurant(savedRestaurant: savedRestaurant)
-        savedRestaurantVM = SavedRestaurantViewModel(savedRestaurant: restaurant)
-        
+        savedRestaurantVM = SavedRestaurantViewModel(restaurant: restaurant)
         // create next notification string
         if let nextNotification = notifications.getNextNotification(restaurantID: restaurant.id) {
             let dateComponents = (nextNotification.trigger as! UNCalendarNotificationTrigger).dateComponents
@@ -66,29 +79,30 @@ struct SavedRowView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack (alignment: .top) {
-                ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
-                    .frame(width: 125, height: 125)
-                VStack (alignment: .leading) {
-                    Text(savedRestaurantVM.name).font(.headline)
-                    HStack {
-                        Text(String("\(savedRestaurantVM.rating) rating,"))
-                        Text(String("\(savedRestaurantVM.reviewCount) reviews"))
-                        Text(savedRestaurantVM.price)
+        NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications)) {
+            VStack {
+                HStack (alignment: .top) {
+                    ImageViewWidget(imageURL: savedRestaurantVM.imageURL)
+                        .frame(width: 125, height: 125)
+                    VStack (alignment: .leading) {
+                        Text(savedRestaurantVM.name).font(.headline)
+                        HStack {
+                            Text(String("\(savedRestaurantVM.rating) rating,"))
+                            Text(String("\(savedRestaurantVM.reviewCount) reviews"))
+                            Text(savedRestaurantVM.price)
+                        }
+                        Text(savedRestaurantVM.address)
+                        Text(savedRestaurantVM.city)
+                        Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
+                        Text(categories).font(.subheadline)
                     }
-                    Text(savedRestaurantVM.address)
-                    Text(savedRestaurantVM.city)
-                    Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
-                    Text(categories).font(.subheadline)
+                }
+                HoursView(savedRestaurantVM: savedRestaurantVM)
+                if (nextNotification != nil) {
+                    Text(nextNotification!)
                 }
             }
-            HoursView(savedRestaurantVM: savedRestaurantVM)
-            if (nextNotification != nil) {
-                Text(nextNotification!)
-            }
         }
-        
     }
 }
 
@@ -125,19 +139,6 @@ struct HourView: View {
     }
 }
 
-/// deprecated?
-//struct NextNotificationView: View {
-//    @ObservedObject var pendingNotifications: WrapperPendingNotifications
-//    var nextNotification: String = ""
-//
-//    init(businessID: String) {
-//        pendingNotifications = WrapperPendingNotifications(businessID: businessID)
-//    }
-//
-//    var body: some View {
-//        Text(nextNotification)
-//    }
-//}
 
 //#if DEBUG
 //struct FavoriteView_Previews: PreviewProvider {

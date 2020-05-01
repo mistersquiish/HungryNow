@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820716E2443CA5900174DEF /* ImageWidgetView.swift */; };
 		28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */; };
+		282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282CBAB2245265F300C35F4A /* SavedDetailView.swift */; };
 		282E4E6D24462A9700901D1B /* HungryNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6C24462A9700901D1B /* HungryNowTests.swift */; };
 		282E4E6F24464F5600901D1B /* YelpAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E6E24464F5600901D1B /* YelpAPITests.swift */; };
 		282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4E702446604C00901D1B /* DurationPickerView.swift */; };
+		2833D6DC24550F1200B4207C /* SavedDetailAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6DB24550F1200B4207C /* SavedDetailAddView.swift */; };
+		2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6DD2455107300B4207C /* HungryNowManager.swift */; };
+		2833D6E124553E4A00B4207C /* NotificationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6E024553E4A00B4207C /* NotificationErrors.swift */; };
+		2833D6E324553E5700B4207C /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6E224553E5700B4207C /* Notifications.swift */; };
 		283CCC28244F6FA000EDF9E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CCC27244F6FA000EDF9E3 /* SceneDelegate.swift */; };
 		283CCC2A244F6FC900EDF9E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CCC29244F6FC900EDF9E3 /* AppView.swift */; };
 		2854EA6E244B975900ADC239 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854EA6D244B975900ADC239 /* SavedView.swift */; };
@@ -27,17 +32,19 @@
 		28758A3B243FD449007F6CCA /* HungryNowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A3A243FD449007F6CCA /* HungryNowUITests.swift */; };
 		28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4A243FD53A007F6CCA /* YelpAPI.swift */; };
 		28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4C243FD716007F6CCA /* Restaurant.swift */; };
-		28758A4F243FDDDC007F6CCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4E243FDDDC007F6CCA /* Errors.swift */; };
+		28758A4F243FDDDC007F6CCA /* YelpAPIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A4E243FDDDC007F6CCA /* YelpAPIErrors.swift */; };
 		28758A53243FE96E007F6CCA /* SearchTransitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28758A52243FE96E007F6CCA /* SearchTransitionVC.swift */; };
 		28758A56243FF0BB007F6CCA /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A55243FF0BB007F6CCA /* Search.storyboard */; };
 		28758A58243FF0CE007F6CCA /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28758A57243FF0CE007F6CCA /* Tutorial.storyboard */; };
 		2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2880EBE12447AA7A000BBA4F /* NotificationManager.swift */; };
+		289FEFEF245B2F8500A9EC41 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289FEFEE245B2F8500A9EC41 /* Alerts.swift */; };
 		28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A97838244241A5007BF823 /* RestaurantListViewModel.swift */; };
 		28A9783B24424FEA007BF823 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783A24424FEA007BF823 /* SearchBar.swift */; };
 		28A9784024427319007BF823 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9783F24427319007BF823 /* LocationManager.swift */; };
 		28A9784424429FDB007BF823 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9784324429FDB007BF823 /* ImageLoader.swift */; };
 		28C190512444FB6E001119E5 /* SearchAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C190502444FB6E001119E5 /* SearchAddView.swift */; };
 		28C19053244518D8001119E5 /* Hours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C19052244518D8001119E5 /* Hours.swift */; };
+		28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1E4CA245BB5BA001A10EE /* LoadingView.swift */; };
 		28DB62BB244B63FC0051371A /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB62BA244B63FC0051371A /* NotificationTests.swift */; };
 		936CAA022480651B71C3CC76 /* Pods_HungryNowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */; };
 		DF84A3A5C444A447C1F7594C /* Pods_HungryNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */; };
@@ -66,10 +73,15 @@
 		188184C43F39B9A27C556E70 /* Pods-HungryNowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNowUITests.release.xcconfig"; path = "Target Support Files/Pods-HungryNowUITests/Pods-HungryNowUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2820716E2443CA5900174DEF /* ImageWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidgetView.swift; sourceTree = "<group>"; };
 		28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRestaurantViewModel.swift; sourceTree = "<group>"; };
+		282CBAB2245265F300C35F4A /* SavedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDetailView.swift; sourceTree = "<group>"; };
 		282E4E6B24462A9700901D1B /* HungryNowTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HungryNowTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		282E4E6C24462A9700901D1B /* HungryNowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowTests.swift; sourceTree = "<group>"; };
 		282E4E6E24464F5600901D1B /* YelpAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPITests.swift; sourceTree = "<group>"; };
 		282E4E702446604C00901D1B /* DurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerView.swift; sourceTree = "<group>"; };
+		2833D6DB24550F1200B4207C /* SavedDetailAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDetailAddView.swift; sourceTree = "<group>"; };
+		2833D6DD2455107300B4207C /* HungryNowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowManager.swift; sourceTree = "<group>"; };
+		2833D6E024553E4A00B4207C /* NotificationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationErrors.swift; sourceTree = "<group>"; };
+		2833D6E224553E5700B4207C /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		283CCC27244F6FA000EDF9E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		283CCC29244F6FC900EDF9E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		2854EA6D244B975900ADC239 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
@@ -91,18 +103,20 @@
 		28758A3C243FD449007F6CCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28758A4A243FD53A007F6CCA /* YelpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
 		28758A4C243FD716007F6CCA /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
-		28758A4E243FDDDC007F6CCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		28758A4E243FDDDC007F6CCA /* YelpAPIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPIErrors.swift; sourceTree = "<group>"; };
 		28758A52243FE96E007F6CCA /* SearchTransitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTransitionVC.swift; sourceTree = "<group>"; };
 		28758A55243FF0BB007F6CCA /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		28758A57243FF0CE007F6CCA /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		2880EBE12447AA7A000BBA4F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		28960E7224412CA8006F0AB6 /* CurlCommands.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CurlCommands.sh; sourceTree = "<group>"; };
+		289FEFEE245B2F8500A9EC41 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		28A97838244241A5007BF823 /* RestaurantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewModel.swift; sourceTree = "<group>"; };
 		28A9783A24424FEA007BF823 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		28A9783F24427319007BF823 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		28A9784324429FDB007BF823 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		28C190502444FB6E001119E5 /* SearchAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddView.swift; sourceTree = "<group>"; };
 		28C19052244518D8001119E5 /* Hours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hours.swift; sourceTree = "<group>"; };
+		28C1E4CA245BB5BA001A10EE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		28DB62BA244B63FC0051371A /* NotificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTests.swift; sourceTree = "<group>"; };
 		3D9BD93922F087EEC69A8349 /* Pods-HungryNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNow.debug.xcconfig"; path = "Target Support Files/Pods-HungryNow/Pods-HungryNow.debug.xcconfig"; sourceTree = "<group>"; };
 		3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +177,16 @@
 			path = ImageWidget;
 			sourceTree = "<group>";
 		};
+		2833D6DF24553E3200B4207C /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				2880EBE12447AA7A000BBA4F /* NotificationManager.swift */,
+				2833D6E024553E4A00B4207C /* NotificationErrors.swift */,
+				2833D6E224553E5700B4207C /* Notifications.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		283CCC2E244FDBA700EDF9E3 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				2854EA6D244B975900ADC239 /* SavedView.swift */,
+				282CBAB2245265F300C35F4A /* SavedDetailView.swift */,
+				2833D6DB24550F1200B4207C /* SavedDetailAddView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,8 +265,7 @@
 				28758A1A243FD448007F6CCA /* AppDelegate.swift */,
 				283CCC29244F6FC900EDF9E3 /* AppView.swift */,
 				28A9783C24426703007BF823 /* Helpers */,
-				2854EA6C244B974400ADC239 /* Saved Restaurant */,
-				286F97C224423AB500BC2DED /* Search */,
+				289FEFED245B2F5E00A9EC41 /* Stories */,
 				28758A48243FD50C007F6CCA /* Controllers */,
 				28758A54243FF09B007F6CCA /* Storyboards */,
 				28758A21243FD449007F6CCA /* Assets.xcassets */,
@@ -285,7 +310,7 @@
 			children = (
 				286F97C724423F4E00BC2DED /* Models */,
 				28758A4A243FD53A007F6CCA /* YelpAPI.swift */,
-				28758A4E243FDDDC007F6CCA /* Errors.swift */,
+				28758A4E243FDDDC007F6CCA /* YelpAPIErrors.swift */,
 			);
 			path = YelpAPIClient;
 			sourceTree = "<group>";
@@ -304,8 +329,19 @@
 			isa = PBXGroup;
 			children = (
 				282E4E702446604C00901D1B /* DurationPickerView.swift */,
+				28C1E4CA245BB5BA001A10EE /* LoadingView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		289FEFED245B2F5E00A9EC41 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				289FEFEE245B2F8500A9EC41 /* Alerts.swift */,
+				2854EA6C244B974400ADC239 /* Saved Restaurant */,
+				286F97C224423AB500BC2DED /* Search */,
+			);
+			path = Stories;
 			sourceTree = "<group>";
 		};
 		28A9783724424181007BF823 /* View Models */ = {
@@ -319,12 +355,13 @@
 		28A9783C24426703007BF823 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2833D6DF24553E3200B4207C /* Notifications */,
 				283CCC2E244FDBA700EDF9E3 /* CoreData */,
 				28758A59243FF422007F6CCA /* Views */,
 				28242B8F244D3FA100EB109B /* ImageWidget */,
 				28758A49243FD52B007F6CCA /* YelpAPIClient */,
 				28A9783F24427319007BF823 /* LocationManager.swift */,
-				2880EBE12447AA7A000BBA4F /* NotificationManager.swift */,
+				2833D6DD2455107300B4207C /* HungryNowManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,19 +614,26 @@
 				28C190512444FB6E001119E5 /* SearchAddView.swift in Sources */,
 				282E4E712446604C00901D1B /* DurationPickerView.swift in Sources */,
 				286F97C424423AFB00BC2DED /* SearchView.swift in Sources */,
+				2833D6DC24550F1200B4207C /* SavedDetailAddView.swift in Sources */,
 				28A9784024427319007BF823 /* LocationManager.swift in Sources */,
 				283CCC28244F6FA000EDF9E3 /* SceneDelegate.swift in Sources */,
+				2833D6E324553E5700B4207C /* Notifications.swift in Sources */,
 				28A97839244241A5007BF823 /* RestaurantListViewModel.swift in Sources */,
+				2833D6E124553E4A00B4207C /* NotificationErrors.swift in Sources */,
 				28758A1D243FD448007F6CCA /* SavedVC.swift in Sources */,
+				289FEFEF245B2F8500A9EC41 /* Alerts.swift in Sources */,
 				286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */,
+				2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */,
 				28C19053244518D8001119E5 /* Hours.swift in Sources */,
 				28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */,
 				28758A53243FE96E007F6CCA /* SearchTransitionVC.swift in Sources */,
 				2874D501244D0264004DC4B7 /* CoreDataManager.swift in Sources */,
-				28758A4F243FDDDC007F6CCA /* Errors.swift in Sources */,
+				28758A4F243FDDDC007F6CCA /* YelpAPIErrors.swift in Sources */,
 				2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */,
 				28A9784424429FDB007BF823 /* ImageLoader.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
+				28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */,
+				282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,
 				283CCC2A244F6FC900EDF9E3 /* AppView.swift in Sources */,
 				2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */,

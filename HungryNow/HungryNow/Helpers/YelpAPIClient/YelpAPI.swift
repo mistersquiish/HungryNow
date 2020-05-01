@@ -16,7 +16,7 @@ class YelpAPI {
     static let yelpClientID: String = "linRbg0iHogjirbBxD-omw"
     static let yelpAPIKey: String = "KT_bxS5gMkwkqOweJ-DLtwJg3WaTwwLvQhaPINQgx7bGHyP3EZi_K7ZjfmCfD9xPXE8ACtxjseKOchixoxxTrsyjQjtqVmeyJiLGQ8Km9DYGF9bwD_BXx35bb3OPXnYx"
     
-    static func checkErrors(dataDictionary: [String: Any]) -> YelpAPIError? {
+    static func checkYelpErrors(dataDictionary: [String: Any]) -> YelpAPIError? {
         if let error = dataDictionary["error"] as? [String: Any] {
             guard let errorCode = error["code"] as? String else {
                 return YelpAPIError.NoErrorCode
@@ -41,9 +41,17 @@ class YelpAPI {
                 return YelpAPIError.ValidationError(responseDescription: errorDescription)
             }
             
-            return YelpAPIError.Unknown
+            return YelpAPIError.Unknown(errorDescription: errorDescription)
         }
         // no error
+        return nil
+    }
+    
+    static func checkRequestErrors(response: DefaultDataResponse) -> YelpAPIError? {
+        if let error = response.error {
+            print(error)
+            return YelpAPIError.RequestFailed(error: error)
+        }
         return nil
     }
     
@@ -61,7 +69,7 @@ class YelpAPI {
             "longitude": cllocation.coordinate.longitude,
             "radius": radius,
             "sort_by": "distance",
-            "limit": 5,
+            "limit": 10,
             "categories": "food,restaurants"
         ] as [String : Any]
         
@@ -69,11 +77,17 @@ class YelpAPI {
                           method: .get,
                           parameters: parameters,
                           headers: header).response { response in
+                            if let error = checkRequestErrors(response: response) {
+                                completion(nil, error)
+                                return
+                            }
+                            
                             if let data = response.data {
                                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                                 // check if returned response error
-                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
+                                    return
                                 }
                                 
                                 guard let restaurantsDictionary = dataDictionary["businesses"] as? [[String: Any]] else {
@@ -86,7 +100,7 @@ class YelpAPI {
                                 print("error: no data")
                                 completion(nil, YelpAPIError.RequestFailed(error: response.error!))
                             }
-        }
+        } 
     }
     
     static func getHours(restaurantID: String, completion: @escaping (RestaurantHours?, Error?) -> ()) {
@@ -100,10 +114,15 @@ class YelpAPI {
                           method: .get,
                           headers: header).response { response in
                             if let data = response.data {
+                                if let error = checkRequestErrors(response: response) {
+                                    completion(nil, error)
+                                    return
+                                }
+                                
                                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                                 
                                 // check if returned response error
-                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
                                     return
                                 }
@@ -135,11 +154,16 @@ class YelpAPI {
         Alamofire.request(requestURL,
                           method: .get,
                           headers: header).response { response in
+                            if let error = checkRequestErrors(response: response) {
+                                completion(nil, error)
+                                return
+                            }
+                            
                             if let data = response.data {
                                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                                 
                                 // check if returned response error
-                                if let error = checkErrors(dataDictionary: dataDictionary) {
+                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
                                     completion(nil, error)
                                     return
                                 }

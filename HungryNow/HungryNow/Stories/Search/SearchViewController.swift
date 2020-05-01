@@ -13,9 +13,10 @@ import SwiftUI
 class SearchViewController: UIViewController {
     
     var notifications: Notifications!
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     @IBSegueAction func addSwiftUIView(_ coder: NSCoder) -> UIViewController? {
-        let rootView = SearchView(notifications: notifications, vcDelegate: self)
+        let rootView = SearchView(notifications: notifications, vcDelegate: self).environment(\.managedObjectContext, context)
         let hostController = UIHostingController(coder: coder, rootView: rootView)
                             
         return hostController

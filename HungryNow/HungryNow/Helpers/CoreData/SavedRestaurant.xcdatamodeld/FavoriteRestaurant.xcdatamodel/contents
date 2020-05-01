@@ -13,9 +13,13 @@
         <attribute name="country" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reviewCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Category" inverseName="ofSavedRestaurant" inverseEntity="Category"/>
         <relationship name="savedTimes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SavedTime" inverseName="ofSavedRestaurant" inverseEntity="SavedTime"/>
     </entity>
@@ -29,7 +33,7 @@
     </entity>
     <elements>
         <element name="Category" positionX="-36" positionY="81" width="128" height="103"/>
-        <element name="SavedRestaurant" positionX="-54" positionY="9" width="128" height="208"/>
+        <element name="SavedRestaurant" positionX="-54" positionY="9" width="128" height="268"/>
         <element name="SavedTime" positionX="-54" positionY="27" width="128" height="133"/>
     </elements>
 </model>

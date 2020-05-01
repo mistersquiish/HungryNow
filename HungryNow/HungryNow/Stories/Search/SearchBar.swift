@@ -26,6 +26,10 @@ struct SearchBar: UIViewRepresentable {
             _text = text
             self.control = control
         }
+        
+        func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            searchBar.setShowsCancelButton(true, animated: true)
+        }
 
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             text = searchText
@@ -33,6 +37,13 @@ struct SearchBar: UIViewRepresentable {
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             control.onSearchButtonClicked?(text)
+            searchBar.endEditing(true)
+            searchBar.setShowsCancelButton(false, animated: true)
+        }
+        
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.endEditing(true)
+            searchBar.setShowsCancelButton(false, animated: true)
         }
     }
 
@@ -50,5 +61,26 @@ struct SearchBar: UIViewRepresentable {
 
     func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
         uiView.text = text
+    }
+}
+
+
+enum SearchError: Error {
+    case NoBusinesses
+    case LocationNotEnabled
+    case NoInternet
+}
+
+extension SearchError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .NoBusinesses:
+            return NSLocalizedString("No restaurants found. Try searching again. (Hint: Type only alpha or numerical characters)", comment: "")
+        case .LocationNotEnabled:
+            return NSLocalizedString("Cannot detect location. Please enable location.", comment: "")
+        case .NoInternet:
+            return NSLocalizedString("No internet connection. Please connect to Wifi", comment: "")
+        }
+        
     }
 }
