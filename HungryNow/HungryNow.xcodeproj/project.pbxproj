@@ -44,6 +44,7 @@
 		28A9784424429FDB007BF823 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A9784324429FDB007BF823 /* ImageLoader.swift */; };
 		28C190512444FB6E001119E5 /* SearchAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C190502444FB6E001119E5 /* SearchAddView.swift */; };
 		28C19053244518D8001119E5 /* Hours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C19052244518D8001119E5 /* Hours.swift */; };
+		28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1E4CA245BB5BA001A10EE /* LoadingView.swift */; };
 		28DB62BB244B63FC0051371A /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB62BA244B63FC0051371A /* NotificationTests.swift */; };
 		936CAA022480651B71C3CC76 /* Pods_HungryNowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */; };
 		DF84A3A5C444A447C1F7594C /* Pods_HungryNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */; };
@@ -115,6 +116,7 @@
 		28A9784324429FDB007BF823 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		28C190502444FB6E001119E5 /* SearchAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddView.swift; sourceTree = "<group>"; };
 		28C19052244518D8001119E5 /* Hours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hours.swift; sourceTree = "<group>"; };
+		28C1E4CA245BB5BA001A10EE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		28DB62BA244B63FC0051371A /* NotificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTests.swift; sourceTree = "<group>"; };
 		3D9BD93922F087EEC69A8349 /* Pods-HungryNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNow.debug.xcconfig"; path = "Target Support Files/Pods-HungryNow/Pods-HungryNow.debug.xcconfig"; sourceTree = "<group>"; };
 		3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				282E4E702446604C00901D1B /* DurationPickerView.swift */,
+				28C1E4CA245BB5BA001A10EE /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */,
 				28A9784424429FDB007BF823 /* ImageLoader.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
+				28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */,
 				282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,
 				283CCC2A244F6FC900EDF9E3 /* AppView.swift in Sources */,

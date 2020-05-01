@@ -100,7 +100,7 @@ class YelpAPI {
                                 print("error: no data")
                                 completion(nil, YelpAPIError.RequestFailed(error: response.error!))
                             }
-        }
+        } 
     }
     
     static func getHours(restaurantID: String, completion: @escaping (RestaurantHours?, Error?) -> ()) {

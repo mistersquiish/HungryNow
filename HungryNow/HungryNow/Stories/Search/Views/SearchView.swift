@@ -17,12 +17,12 @@ struct SearchView : View {
     @FetchRequest(entity: SavedRestaurant.entity(), sortDescriptors: []) var restaurants: FetchedResults<SavedRestaurant>
     @ObservedObject var restaurantListVM = RestaurantListViewModel()
     @ObservedObject var notifications: Notifications
-    @State private var searchText: String = ""
+    
     
     var vcDelegate: UIViewController
     
-    // State variables for popups
-    //@State var showingErrorPopup = false
+    @State var isLoading = false
+    @State private var searchText: String = ""
 
     var body: some View {
         ZStack {
@@ -40,6 +40,10 @@ struct SearchView : View {
                     .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
                 }
                 .padding(.top, 25)
+            }.blur(radius: restaurantListVM.isLoading ? 15 : 0)
+            
+            if restaurantListVM.isLoading {
+                Loading()
             }
         }
         .popup(isPresented: $restaurantListVM.showingErrorPopup, autohideIn: 2) {
