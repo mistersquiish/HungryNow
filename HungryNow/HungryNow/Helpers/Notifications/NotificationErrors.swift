@@ -14,6 +14,7 @@ enum NotificationError: Error {
     case NoSelectedDays
     case LocationNotEnabled
     case NotificationNotEnabled
+    case AlreadySaved
 }
 
 extension NotificationError: LocalizedError {
@@ -29,6 +30,8 @@ extension NotificationError: LocalizedError {
             return NSLocalizedString("Location not enabled. Please enable location.", comment: "")
         case .NotificationNotEnabled:
             return NSLocalizedString("Notifications not enabled. Please enable notifications.", comment: "")
+        case .AlreadySaved:
+            return NSLocalizedString("Restaurant has already been added. Please add additional notifications in the home screen.", comment: "")
         }
         
     }

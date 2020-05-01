@@ -136,7 +136,6 @@ struct AddButton: View {
                     self.showingSuccessPopup = true
                     self.notifications.getCurrentNotifications()
                 } else if let error = error {
-                    print(error)
                     self.error = error
                     self.showingErrorPopup = true
                 }

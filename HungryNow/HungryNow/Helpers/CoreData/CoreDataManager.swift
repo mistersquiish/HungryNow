@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import UIKit
+import SwiftUI
 
 class CoreDataManager {
     
@@ -170,5 +171,16 @@ class CoreDataManager {
     static func deleteRestaurant(savedRestaurant: SavedRestaurant) {
         moc.delete(savedRestaurant as NSManagedObject)
         try? moc.save()
+    }
+    
+    static func isSaved(restaurantID: String) -> Bool {
+        let savedRestaurants = try! moc.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: "SavedRestaurant"))
+        
+        for data in savedRestaurants as! [NSManagedObject] {
+            if data.value(forKey: "businessId") as! String == restaurantID {
+                return true
+            }
+        }
+        return false
     }
 }

@@ -30,7 +30,6 @@ class RestaurantListViewModel: NSObject, ObservableObject {
         if let location = locationManager.getCurrentLocation() {
             YelpAPI.getSearch(query: query, cllocation: location) { (restaurants: [Restaurant]?, error: Error?) in
                 if error != nil {
-                    print(error!)
                     self.error = error
                     self.showingErrorPopup = true
                     self.isLoading = false

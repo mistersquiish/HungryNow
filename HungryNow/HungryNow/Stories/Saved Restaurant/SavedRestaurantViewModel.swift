@@ -54,10 +54,12 @@ class SavedRestaurantViewModel: ObservableObject {
             }
             
             if let error = error {
-                print("Error report")
+                print("------------------------------")
+                print("Update details in background error:")
                 print(error)
                 print(error.self)
                 print(error.localizedDescription)
+                print("------------------------------")
             }
         
         })

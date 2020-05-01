@@ -116,7 +116,9 @@ struct SavedRowView: View {
             }.disabled(self.showingNotifications == false)
             
             if (nextNotification != nil) {
-                Text(nextNotification!)
+                Text(nextNotification!).padding(.bottom, 10)
+            } else {
+                Text("No upcoming notifications").padding(.bottom, 10)
             }
         }
         
