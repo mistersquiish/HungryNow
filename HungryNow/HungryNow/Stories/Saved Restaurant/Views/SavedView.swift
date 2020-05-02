@@ -14,19 +14,28 @@ struct SavedView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: SavedRestaurant.entity(), sortDescriptors: []) var restaurants: FetchedResults<SavedRestaurant>
     @ObservedObject var notifications: Notifications
+    
+    @State private var hourSelection: Set<String> = []
+    @State var didLoadOnce: Bool = false // Used to disable animations during initializatino
         
     var body: some View {
         NavigationView {
-            VStack (alignment: .leading) {
-                List {
-                    ForEach(restaurants, id: \.id) { savedRestaurant in
-                        SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications)
-                    }
-                    .onDelete(perform: removeRow)
-                    .buttonStyle(BorderlessButtonStyle())
+            ScrollView {
+                ZStack {
+                    VStack (alignment: .leading) {
+                        ForEach(restaurants, id: \.id) { savedRestaurant in
+                            SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications, showHours: self.hourSelection.contains(savedRestaurant.businessId!), hourSelection: self.$hourSelection, didLoadOnce: self.$didLoadOnce)
+                            .modifier(ListRowModifier())
+                            .animation(.linear(duration: self.didLoadOnce ? 0.4 : 0))
+                        }
+                        .onDelete(perform: removeRow)
+                        .buttonStyle(BorderlessButtonStyle())
+                    }.background(Color.purple)
                 }
                 
             }
+            .animation(.linear(duration: self.didLoadOnce ? 0.3 : 0))
+            
             .navigationBarTitle(Text("Saved Restaurants"))
         }
         
@@ -51,7 +60,10 @@ struct SavedRowView: View {
     @ObservedObject var notifications: Notifications
     
     @State var showingNotifications = false
+    @Binding var didLoadOnce: Bool
+    @Binding var hourSelection: Set<String>
     
+    let showHours: Bool
     var nextNotification: String?
     let imageViewWidget: ImageViewWidget
     
@@ -65,8 +77,11 @@ struct SavedRowView: View {
         }
     }
     
-    init(savedRestaurant: SavedRestaurant, notifications: Notifications) {
+    init(savedRestaurant: SavedRestaurant, notifications: Notifications, showHours: Bool, hourSelection: Binding<Set<String>>, didLoadOnce: Binding<Bool>) {
         self.notifications = notifications
+        self.showHours = showHours
+        self._hourSelection = hourSelection
+        self._didLoadOnce = didLoadOnce
         let restaurant = Restaurant(savedRestaurant: savedRestaurant)
         let savedRestaurantVM = SavedRestaurantViewModel(restaurant: restaurant)
         self.savedRestaurantVM = savedRestaurantVM
@@ -105,7 +120,16 @@ struct SavedRowView: View {
                     Text(categories).font(.subheadline)
                 }
             }
-            HoursView(savedRestaurantVM: savedRestaurantVM)
+            if showHours {
+                HoursView(savedRestaurantVM: savedRestaurantVM)
+                    .onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
+            } else {
+                Text("Hours").padding()
+                    .onTapGesture {
+                        self.didLoadOnce = true
+                        self.selectDeselect(self.savedRestaurantVM.id)
+                }
+            }
             HStack {
                 DirectionsButton(savedRestaurantVM: savedRestaurantVM)
                 PhoneButton(savedRestaurantVM: savedRestaurantVM)
@@ -120,8 +144,16 @@ struct SavedRowView: View {
             } else {
                 Text("No upcoming notifications").padding(.bottom, 10)
             }
-        }
+        }.background(Color.green)
         
+    }
+    
+    private func selectDeselect(_ restaurantID: String) {
+        if hourSelection.contains(restaurantID) {
+            hourSelection.remove(restaurantID)
+        } else {
+            hourSelection.insert(restaurantID)
+        }
     }
 }
 
@@ -223,5 +255,14 @@ struct EditButton: View {
             .background(Color.blue)
             .cornerRadius(30.0)
         }
+    }
+}
+
+struct ListRowModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        Group {
+            content
+            Divider()
+        }.offset(x: 20)
     }
 }
