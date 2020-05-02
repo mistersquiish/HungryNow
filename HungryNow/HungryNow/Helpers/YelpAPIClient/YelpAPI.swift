@@ -158,6 +158,7 @@ class YelpAPI {
                           method: .get,
                           headers: header).response { response in
                             if let error = checkRequestErrors(response: response) {
+                                print(restaurantID)
                                 completion(nil, error)
                                 return
                             }

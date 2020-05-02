@@ -20,25 +20,22 @@ struct SavedView: View {
         
     var body: some View {
         NavigationView {
-            ScrollView {
-                ZStack {
-                    VStack (alignment: .leading) {
-                        ForEach(restaurants, id: \.id) { savedRestaurant in
-                            SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications, showHours: self.hourSelection.contains(savedRestaurant.businessId!), hourSelection: self.$hourSelection, didLoadOnce: self.$didLoadOnce)
-                            .modifier(ListRowModifier())
-                            .animation(.linear(duration: self.didLoadOnce ? 0.4 : 0))
-                        }
-                        .onDelete(perform: removeRow)
-                        .buttonStyle(BorderlessButtonStyle())
-                    }.background(Color.purple)
+            List {
+                ForEach(restaurants, id: \.id) { savedRestaurant in
+                    SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications, showHours: self.hourSelection.contains(savedRestaurant.businessId!), hourSelection: self.$hourSelection, didLoadOnce: self.$didLoadOnce)
+                        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    .animation(.linear(duration: self.didLoadOnce ? 0.8 : 0))
                 }
-                
+                .onDelete(perform: removeRow)
+                .buttonStyle(BorderlessButtonStyle())
+                .animation(.linear(duration: self.didLoadOnce ? 0.4 : 0))
+                .listRowBackground(Color.yellow)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
-            .animation(.linear(duration: self.didLoadOnce ? 0.3 : 0))
-            
+            .animation(.linear(duration: self.didLoadOnce ? 0.4 : 0))
             .navigationBarTitle(Text("Saved Restaurants"))
         }
-        
+    
     }
     
     func removeRow(at offsets: IndexSet) {
@@ -138,13 +135,14 @@ struct SavedRowView: View {
             NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications), isActive: self.$showingNotifications) {
                 EmptyView()
             }.disabled(self.showingNotifications == false)
-            
+
             if (nextNotification != nil) {
                 Text(nextNotification!).padding(.bottom, 10)
             } else {
                 Text("No upcoming notifications").padding(.bottom, 10)
             }
-        }.background(Color.green)
+        }.padding(.leading, 5)
+        .background(Color.green)
         
     }
     
@@ -257,12 +255,12 @@ struct EditButton: View {
         }
     }
 }
-
-struct ListRowModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        Group {
-            content
-            Divider()
-        }.offset(x: 20)
-    }
-}
+//
+//struct ListRowModifier: ViewModifier {
+//    func body(content: Content) -> some View {
+//        Group {
+//            content
+//            Divider()
+//        }//.offset(x: 20)
+//    }
+//}
