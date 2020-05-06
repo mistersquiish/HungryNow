@@ -120,9 +120,10 @@ struct SavedRowView: View {
                 }
             }
             HStack {
-                DirectionsButton(savedRestaurantVM: savedRestaurantVM)
-                PhoneButton(savedRestaurantVM: savedRestaurantVM)
-                EditButton(showingNotifications: $showingNotifications)
+                RestaurantButton(buttonType: RestaurantButtonType.Direction, savedRestaurantVM: savedRestaurantVM, showingNotifications: nil)
+                RestaurantButton(buttonType: RestaurantButtonType.Phone, savedRestaurantVM: savedRestaurantVM, showingNotifications: nil)
+                RestaurantButton(buttonType: RestaurantButtonType.Edit, savedRestaurantVM: nil, showingNotifications: $showingNotifications)
+                
             }
             NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications), isActive: self.$showingNotifications) {
                 EmptyView()
@@ -183,105 +184,6 @@ struct HourView: View {
 }
 
 
-struct DirectionsButton: View {
-    var savedRestaurantVM: SavedRestaurantViewModel
-    var query: String
-    
-    init(savedRestaurantVM: SavedRestaurantViewModel) {
-        self.savedRestaurantVM = savedRestaurantVM
-        
-        var query = savedRestaurantVM.name + " " + savedRestaurantVM.address + " " + savedRestaurantVM.city
-        query = query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-        self.query = query
-    }
-    
-    var body: some View {
-        Button(action: {
-            // Try GoogleMaps first
-            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-                UIApplication.shared.open(URL(string:"comgooglemaps://?daddr=\(self.query)")!, options: [:], completionHandler: nil)
-            }
-            // Try AppleMaps
-            else if  UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com/")!) {
-                UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(self.query)")!, options: [:], completionHandler: nil)
-            }
-            // Open Google Maps on browser
-            else {
-                UIApplication.shared.open(URL(string: "http://maps.google.com/maps?daddr=\(self.query)")!, options: [:], completionHandler: nil)
-            }
-        }) {
-            Text("Directions").foregroundColor(.white)
-            .padding()
-            .background(Color.blue)
-            .cornerRadius(30.0)
-        }
-    }
-}
-
-struct PhoneButton: View {
-    var savedRestaurantVM: SavedRestaurantViewModel
-    
-    var body: some View {
-        Button(action: {
-            if let url = URL(string: "tel://\(self.savedRestaurantVM.phone)") {
-               UIApplication.shared.open(url)
-             }
-        }) {
-            Text("Call").foregroundColor(.white)
-            .padding()
-            .background(Color.blue)
-            .cornerRadius(30.0)
-        }
-    }
-}
-
-struct EditButton: View {
-    @Binding var showingNotifications: Bool
-    
-    var body: some View {
-        Button(action: {
-            self.showingNotifications.toggle()
-        }) {
-            Text("Edit").foregroundColor(.white)
-            .padding()
-            .background(Color.blue)
-            .cornerRadius(30.0)
-        }
-    }
-}
-
-struct ActionButton: View {
-    @State private var showingSheet = false
-    var notifications: Notifications
-    var savedRestaurantVM: SavedRestaurantViewModel
-    
-    var body: some View {
-        Button(action: {
-            self.showingSheet = true
-        }) {
-            Image(systemName: "ellipsis")
-                .resizable()
-                .frame(width: 20, height: 4)
-                .rotationEffect(Angle(degrees: 90.0))
-                .padding(.top, 15)
-        }.actionSheet(isPresented: $showingSheet) {
-            ActionSheet(title: Text(savedRestaurantVM.name), message: Text("\(savedRestaurantVM.address) \(savedRestaurantVM.city)"), buttons: [
-                .destructive(Text("Delete")) { self.removeRestaurant() },
-                .cancel()
-            ])
-                 
-        }
-        
-    }
-    
-    private func removeRestaurant() {
-        // clear notification
-        notifications.removeNotifications(restaurantID: savedRestaurantVM.id)
-        
-        // clear core data
-        CoreDataManager.deleteRestaurant(restaurantID: savedRestaurantVM.id)
-    }
-}
 
 //
 //struct ListRowModifier: ViewModifier {
