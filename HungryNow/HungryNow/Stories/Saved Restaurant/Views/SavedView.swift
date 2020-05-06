@@ -20,33 +20,23 @@ struct SavedView: View {
         
     var body: some View {
         NavigationView {
-            List {
+            ScrollView(showsIndicators: false) {
                 ForEach(restaurants, id: \.id) { savedRestaurant in
                     SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications, showHours: self.hourSelection.contains(savedRestaurant.businessId!), hourSelection: self.$hourSelection, didLoadOnce: self.$didLoadOnce)
-                        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    .animation(.linear(duration: self.didLoadOnce ? 0.8 : 0))
+                    .animation(.linear(duration: self.didLoadOnce ? 0.4 : 0))
+                    
                 }
-                .onDelete(perform: removeRow)
                 .buttonStyle(BorderlessButtonStyle())
                 .animation(.linear(duration: self.didLoadOnce ? 0.4 : 0))
-                .listRowBackground(Color.yellow)
-                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                
             }
+            .frame(maxWidth: .infinity)
+            //.background(Color.yellow)
             .animation(.linear(duration: self.didLoadOnce ? 0.4 : 0))
+                
             .navigationBarTitle(Text("Saved Restaurants"))
         }
     
-    }
-    
-    func removeRow(at offsets: IndexSet) {
-        let indexes = offsets.map({$0})
-        let savedRestaurant = restaurants[indexes[0]]
-        
-        // clear notification
-        notifications.removeNotifications(restaurantID: savedRestaurant.businessId!)
-        
-        // clear core data
-        CoreDataManager.deleteRestaurant(savedRestaurant: savedRestaurant)
     }
 }
 
@@ -116,6 +106,8 @@ struct SavedRowView: View {
                     Text(String(format: "%.2f mi", savedRestaurantVM.distance)).font(.footnote)
                     Text(categories).font(.subheadline)
                 }
+                Spacer()
+                ActionButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM)
             }
             if showHours {
                 HoursView(savedRestaurantVM: savedRestaurantVM)
@@ -141,7 +133,9 @@ struct SavedRowView: View {
             } else {
                 Text("No upcoming notifications").padding(.bottom, 10)
             }
-        }.padding(.leading, 5)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading, 5)
         .background(Color.green)
         
     }
@@ -255,6 +249,40 @@ struct EditButton: View {
         }
     }
 }
+
+struct ActionButton: View {
+    @State private var showingSheet = false
+    var notifications: Notifications
+    var savedRestaurantVM: SavedRestaurantViewModel
+    
+    var body: some View {
+        Button(action: {
+            self.showingSheet = true
+        }) {
+            Image(systemName: "ellipsis")
+                .resizable()
+                .frame(width: 20, height: 4)
+                .rotationEffect(Angle(degrees: 90.0))
+                .padding(.top, 15)
+        }.actionSheet(isPresented: $showingSheet) {
+            ActionSheet(title: Text(savedRestaurantVM.name), message: Text("\(savedRestaurantVM.address) \(savedRestaurantVM.city)"), buttons: [
+                .destructive(Text("Delete")) { self.removeRestaurant() },
+                .cancel()
+            ])
+                 
+        }
+        
+    }
+    
+    private func removeRestaurant() {
+        // clear notification
+        notifications.removeNotifications(restaurantID: savedRestaurantVM.id)
+        
+        // clear core data
+        CoreDataManager.deleteRestaurant(restaurantID: savedRestaurantVM.id)
+    }
+}
+
 //
 //struct ListRowModifier: ViewModifier {
 //    func body(content: Content) -> some View {
