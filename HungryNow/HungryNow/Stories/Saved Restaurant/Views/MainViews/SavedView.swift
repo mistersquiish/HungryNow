@@ -31,6 +31,8 @@ struct SavedView: View {
             .font: UIFont(name:"Chivo-Regular", size: 30)!
         ]
         
+        UITabBar.appearance().barTintColor = UIColor(named: "background")
+        UITabBar.appearance().tintColor = UIColor(named: "accent")
     }
         
     var body: some View {
@@ -150,9 +152,8 @@ struct SavedRowView: View {
                         }
                         Text("") // blank text for consistent spacing
                         Image(systemName: "chevron.up").foregroundColor(Color("font"))
-                    }
+                    }.onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
                     HoursView(savedRestaurantVM: savedRestaurantVM)
-                        .onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
                 }.padding()
             } else {
                 Group {

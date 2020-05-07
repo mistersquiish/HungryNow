@@ -17,7 +17,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5zp-cj-OlG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="uvu-53-jfn"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mappin" catalog="system" id="uvu-53-jfn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb3-m7-zrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,7 +59,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="vur-Dz-REc"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="vur-Dz-REc"/>
                     <navigationItem key="navigationItem" title="HungryNow" id="pte-11-zxB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -96,11 +96,16 @@
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="hqW-pk-w7b"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add" id="5XT-cX-2K7"/>
+                    <tabBarItem key="tabBarItem" title="Add" image="plus" catalog="system" id="5XT-cX-2K7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6V-mw-AJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="48" y="-500"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="mappin" catalog="system" width="105" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+    </resources>
 </document>
