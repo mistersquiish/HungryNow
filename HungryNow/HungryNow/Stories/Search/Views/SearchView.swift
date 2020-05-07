@@ -26,22 +26,30 @@ struct SearchView : View {
 
     var body: some View {
         ZStack {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 0) {
                 NavigationView {
-                    VStack (alignment: .leading) {
+                    VStack (alignment: .leading, spacing: 5) {
                         SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
                         
-                        List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
-                            RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
+                        List {
                             
+                            ForEach(self.restaurantListVM.restaurants, id: \.id) { restaurant in
+                                RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
+                                    .padding(.bottom, 5)
+                                    .listRowBackground(Color("background2"))
+                            }
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         }
+                        
+                        
                     }
+                    .background(Color("background"))
                     .navigationBarTitle(Text("Restaurants"))
                     .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
-                }
-                .padding(.top, 25)
-            }.blur(radius: restaurantListVM.isLoading ? 15 : 0)
-            
+                }.padding(.top, 20)
+            }
+            .background(Color("background"))
+            .blur(radius: restaurantListVM.isLoading ? 15 : 0)
             if restaurantListVM.isLoading {
                 Loading()
             }
@@ -85,44 +93,71 @@ struct RestaurantRowView: View {
     }
     
     var body: some View {
-        
-        HStack (alignment: .top) {
-            imageViewWidget.frame(width: 125, height: 125)
-            VStack (alignment: .leading) {
-                Text(self.restaurantVM.name).font(.headline)
-                HStack {
-                    Text(String("\(self.restaurantVM.rating) rating,"))
-                    Text(String("\(self.restaurantVM.reviewCount) reviews"))
-                    Text(self.restaurantVM.price)
+        ZStack {
+            VStack (alignment: .leading, spacing: 0) {
+                HStack (alignment: .top) {
+                    imageViewWidget.frame(width: 125, height: 125)
+                    VStack (alignment: .leading) {
+                        Text(self.restaurantVM.name)
+                            .font(.custom("Chivo-Regular", size: 20))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(2)
+                            .foregroundColor(Color("font"))
+                            .frame(maxWidth: 220, alignment: .leading)
+                        HStack {
+                            HStack (alignment: .center, spacing: 5) {
+                                Text(String("\(self.restaurantVM.rating)"))
+                                    .foregroundColor(Color("font"))
+                                    .font(.custom("Chivo-Regular", size: 17))
+                                Image(systemName: "star.fill")
+                                    .resizable()
+                                    .frame(width: 15, height: 15)
+                                    .foregroundColor(Color.yellow)
+                            }
+                            Text(String("\(self.restaurantVM.reviewCount) reviews"))
+                            Text(self.restaurantVM.price)
+                        }
+                        Text(self.restaurantVM.address)
+                        HStack {
+                            Text(self.restaurantVM.city)
+                            Text(String(format: "%.2f mi", self.restaurantVM.distance)).frame(width: 100, alignment: .leading)
+                        }
+                    }
+                        
+                    
+                    Spacer()
+                    if (self.isSaved) {
+                        Image(systemName: "checkmark.circle.fill")
+                        .resizable()
+                        .frame(width: 35, height: 35, alignment: .center)
+                        .foregroundColor(Color("accent2"))
+                        .padding(.top, 125 / 2 - 17.5)
+                    } else {
+                        Image(systemName: "plus.circle")
+                        .resizable()
+                        .frame(width: 35, height: 35, alignment: .center)
+                        .foregroundColor(Color("accent"))
+                        .padding(.top, 125 / 2 - 17.5)
+                        .onTapGesture {
+                        self.showingAddView = true
+                        }
+                    }
                 }
-                Text(self.restaurantVM.address)
-                Text(self.restaurantVM.city)
-                Text(String(format: "%.2f mi", self.restaurantVM.distance)).font(.footnote)
-                Text(self.categories).font(.subheadline)
-            }
-            VStack (alignment: .trailing) {
+                
+                
+                // Nav link
                 NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
                     EmptyView()
                 }.disabled(self.showingAddView == false)
-                if (self.isSaved) {
-                    Image(systemName: "checkmark.circle.fill")
-                    .resizable()
-                    .frame(width: 35, height: 35, alignment: .center)
-                    .accentColor(Color(UIColor.black))
-                    .padding(.top, 125 / 2 - 17.5)
-                } else {
-                    Image(systemName: "plus.circle")
-                    .resizable()
-                    .frame(width: 35, height: 35, alignment: .center)
-                    .accentColor(Color(UIColor.black))
-                    .padding(.top, 125 / 2 - 17.5)
-                    .onTapGesture {
-                    self.showingAddView = true
-                    }
-                }
-
-            }.frame(width: 35)
-
+                
+                Text(self.categories)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color("background"))
+            .foregroundColor(Color("subheading"))
+            .font(.custom("Chivo-Regular", size: 15))
         }
+        
     }
 }

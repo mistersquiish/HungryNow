@@ -254,7 +254,6 @@
 				28C19056244539D5001119E5 /* Views */,
 				28A9783724424181007BF823 /* View Models */,
 				286F97C524423C2800BC2DED /* SearchViewController.swift */,
-				28A9783A24424FEA007BF823 /* SearchBar.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -395,6 +394,7 @@
 				28758A49243FD52B007F6CCA /* YelpAPIClient */,
 				28A9783F24427319007BF823 /* LocationManager.swift */,
 				2833D6DD2455107300B4207C /* HungryNowManager.swift */,
+				28A9783A24424FEA007BF823 /* SearchBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

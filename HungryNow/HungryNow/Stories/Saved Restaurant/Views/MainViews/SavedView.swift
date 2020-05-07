@@ -111,6 +111,9 @@ struct SavedRowView: View {
                     Text(savedRestaurantVM.name)
                         .foregroundColor(Color("font"))
                         .font(.custom("Chivo-Regular", size: 20))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(2)
+                        .frame(maxWidth: 220, alignment: .leading)
                     HStack {
                         HStack (alignment: .center, spacing: 5) {
                             Text(String("\(savedRestaurantVM.rating)"))
@@ -140,6 +143,8 @@ struct SavedRowView: View {
                 Spacer()
                 ActionButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM)
             }
+            .padding(.top, 10)
+            .padding(.leading, 10)
             
             // Hours View
             if showHours {
@@ -154,7 +159,9 @@ struct SavedRowView: View {
                         Image(systemName: "chevron.up").foregroundColor(Color("font"))
                     }.onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
                     HoursView(savedRestaurantVM: savedRestaurantVM)
-                }.padding()
+                }
+                    .font(.custom("Chivo-Regular", size: 15))
+                    .padding()
             } else {
                 Group {
                     HStack (spacing: 5) {
@@ -168,6 +175,7 @@ struct SavedRowView: View {
                         Image(systemName: "chevron.down").foregroundColor(Color("font"))
                     }
                 }
+                    .font(.custom("Chivo-Regular", size: 15))
                     .padding()
                     .onTapGesture {
                         self.didLoadOnce = true

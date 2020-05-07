@@ -23,7 +23,6 @@ struct SavedDetailView: View {
         self.currentNotifications = notifications.getNotifications(restaurantID: savedRestaurantVM.id)
         
         UITableView.appearance().backgroundColor = UIColor(named: "background2")
-        UITableView.appearance().separatorColor = UIColor.green//UIColor(named: "subheading")
         UITableView.appearance().separatorStyle = .none
     }
     

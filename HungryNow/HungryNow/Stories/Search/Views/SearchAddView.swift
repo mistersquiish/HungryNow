@@ -64,9 +64,10 @@ struct SearchAddView : View {
     var body: some View {
         // Popup Views
         ZStack {
-            VStack (alignment: .center) {
+            VStack (alignment: .center, spacing: 15) {
                 Text("When would you like to be notified?")
-                    .frame(maxHeight: 100)
+                    .padding(.top, 100)
+                    .frame(maxHeight: 200)
                     .multilineTextAlignment(.center)
                     .font(.title)
                 DurationPickerView(time: $selectedTime)
@@ -81,12 +82,18 @@ struct SearchAddView : View {
                     DayButton(day: "Fr", toggled: $frToggled)
                     DayButton(day: "Sa", toggled: $saToggled)
                 }
+                .padding(.top, 15)
+                .padding(.bottom, 15)
                 
                 SaveButton(showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, notifications: notifications, restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
                 
-                
+                Spacer()
             }
-        }.popup(isPresented: $showingErrorPopup, autohideIn: 2) {
+        }
+        .foregroundColor(Color("font"))
+        .background(Color("background"))
+        
+        .popup(isPresented: $showingErrorPopup, autohideIn: 2) {
             ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
         }
             
@@ -100,7 +107,14 @@ struct SearchAddView : View {
         .navigationBarItems(leading: Button(action : {
             self.mode.wrappedValue.dismiss()
         }){
-            Image(systemName: "arrow.left")
+            ZStack (alignment: .leading) {
+                Rectangle().fill(Color.clear)
+                    .frame(width: 40, height: 40)
+                Image(systemName: "arrow.left")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color("accent"))
+            }
         })
         
         
@@ -144,7 +158,7 @@ struct SaveButton: View {
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding()
             .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.blue]), startPoint: .leading, endPoint: .trailing))
+            .background(Color("accent"))
             .cornerRadius(40)
         }.padding()
     }
