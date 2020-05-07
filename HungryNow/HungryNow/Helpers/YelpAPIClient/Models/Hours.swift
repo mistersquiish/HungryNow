@@ -34,12 +34,54 @@ enum Day: Int {
         case .Saturday:
             return 7
         }
-        
+    }
+    
+    var previousDay: Day {
+        switch self {
+        case .Sunday:
+            return .Saturday
+        case .Monday:
+            return .Sunday
+        case .Tuesday:
+            return .Monday
+        case .Wednesday:
+            return .Tuesday
+        case .Thursday:
+            return .Wednesday
+        case .Friday:
+            return .Thursday
+        case .Saturday:
+            return .Friday
+        }
+    }
+    
+    var nextDay: Day {
+        switch self {
+        case .Sunday:
+            return .Monday
+        case .Monday:
+            return .Tuesday
+        case .Tuesday:
+            return .Wednesday
+        case .Wednesday:
+            return .Thursday
+        case .Thursday:
+            return .Friday
+        case .Friday:
+            return .Saturday
+        case .Saturday:
+            return .Sunday
+        }
     }
 }
 
 class RestaurantHours {
     var days: [Day: [RestaurantTime]] = [:]
+    
+    lazy var isOpen: Bool = {
+        calculateIsOpen()
+    }()
+    var nextClosingTime: Date? // calculated by calculateIsOpen() method
     
     init(times: [[String: Any]]) {
         for timeData in times {
@@ -55,9 +97,82 @@ class RestaurantHours {
     }
     
     init() { }
+    
+    private func calculateIsOpen() -> Bool {
+        // get current time
+        let currentDate = Date()
+        let currentDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .weekday], from: currentDate)
+        
+        // get time intervals for current day
+        let currentDayHours = getDateIntervals(day: Day(rawValue: currentDateComponents.weekday!)!, previousDay: false)
+        
+        // check if the current day hours encompass current time
+        for dates in currentDayHours {            
+            if dates[0] < currentDate && currentDate < dates[1] {
+                nextClosingTime = dates[1]
+                return true
+            }
+        }
+                
+        // get time intervals for previous day
+        let previousDayHours = getDateIntervals(day: Day(rawValue: currentDateComponents.weekday!)!.previousDay, previousDay: true)
+
+        // check if the previous day hours encompass current time
+        for dates in previousDayHours {
+            if dates[0] < currentDate && currentDate < dates[1] {
+                nextClosingTime = dates[1]
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    /// Should return sets of 2 dates that represent a start and end time
+    private func getDateIntervals(day: Day, previousDay: Bool) -> [[Date]] {
+        // get current time
+        let calendar = Calendar(identifier: .gregorian)
+        var date = Date()
+        if previousDay {
+            var dayComponent = DateComponents()
+            dayComponent.day = -1
+            let currentCalendar = Calendar.current
+            date = currentCalendar.date(byAdding: dayComponent, to: date)!
+        }
+        
+        var dates: [[Date]] = []
+        
+        if let hours = self.days[day] {
+            for time in hours {
+                var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .weekday], from: date)
+                
+                // create date of opening
+                dateComponents.hour = Int(time.start.prefix(2))
+                dateComponents.minute = Int(time.start.suffix(2))
+                let startingDate = calendar.date(from: dateComponents)!
+                
+                // create date of closing
+                dateComponents.hour = Int(time.end.prefix(2))
+                dateComponents.minute = Int(time.end.suffix(2))
+                var closingDate = calendar.date(from: dateComponents)!
+                
+                // adjust closing day if hours are overnight
+                if time.isOvernight {
+                    var dayComponent = DateComponents()
+                    dayComponent.day = 1
+                    let currentCalendar = Calendar.current
+                    closingDate = currentCalendar.date(byAdding: dayComponent, to: closingDate)!
+                }
+                
+                dates.append([startingDate, closingDate])
+            }
+        }
+        return dates
+    }
 }
 
-class RestaurantTime {
+class RestaurantTime: Identifiable {
+    let id = UUID()
     var isOvernight: Bool
     var start: String
     var end: String

@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         notifications.getCurrentNotifications()
+        let navigationBarAppearace = UINavigationBar.appearance()
+
+        navigationBarAppearace.tintColor = UIColor(named: "accent")
+        navigationBarAppearace.barTintColor = UIColor(named: "background")
+        navigationBarAppearace.backgroundColor = UIColor(named: "background")
+        
         guard let tabBarController = window?.rootViewController as? UITabBarController,
             let viewControllers = tabBarController.viewControllers else {
                 return true

@@ -54,10 +54,12 @@ class SavedRestaurantViewModel: ObservableObject {
             }
             
             if let error = error {
-                print("Error report")
-                print(error)
+                print("------------------------------")
+                print("Update details in background error:")
+                print(self.restaurant.id)
                 print(error.self)
                 print(error.localizedDescription)
+                print("------------------------------")
             }
         
         })
@@ -88,15 +90,27 @@ class SavedRestaurantViewModel: ObservableObject {
     }
 
     var phone: String {
-        return self.restaurant.phone ?? ""//?? savedRestaurant.phone ?? ""
+        return self.restaurant.phone ?? ""
     }
 
     var price: String {
-        return self.restaurant.price ?? ""// ?? savedRestaurant.price ?? ""
+        return self.restaurant.price ?? ""
     }
 
     var distance: Float {
-        return self.restaurant.distance ?? 0.0
+        var dist = self.restaurant.distance ?? 0
+        if self.restaurant.distance != nil {
+            dist = Float(Int(self.restaurant.distance! * 100.0)) / 100.0
+        }
+        return dist
+    }
+    
+    var latitude: Double {
+        return self.restaurant.latitude
+    }
+    
+    var longitude: Double {
+        return self.restaurant.longitude
     }
 
     var imageURL: String {
@@ -109,6 +123,22 @@ class SavedRestaurantViewModel: ObservableObject {
 
     var restaurantHours: RestaurantHours {
         return self.restaurant.hours ?? RestaurantHours()
+    }
+    
+    var isOpen: Bool {
+        return self.restaurant.hours?.isOpen ?? false
+    }
+    
+    var nextClosingTime: String {
+        var nextClosingTime = ""
+        
+        if let closingDate = self.restaurant.hours?.nextClosingTime {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "h:mma"
+                        
+            nextClosingTime = "Closes at \(dateFormatter.string(from: closingDate))"
+        }
+        return nextClosingTime
     }
 
 }

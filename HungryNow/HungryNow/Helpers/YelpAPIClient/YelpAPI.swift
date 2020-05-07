@@ -26,6 +26,10 @@ class YelpAPI {
                 return YelpAPIError.NoErrorCode
             }
             
+            if errorCode == "INTERNAL_ERROR" {
+                return YelpAPIError.InternalError
+            }
+            
             if errorCode == "ACCESS_LIMIT_REACHED" {
                 return YelpAPIError.AccessLimitReached
             }
@@ -49,7 +53,6 @@ class YelpAPI {
     
     static func checkRequestErrors(response: DefaultDataResponse) -> YelpAPIError? {
         if let error = response.error {
-            print(error)
             return YelpAPIError.RequestFailed(error: error)
         }
         return nil
@@ -155,6 +158,7 @@ class YelpAPI {
                           method: .get,
                           headers: header).response { response in
                             if let error = checkRequestErrors(response: response) {
+                                print(restaurantID)
                                 completion(nil, error)
                                 return
                             }

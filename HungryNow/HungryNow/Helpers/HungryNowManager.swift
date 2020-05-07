@@ -13,11 +13,16 @@ class HungryNowManager {
     
     static func addNewRestaurant(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, completion: @escaping
         (Bool, Error?) -> ()) {
+        // Check if restaurant is already saved
+        if CoreDataManager.isSaved(restaurantID: restaurant.id) {
+            completion(false, NotificationError.AlreadySaved)
+            return
+        }
+        
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             
             if let error = error {
-                print(error)
                 completion(false, error)
             }
             
@@ -58,7 +63,6 @@ class HungryNowManager {
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             
             if let error = error {
-                print(error)
                 completion(false, error)
             }
             

@@ -155,9 +155,9 @@ struct SaveButton: View {
                     self.notifications.getCurrentNotifications()
                 } else if let error = error {
                     // Notification and YelpAPI Errors
-                    print(error)
                     self.error = error
                     self.showingErrorPopup = true
+                    self.showingSuccessPopup = false
                 }
             }
         }) {
