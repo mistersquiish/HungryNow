@@ -74,36 +74,42 @@ struct SavedDetailAddView : View {
             .padding(.top, 25)
             .padding(.leading, 25)
             
-            HStack (alignment: .top) {
+            VStack (alignment: .center, spacing: 15) {
+                Text("When would you like to be notified?")
+                    .padding(.top, 100)
+                    .frame(maxHeight: 200)
+                    .multilineTextAlignment(.center)
+                    .font(.title)
+                DurationPickerView(time: $selectedTime)
 
-                VStack (alignment: .center) {
-                    Text("When would you like to be notified?")
-                        .frame(maxHeight: 100)
-                        .multilineTextAlignment(.center)
-                        .font(.title)
-                    DurationPickerView(time: $selectedTime)
-
-                    Text("What days do you want to be notified")
-                    HStack {
-                        DayButton(day: "Su", toggled: $suToggled)
-                        DayButton(day: "Mo", toggled: $moToggled)
-                        DayButton(day: "Tu", toggled: $tuToggled)
-                        DayButton(day: "We", toggled: $weToggled)
-                        DayButton(day: "Th", toggled: $thToggled)
-                        DayButton(day: "Fr", toggled: $frToggled)
-                        DayButton(day: "Sa", toggled: $saToggled)
-                    }
-
-                    AddButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM, selectedDays: selectedDays, showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, selectedTime: $selectedTime)
+                Text("What days do you want to be notified")
+                HStack {
+                    DayButton(day: "Su", toggled: $suToggled)
+                    DayButton(day: "Mo", toggled: $moToggled)
+                    DayButton(day: "Tu", toggled: $tuToggled)
+                    DayButton(day: "We", toggled: $weToggled)
+                    DayButton(day: "Th", toggled: $thToggled)
+                    DayButton(day: "Fr", toggled: $frToggled)
+                    DayButton(day: "Sa", toggled: $saToggled)
                 }
+                .padding(.top, 15)
+                .padding(.bottom, 15)
+
+                AddButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM, selectedDays: selectedDays, showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, selectedTime: $selectedTime)
+                Spacer()
             }
+            
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarItems(leading: Button(action : {
                 self.mode.wrappedValue.dismiss()
             }){
                 Image(systemName: "xmark")
             })
-        }.popup(isPresented: $showingErrorPopup, autohideIn: 2) {
+        }
+        .foregroundColor(Color("font"))
+        .background(Color("background"))
+        
+        .popup(isPresented: $showingErrorPopup, autohideIn: 2) {
             ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
         }
             
@@ -148,8 +154,8 @@ struct AddButton: View {
             }
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding()
-            .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.yellow]), startPoint: .leading, endPoint: .trailing))
+            .foregroundColor(Color("background"))
+            .background(Color("accent"))
             .cornerRadius(40)
         }.padding()
     }

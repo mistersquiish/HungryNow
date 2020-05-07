@@ -110,31 +110,6 @@ struct SearchAddView : View {
         
 }
 
-struct DayButton: View {
-    
-    let day: String
-    @Binding var toggled: Bool
-    @State var buttonHighlighting = Color.gray
-
-    var body: some View {
-        Button(action: {
-            self.toggled.toggle()
-            if self.toggled {
-                self.buttonHighlighting = Color.blue
-            } else {
-                self.buttonHighlighting = Color.gray
-            }
-        }) {
-            Text(day)
-                .font(.system(size: 18))
-                .padding(10)
-                .background(buttonHighlighting)
-                .foregroundColor(Color.black)
-                .mask(Circle())
-        }
-    }
-}
-
 struct SaveButton: View {
     
     @Binding var showingSuccessPopup: Bool

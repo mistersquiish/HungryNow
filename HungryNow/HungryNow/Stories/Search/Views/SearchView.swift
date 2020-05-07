@@ -126,18 +126,3 @@ struct RestaurantRowView: View {
         }
     }
 }
-
-struct DismissButton: View {
-    let vcDelegate: UIViewController
-    
-    var body: some View {
-        Button( action: {
-            self.vcDelegate.dismiss(animated: true)
-        }) {
-            Image(systemName: "xmark")
-                .resizable()
-                .frame(width: 20, height: 20)
-                .accentColor(Color(UIColor.black))
-        }
-    }
-}
