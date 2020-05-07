@@ -98,7 +98,11 @@ class SavedRestaurantViewModel: ObservableObject {
     }
 
     var distance: Float {
-        return self.restaurant.distance ?? 0.0
+        var dist = self.restaurant.distance ?? 0
+        if self.restaurant.distance != nil {
+            dist = Float(Int(self.restaurant.distance! * 100.0)) / 100.0
+        }
+        return dist
     }
     
     var latitude: Double {
@@ -119,6 +123,22 @@ class SavedRestaurantViewModel: ObservableObject {
 
     var restaurantHours: RestaurantHours {
         return self.restaurant.hours ?? RestaurantHours()
+    }
+    
+    var isOpen: Bool {
+        return self.restaurant.hours?.isOpen ?? false
+    }
+    
+    var nextClosingTime: String {
+        var nextClosingTime = ""
+        
+        if let closingDate = self.restaurant.hours?.nextClosingTime {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "h:mma"
+                        
+            nextClosingTime = "Closes at \(dateFormatter.string(from: closingDate))"
+        }
+        return nextClosingTime
     }
 
 }

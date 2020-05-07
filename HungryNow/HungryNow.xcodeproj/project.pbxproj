@@ -21,6 +21,8 @@
 		283CCC2A244F6FC900EDF9E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283CCC29244F6FC900EDF9E3 /* AppView.swift */; };
 		284C39C724632DD60024EE3B /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C39C624632DD60024EE3B /* ViewExtension.swift */; };
 		284C39CA24632EC10024EE3B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C39C924632EC10024EE3B /* Buttons.swift */; };
+		284C39CE2463416D0024EE3B /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C39CD2463416D0024EE3B /* ColorScheme.swift */; };
+		284C39D2246348920024EE3B /* Chivo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 284C39D1246348920024EE3B /* Chivo-Regular.otf */; };
 		2854EA6E244B975900ADC239 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854EA6D244B975900ADC239 /* SavedView.swift */; };
 		2854EA75244BE87B00ADC239 /* SavedRestaurant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2854EA73244BE87B00ADC239 /* SavedRestaurant.xcdatamodeld */; };
 		286F97C424423AFB00BC2DED /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286F97C324423AFB00BC2DED /* SearchView.swift */; };
@@ -88,6 +90,8 @@
 		283CCC29244F6FC900EDF9E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		284C39C624632DD60024EE3B /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		284C39C924632EC10024EE3B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		284C39CD2463416D0024EE3B /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		284C39D1246348920024EE3B /* Chivo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chivo-Regular.otf"; sourceTree = "<group>"; };
 		2854EA6D244B975900ADC239 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		2854EA74244BE87B00ADC239 /* FavoriteRestaurant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteRestaurant.xcdatamodel; sourceTree = "<group>"; };
 		286F97C324423AFB00BC2DED /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -210,6 +214,22 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
+		284C39CB24633EFE0024EE3B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				284C39CC24633F080024EE3B /* SavedView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		284C39CC24633F080024EE3B /* SavedView */ = {
+			isa = PBXGroup;
+			children = (
+				284C39C924632EC10024EE3B /* Buttons.swift */,
+			);
+			path = SavedView;
+			sourceTree = "<group>";
+		};
 		2854EA6C244B974400ADC239 /* Saved Restaurant */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,9 +242,9 @@
 		2854EA6F244B975D00ADC239 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				284C39CB24633EFE0024EE3B /* Components */,
 				284C39C824632EA10024EE3B /* MainViews */,
 				284C39C624632DD60024EE3B /* ViewExtension.swift */,
-				284C39C924632EC10024EE3B /* Buttons.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +295,7 @@
 		28758A19243FD448007F6CCA /* HungryNow */ = {
 			isa = PBXGroup;
 			children = (
+				284C39D1246348920024EE3B /* Chivo-Regular.otf */,
 				283CCC27244F6FA000EDF9E3 /* SceneDelegate.swift */,
 				28758A1A243FD448007F6CCA /* AppDelegate.swift */,
 				283CCC29244F6FC900EDF9E3 /* AppView.swift */,
@@ -376,6 +397,7 @@
 				28758A49243FD52B007F6CCA /* YelpAPIClient */,
 				28A9783F24427319007BF823 /* LocationManager.swift */,
 				2833D6DD2455107300B4207C /* HungryNowManager.swift */,
+				284C39CD2463416D0024EE3B /* ColorScheme.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -510,6 +532,7 @@
 			files = (
 				28758A58243FF0CE007F6CCA /* Tutorial.storyboard in Resources */,
 				28758A25243FD449007F6CCA /* LaunchScreen.storyboard in Resources */,
+				284C39D2246348920024EE3B /* Chivo-Regular.otf in Resources */,
 				28758A22243FD449007F6CCA /* Assets.xcassets in Resources */,
 				28758A56243FF0BB007F6CCA /* Search.storyboard in Resources */,
 				28758A20243FD448007F6CCA /* Main.storyboard in Resources */,
@@ -651,6 +674,7 @@
 				282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */,
 				284C39C724632DD60024EE3B /* ViewExtension.swift in Sources */,
 				28758A4B243FD53A007F6CCA /* YelpAPI.swift in Sources */,
+				284C39CE2463416D0024EE3B /* ColorScheme.swift in Sources */,
 				283CCC2A244F6FC900EDF9E3 /* AppView.swift in Sources */,
 				2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */,
 				2854EA6E244B975900ADC239 /* SavedView.swift in Sources */,

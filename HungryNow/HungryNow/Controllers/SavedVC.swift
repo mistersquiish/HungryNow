@@ -23,7 +23,7 @@ class SavedVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(named: "background")
         // delegates
         self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
     }

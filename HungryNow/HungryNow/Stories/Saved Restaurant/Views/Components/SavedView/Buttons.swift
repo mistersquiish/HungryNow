@@ -13,13 +13,24 @@ enum RestaurantButtonType {
     case Direction
     case Phone
     case Edit
+    
+    public var systemName: String {
+        switch self {
+        case .Direction:
+            return "location"
+        case .Phone:
+            return "phone"
+        case .Edit:
+            return "pencil"
+        }
+    }
 }
 
 struct RestaurantButton: View {
     var buttonType: RestaurantButtonType
     var savedRestaurantVM: SavedRestaurantViewModel?
     @Binding var showingNotifications: Bool
-    
+        
     init(buttonType: RestaurantButtonType, savedRestaurantVM: SavedRestaurantViewModel?, showingNotifications: Binding<Bool>?) {
         self.buttonType = buttonType
         self.savedRestaurantVM = savedRestaurantVM
@@ -33,15 +44,19 @@ struct RestaurantButton: View {
     
     var body: some View {
         Group {
-            if buttonType == .Direction {
-                DirectionsButton(savedRestaurantVM: savedRestaurantVM!)
-            } else if buttonType == .Phone {
-                PhoneButton(savedRestaurantVM: savedRestaurantVM!)
+            if self.buttonType == .Direction {
+                DirectionsButton(savedRestaurantVM: self.savedRestaurantVM!)
+            } else if self.buttonType == .Phone {
+                PhoneButton(savedRestaurantVM: self.savedRestaurantVM!)
             } else {
-                EditButton(showingNotifications: $showingNotifications)
+                EditButton(showingNotifications: self.$showingNotifications)
             }
-            
-        }.inExpandingRectangle().border(Color.red)
+        }
+        .font(.custom("Chivo-Regular", size: 15))
+        .foregroundColor(Color("subheading"))
+        .padding(.top, 5)
+        .padding(.bottom, 5)
+        .background(Color("background"))
         
     }
 }
@@ -59,8 +74,6 @@ struct DirectionsButton: View {
     }
     
     var body: some View {
-        HStack {
-            Image(systemName: "location")
             Button(action: {
                 // Try GoogleMaps first
                 if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
@@ -75,12 +88,13 @@ struct DirectionsButton: View {
                     UIApplication.shared.open(URL(string: "http://maps.google.com/maps?daddr=\(self.query)")!, options: [:], completionHandler: nil)
                 }
             }) {
-                Text("Directions").font(.footnote)
-                .foregroundColor(.white)
-                .padding()
+                HStack {
+                    Image(systemName: RestaurantButtonType.Direction.systemName)
+                    Text("Directions")
+                }.frame(maxWidth: .infinity)
+                
             }
         }
-    }
 }
 
 struct PhoneButton: View {
@@ -92,8 +106,10 @@ struct PhoneButton: View {
                UIApplication.shared.open(url)
              }
         }) {
-            Text("Call").foregroundColor(.white)
-            .padding()
+            HStack {
+                Image(systemName: RestaurantButtonType.Phone.systemName)
+                Text("Call")
+            }.frame(maxWidth: .infinity)
         }
     }
 }
@@ -105,8 +121,10 @@ struct EditButton: View {
         Button(action: {
             self.showingNotifications.toggle()
         }) {
-            Text("Edit").foregroundColor(.white)
-            .padding()
+            HStack {
+                Image(systemName: RestaurantButtonType.Edit.systemName)
+                Text("Edit")
+            }.frame(maxWidth: .infinity)
         }
     }
 }
@@ -131,7 +149,7 @@ struct ActionButton: View {
                 .cancel()
             ])
                  
-        }
+        }.foregroundColor(Color("subheading"))
         
     }
     
