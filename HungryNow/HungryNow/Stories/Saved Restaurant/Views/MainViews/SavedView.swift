@@ -132,7 +132,7 @@ struct SavedRowView: View {
                     
                     Text(savedRestaurantVM.address)
                     
-                    HStack {
+                    HStack (alignment: .top) {
                         Text(savedRestaurantVM.city)
                         Text(String(format: "%.2f mi", savedRestaurantVM.distance)).frame(width: 100, alignment: .leading)
                     }

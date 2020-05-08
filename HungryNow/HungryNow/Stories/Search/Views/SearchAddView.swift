@@ -64,31 +64,7 @@ struct SearchAddView : View {
     var body: some View {
         // Popup Views
         ZStack {
-            VStack (alignment: .center, spacing: 15) {
-                Text("When would you like to be notified?")
-                    .padding(.top, 100)
-                    .frame(maxHeight: 200)
-                    .multilineTextAlignment(.center)
-                    .font(.title)
-                DurationPickerView(time: $selectedTime)
-                
-                Text("What days do you want to be notified")
-                HStack {
-                    DayButton(day: "Su", toggled: $suToggled)
-                    DayButton(day: "Mo", toggled: $moToggled)
-                    DayButton(day: "Tu", toggled: $tuToggled)
-                    DayButton(day: "We", toggled: $weToggled)
-                    DayButton(day: "Th", toggled: $thToggled)
-                    DayButton(day: "Fr", toggled: $frToggled)
-                    DayButton(day: "Sa", toggled: $saToggled)
-                }
-                .padding(.top, 15)
-                .padding(.bottom, 15)
-                
-                SaveButton(showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, notifications: notifications, restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
-                
-                Spacer()
-            }
+            AddNotificationView(confirmNewNotification: ConfirmNewNotification.Save, notifications: notifications, restaurant: restaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
         }
         .foregroundColor(Color("font"))
         .background(Color("background"))
@@ -124,42 +100,4 @@ struct SearchAddView : View {
         
 }
 
-struct SaveButton: View {
-    
-    @Binding var showingSuccessPopup: Bool
-    @Binding var showingErrorPopup: Bool
-    @Binding var error: Error?
-    
-    var notifications: Notifications
-    
-    var restaurantVM: RestaurantViewModel
-    var selectedDays: [Day]
-    @Binding var selectedTime: DurationPickerTime
-    
-    var body: some View {
-        Button( action: {
-            HungryNowManager.addNewRestaurant(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
-                if success {
-                    self.showingSuccessPopup = true
-                    self.notifications.getCurrentNotifications()
-                } else if let error = error {
-                    // Notification and YelpAPI Errors
-                    self.error = error
-                    self.showingErrorPopup = true
-                    self.showingSuccessPopup = false
-                }
-            }
-        }) {
-            HStack {
-                Text("Save")
-                    .fontWeight(.semibold)
-                    .font(.title)
-            }
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding()
-            .foregroundColor(.white)
-            .background(Color("accent"))
-            .cornerRadius(40)
-        }.padding()
-    }
-}
+

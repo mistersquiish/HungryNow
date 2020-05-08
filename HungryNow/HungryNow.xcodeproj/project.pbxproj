@@ -49,6 +49,7 @@
 		28C19053244518D8001119E5 /* Hours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C19052244518D8001119E5 /* Hours.swift */; };
 		28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1E4CA245BB5BA001A10EE /* LoadingView.swift */; };
 		28DB62BB244B63FC0051371A /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB62BA244B63FC0051371A /* NotificationTests.swift */; };
+		28FE53312464FD1C007E8338 /* AddNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FE53302464FD1C007E8338 /* AddNotificationView.swift */; };
 		936CAA022480651B71C3CC76 /* Pods_HungryNowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */; };
 		DF84A3A5C444A447C1F7594C /* Pods_HungryNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */; };
 		FAD9CF2BEC83C5264FB88FC0 /* Pods_HungryNowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08171D9FB4B49018149F883D /* Pods_HungryNowTests.framework */; };
@@ -124,6 +125,7 @@
 		28C19052244518D8001119E5 /* Hours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hours.swift; sourceTree = "<group>"; };
 		28C1E4CA245BB5BA001A10EE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		28DB62BA244B63FC0051371A /* NotificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTests.swift; sourceTree = "<group>"; };
+		28FE53302464FD1C007E8338 /* AddNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotificationView.swift; sourceTree = "<group>"; };
 		3D9BD93922F087EEC69A8349 /* Pods-HungryNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNow.debug.xcconfig"; path = "Target Support Files/Pods-HungryNow/Pods-HungryNow.debug.xcconfig"; sourceTree = "<group>"; };
 		3DB510C166EAAEC840D892F5 /* Pods_HungryNowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B36CF1C0A9E0FE633CE5136 /* Pods_HungryNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				284C39CC24633F080024EE3B /* SavedView */,
-				285DBA7324648F84009DEA66 /* Buttons.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -369,6 +370,7 @@
 		289FEFED245B2F5E00A9EC41 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				28FE532F2464FCFA007E8338 /* Components */,
 				289FEFEE245B2F8500A9EC41 /* Alerts.swift */,
 				2854EA6C244B974400ADC239 /* Saved Restaurant */,
 				286F97C224423AB500BC2DED /* Search */,
@@ -406,6 +408,15 @@
 				28C190502444FB6E001119E5 /* SearchAddView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		28FE532F2464FCFA007E8338 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				285DBA7324648F84009DEA66 /* Buttons.swift */,
+				28FE53302464FD1C007E8338 /* AddNotificationView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		37F5DDA6791788BD35D1CB5E /* Frameworks */ = {
@@ -666,6 +677,7 @@
 				28758A4F243FDDDC007F6CCA /* YelpAPIErrors.swift in Sources */,
 				2880EBE22447AA7A000BBA4F /* NotificationManager.swift in Sources */,
 				28A9784424429FDB007BF823 /* ImageLoader.swift in Sources */,
+				28FE53312464FD1C007E8338 /* AddNotificationView.swift in Sources */,
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
 				284C39CA24632EC10024EE3B /* SavedViewButtons.swift in Sources */,
 				28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */,

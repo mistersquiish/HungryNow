@@ -74,37 +74,8 @@ struct SavedDetailAddView : View {
             .padding(.top, 25)
             .padding(.leading, 25)
             
-            VStack (alignment: .center, spacing: 15) {
-                Text("When would you like to be notified?")
-                    .padding(.top, 100)
-                    .frame(maxHeight: 200)
-                    .multilineTextAlignment(.center)
-                    .font(.title)
-                DurationPickerView(time: $selectedTime)
-
-                Text("What days do you want to be notified")
-                HStack {
-                    DayButton(day: "Su", toggled: $suToggled)
-                    DayButton(day: "Mo", toggled: $moToggled)
-                    DayButton(day: "Tu", toggled: $tuToggled)
-                    DayButton(day: "We", toggled: $weToggled)
-                    DayButton(day: "Th", toggled: $thToggled)
-                    DayButton(day: "Fr", toggled: $frToggled)
-                    DayButton(day: "Sa", toggled: $saToggled)
-                }
-                .padding(.top, 15)
-                .padding(.bottom, 15)
-
-                AddButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM, selectedDays: selectedDays, showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, selectedTime: $selectedTime)
-                Spacer()
-            }
-            
-            .navigationBarTitle(Text(""), displayMode: .inline)
-            .navigationBarItems(leading: Button(action : {
-                self.mode.wrappedValue.dismiss()
-            }){
-                Image(systemName: "xmark")
-            })
+            AddNotificationView(confirmNewNotification: ConfirmNewNotification.Add, notifications: notifications, restaurant: savedRestaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
+            Spacer()
         }
         .foregroundColor(Color("font"))
         .background(Color("background"))
@@ -123,40 +94,4 @@ struct SavedDetailAddView : View {
         
 }
 
-struct AddButton: View {
-    
-    var notifications: Notifications
-    
-    var savedRestaurantVM: SavedRestaurantViewModel
-    var selectedDays: [Day]
-    
-    @Binding var showingSuccessPopup: Bool
-    @Binding var showingErrorPopup: Bool
-    @Binding var error: Error?
-    @Binding var selectedTime: DurationPickerTime
-    
-    var body: some View {
-        Button( action: {
-            HungryNowManager.addNotification(restaurant: self.savedRestaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime, hours: self.savedRestaurantVM.restaurantHours) { (success: Bool, error: Error?) in
-                if success {
-                    self.showingSuccessPopup = true
-                    self.notifications.getCurrentNotifications()
-                } else if let error = error {
-                    self.error = error
-                    self.showingErrorPopup = true
-                }
-            }
-        }) {
-            HStack {
-                Text("Add")
-                    .fontWeight(.semibold)
-                    .font(.title)
-            }
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding()
-            .foregroundColor(Color("background"))
-            .background(Color("accent"))
-            .cornerRadius(40)
-        }.padding()
-    }
-}
+

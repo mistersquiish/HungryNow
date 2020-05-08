@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HDL-XH-gsN">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,7 +12,7 @@
             <objects>
                 <viewController storyboardIdentifier="Map" id="V6v-7p-avR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DGc-65-OfJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5zp-cj-OlG"/>
@@ -44,12 +44,12 @@
             <objects>
                 <viewController storyboardIdentifier="Home" id="BYZ-38-t0r" customClass="SavedVC" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-7A-54R">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="Pgu-SP-k0w" kind="embed" destinationCreationSelector="addSwiftUIView:" id="QUq-Zd-J9T"/>
@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-786.95652173913049" y="-500.22321428571428"/>
+            <point key="canvasLocation" x="-788" y="-500.59970014992507"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="K9x-eF-enW">
@@ -91,7 +91,7 @@
             <objects>
                 <viewController id="Zas-aY-qIg" customClass="SearchTransitionVC" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fyA-7g-tcI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="hqW-pk-w7b"/>

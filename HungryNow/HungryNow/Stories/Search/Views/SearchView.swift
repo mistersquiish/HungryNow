@@ -28,32 +28,37 @@ struct SearchView : View {
         ZStack {
             VStack (alignment: .leading, spacing: 0) {
                 NavigationView {
-                    VStack (alignment: .leading, spacing: 5) {
-                        SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
+                    ZStack {
+                        // needed to hide the space behind the nav bar
+                        Rectangle().fill(Color("background")).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,
+                                maxHeight: .infinity,
+                                alignment: .topLeading)
+                        .padding(.top, -200)
                         
-                        List {
-                            
-                            ForEach(self.restaurantListVM.restaurants, id: \.id) { restaurant in
-                                RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
-                                    .padding(.bottom, 5)
-                                    .listRowBackground(Color("background2"))
+                        // Search bar and list of restaurants
+                        VStack (alignment: .leading, spacing: 5) {
+                            SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
+                            List {
+                                ForEach(self.restaurantListVM.restaurants, id: \.id) { restaurant in
+                                    RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
+                                        .padding(.bottom, 5)
+                                        .listRowBackground(Color("background2"))
+                                }
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                             }
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         }
-                        
-                        
                     }
                     .background(Color("background"))
                     .navigationBarTitle(Text("Restaurants"))
                     .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
                 }.padding(.top, 20)
             }
-            .background(Color("background"))
             .blur(radius: restaurantListVM.isLoading ? 15 : 0)
+            
             if restaurantListVM.isLoading {
                 Loading()
             }
-        }
+        }.background(Color("background"))
         .popup(isPresented: $restaurantListVM.showingErrorPopup, autohideIn: 2) {
             ErrorAlert(error: self.restaurantListVM.error, showingErrorPopup: self.$restaurantListVM.showingErrorPopup)
         }
@@ -94,7 +99,7 @@ struct RestaurantRowView: View {
     
     var body: some View {
         ZStack {
-            VStack (alignment: .leading, spacing: 0) {
+            VStack (alignment: .leading, spacing: 10) {
                 HStack (alignment: .top) {
                     imageViewWidget.frame(width: 125, height: 125)
                     VStack (alignment: .leading) {
@@ -143,13 +148,6 @@ struct RestaurantRowView: View {
                         }
                     }
                 }
-                
-                
-                // Nav link
-                NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
-                    EmptyView()
-                }.disabled(self.showingAddView == false)
-                
                 Text(self.categories)
             }
             .padding()
@@ -157,7 +155,27 @@ struct RestaurantRowView: View {
             .background(Color("background"))
             .foregroundColor(Color("subheading"))
             .font(.custom("Chivo-Regular", size: 15))
+            
+            // Nav link
+            NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
+                EmptyView()
+            }.disabled(self.showingAddView == false)
         }
         
+    }
+}
+
+struct DismissButton: View {
+    let vcDelegate: UIViewController
+    
+    var body: some View {
+        Button( action: {
+            self.vcDelegate.dismiss(animated: true)
+        }) {
+            Image(systemName: "xmark")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .accentColor(Color("accent"))
+        }
     }
 }
