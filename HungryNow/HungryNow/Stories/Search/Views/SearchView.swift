@@ -21,7 +21,6 @@ struct SearchView : View {
     
     var vcDelegate: UIViewController
     
-    @State var isLoading = false
     @State private var searchText: String = ""
 
     var body: some View {
@@ -39,6 +38,11 @@ struct SearchView : View {
                         VStack (alignment: .leading, spacing: 5) {
                             SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
                             List {
+                                // display output if user query returned 0 results
+                                if restaurantListVM.noResults {
+                                    NoResultsView()
+                                }
+                                
                                 ForEach(self.restaurantListVM.restaurants, id: \.id) { restaurant in
                                     RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
                                         .padding(.bottom, 5)
@@ -177,5 +181,23 @@ struct DismissButton: View {
                 .frame(width: 20, height: 20)
                 .accentColor(Color("accent"))
         }
+    }
+}
+
+struct NoResultsView: View {
+    var body: some View {
+        VStack (alignment: .center) {
+            Text("No Results")
+                .font(.custom("Chivo-Regular", size: 25))
+            Text("Try Searching with only alpha and")
+                .font(.custom("Chivo-Regular", size: 15))
+            Text("and numerical characters.")
+            .font(.custom("Chivo-Regular", size: 15))
+        }
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .padding(15)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .foregroundColor(Color("font"))
+            .background(Color("background2"))
     }
 }
