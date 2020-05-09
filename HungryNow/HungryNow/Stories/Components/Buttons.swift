@@ -28,11 +28,13 @@ struct DayButton: View {
             }
         }) {
             Text(day)
-                .font(.system(size: 18))
-                .padding(12)
-                .background(buttonBackground)
+                .padding(10)
+                .font(.custom("Chivo-Regular", size: 18))
                 .foregroundColor(buttonTint)
+                .background(buttonBackground)
                 .mask(Circle())
+                
+            
         }
     }
 }

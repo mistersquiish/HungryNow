@@ -20,65 +20,30 @@ struct SavedDetailAddView : View {
     @State var showingErrorPopup = false
     @State var showingSuccessPopup = false
     @State var error: Error?
-    @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
-    private var selectedDays: [Day] {
-        get {
-            var days: [Day] = []
-            if moToggled {
-                days.append(Day.Monday)
-            }
-            if tuToggled {
-                days.append(Day.Tuesday)
-            }
-            if weToggled {
-                days.append(Day.Wednesday)
-            }
-            if thToggled {
-                days.append(Day.Thursday)
-            }
-            if frToggled {
-                days.append(Day.Friday)
-            }
-            if saToggled {
-                days.append(Day.Saturday)
-            }
-            if suToggled {
-                days.append(Day.Sunday)
-            }
-            return days
-        }
-    }
-    
-    // Day Button toggles
-    @State private var moToggled: Bool = false
-    @State private var tuToggled: Bool = false
-    @State private var weToggled: Bool = false
-    @State private var thToggled: Bool = false
-    @State private var frToggled: Bool = false
-    @State private var saToggled: Bool = false
-    @State private var suToggled: Bool = false
     
     var body: some View {
         ZStack {
-            Button (action: {
-                self.mode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "xmark")
-                .resizable()
-                .frame(width: 20, height: 20)
-                .accentColor(Color(UIColor.black))
+            Color("background").edgesIgnoringSafeArea(.all)
+            VStack {
+                HStack {
+                    Button (action: {
+                        self.mode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .accentColor(Color(UIColor.black))
+                    }
+                    .padding(.top, 25)
+                    .padding(.leading, 25)
+                    
+                    Spacer()
+                }
+                
+                AddNotificationView(confirmNewNotification: ConfirmNewNotification.Add, notifications: notifications, restaurant: savedRestaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
+                //Spacer()
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,
-                    maxHeight: .infinity,
-                    alignment: .topLeading)
-            .padding(.top, 25)
-            .padding(.leading, 25)
-            
-            AddNotificationView(confirmNewNotification: ConfirmNewNotification.Add, notifications: notifications, restaurant: savedRestaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
-            Spacer()
-        }
-        .foregroundColor(Color("font"))
-        .background(Color("background"))
+        }.foregroundColor(Color("font"))
         
         .popup(isPresented: $showingErrorPopup, autohideIn: 2) {
             ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
@@ -87,11 +52,7 @@ struct SavedDetailAddView : View {
         .popup(isPresented: $showingSuccessPopup, autohideIn: 2) {
             SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup, vcDelegate: nil)
         }
-        
-        
-        
     }
-        
 }
 
 

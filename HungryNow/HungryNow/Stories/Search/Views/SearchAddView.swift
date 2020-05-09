@@ -23,52 +23,13 @@ struct SearchAddView : View {
     var restaurantVM: RestaurantViewModel
     var vcDelegate: UIViewController
     
-    @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
-    private var selectedDays: [Day] {
-        get {
-            var days: [Day] = []
-            if moToggled {
-                days.append(Day.Monday)
-            }
-            if tuToggled {
-                days.append(Day.Tuesday)
-            }
-            if weToggled {
-                days.append(Day.Wednesday)
-            }
-            if thToggled {
-                days.append(Day.Thursday)
-            }
-            if frToggled {
-                days.append(Day.Friday)
-            }
-            if saToggled {
-                days.append(Day.Saturday)
-            }
-            if suToggled {
-                days.append(Day.Sunday)
-            }
-            return days
-        }
-    }
-    
-    // Day Button toggles
-    @State private var moToggled: Bool = false
-    @State private var tuToggled: Bool = false
-    @State private var weToggled: Bool = false
-    @State private var thToggled: Bool = false
-    @State private var frToggled: Bool = false
-    @State private var saToggled: Bool = false
-    @State private var suToggled: Bool = false
-    
     var body: some View {
-        // Popup Views
         ZStack {
+            Color("background").edgesIgnoringSafeArea(.all)
             AddNotificationView(confirmNewNotification: ConfirmNewNotification.Save, notifications: notifications, restaurant: restaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
-        }
-        .foregroundColor(Color("font"))
-        .background(Color("background"))
-        
+        }.foregroundColor(Color("font"))
+            
+        // Popup Views
         .popup(isPresented: $showingErrorPopup, autohideIn: 2) {
             ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
         }

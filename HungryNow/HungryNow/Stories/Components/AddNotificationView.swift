@@ -64,36 +64,40 @@ struct AddNotificationView: View {
     }
     
     var body: some View {
-        Group {
-            VStack (alignment: .center, spacing: 15) {
-                Text("When would you like to be notified?")
-                    .padding(.top, 80)
-                    .frame(maxHeight: 200)
-                    .multilineTextAlignment(.center)
-                    .font(.title)
-                DurationPickerView(time: $selectedTime)
+        VStack (alignment: .center, spacing: 15) {
+            VStack (alignment: .center) {
+                Text("When would you like to be")
+                    .font(.custom("Chivo-Regular", size: 30))
+                Text("notified?")
+                    .font(.custom("Chivo-Regular", size: 30))
+            }
+                .font(.title)
+                
+            DurationPickerView(time: $selectedTime)
 
-                Text("What days do you want to be notified")
-                HStack {
-                    DayButton(day: "Su", toggled: $suToggled)
-                    DayButton(day: "Mo", toggled: $moToggled)
-                    DayButton(day: "Tu", toggled: $tuToggled)
-                    DayButton(day: "We", toggled: $weToggled)
-                    DayButton(day: "Th", toggled: $thToggled)
-                    DayButton(day: "Fr", toggled: $frToggled)
-                    DayButton(day: "Sa", toggled: $saToggled)
-                }
-                .padding(.top, 15)
-                .padding(.bottom, 15)
-
-                if confirmNewNotification == ConfirmNewNotification.Add {
-                    AddButton(notifications: notifications, restaurant: restaurant, selectedDays: selectedDays, showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, selectedTime: $selectedTime)
-                } else {
-                    SaveButton(showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, notifications: notifications, restaurant: restaurant, selectedDays: selectedDays, selectedTime: $selectedTime)
-                }
+            Text("What days do you want to be notified")
+                .font(.custom("Chivo-Regular", size: 15))
+            HStack {
+                Spacer()
+                DayButton(day: "Su", toggled: $suToggled)
+                DayButton(day: "Mo", toggled: $moToggled)
+                DayButton(day: "Tu", toggled: $tuToggled)
+                DayButton(day: "We", toggled: $weToggled)
+                DayButton(day: "Th", toggled: $thToggled)
+                DayButton(day: "Fr", toggled: $frToggled)
+                DayButton(day: "Sa", toggled: $saToggled)
                 Spacer()
             }
-        }
+            .padding(.top, 10)
+            .padding(.bottom, 10)
+
+            if confirmNewNotification == ConfirmNewNotification.Add {
+                AddButton(notifications: notifications, restaurant: restaurant, selectedDays: selectedDays, showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, selectedTime: $selectedTime)
+            } else {
+                SaveButton(showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, notifications: notifications, restaurant: restaurant, selectedDays: selectedDays, selectedTime: $selectedTime)
+            }
+            Spacer()
+        }.padding(.top, 10)
     }
 }
 
@@ -121,17 +125,10 @@ struct AddButton: View {
                 }
             }
         }) {
-            HStack {
-                Text("Add")
-                    .fontWeight(.semibold)
-                    .font(.title)
-            }
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding()
-            .foregroundColor(Color("background"))
-            .background(Color("accent"))
-            .cornerRadius(40)
-        }.padding()
+            AccentButton(buttonLabel: "Add")
+        }
+        .padding(.leading, 20)
+        .padding(.trailing, 20)
     }
 }
 
@@ -161,16 +158,26 @@ struct SaveButton: View {
                 }
             }
         }) {
-            HStack {
-                Text("Save")
-                    .fontWeight(.semibold)
-                    .font(.title)
-            }
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding()
-            .foregroundColor(.white)
-            .background(Color("accent"))
-            .cornerRadius(40)
-        }.padding()
+            AccentButton(buttonLabel: "Save")
+        }
+        .padding(.leading, 20)
+        .padding(.trailing, 20)
+    }
+}
+
+struct AccentButton: View {
+    var buttonLabel: String
+    
+    var body: some View {
+        HStack {
+            Text(buttonLabel)
+                .fontWeight(.semibold)
+                .font(.custom("Chivo-Regular", size: 30))
+        }
+        .padding()
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .foregroundColor(Color("background"))
+        .background(Color("accent"))
+        .cornerRadius(40)
     }
 }
