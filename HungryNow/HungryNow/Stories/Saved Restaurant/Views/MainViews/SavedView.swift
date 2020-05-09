@@ -64,7 +64,8 @@ struct SavedView: View {
             
             .navigationBarTitle("HungryNow", displayMode: .inline)
         }
-    
+        .navigationViewStyle(StackNavigationViewStyle())
+        
     }
 }
 

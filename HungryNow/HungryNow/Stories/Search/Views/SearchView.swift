@@ -55,7 +55,9 @@ struct SearchView : View {
                     .background(Color("background"))
                     .navigationBarTitle(Text("Restaurants"))
                     .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
-                }.padding(.top, 20)
+                }
+                .padding(.top, 20)
+                .navigationViewStyle(StackNavigationViewStyle())
             }
             .blur(radius: restaurantListVM.isLoading ? 15 : 0)
             
@@ -141,8 +143,8 @@ struct RestaurantRowView: View {
                 EmptyView()
             }.disabled(self.showingAddView == false)
         }
-        
     }
+    
 }
 
 struct DismissButton: View {
