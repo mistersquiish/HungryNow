@@ -373,7 +373,6 @@
 			isa = PBXGroup;
 			children = (
 				28FE532F2464FCFA007E8338 /* Components */,
-				289FEFEE245B2F8500A9EC41 /* Alerts.swift */,
 				2854EA6C244B974400ADC239 /* Saved Restaurant */,
 				286F97C224423AB500BC2DED /* Search */,
 			);
@@ -418,6 +417,7 @@
 				285DBA7324648F84009DEA66 /* Buttons.swift */,
 				28FE53302464FD1C007E8338 /* AddNotificationView.swift */,
 				28262CC22466541B0092F365 /* RestaurantRow.swift */,
+				289FEFEE245B2F8500A9EC41 /* Alerts.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

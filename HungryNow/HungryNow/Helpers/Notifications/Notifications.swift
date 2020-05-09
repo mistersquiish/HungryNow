@@ -29,8 +29,8 @@ class Notifications: ObservableObject {
         
         
         restaurantNotifications = restaurantNotifications.sorted(by: {
-            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()! <
-            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()!
+            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate() ?? Date() <
+            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate() ?? Date()
         })
         
         return restaurantNotifications[0]

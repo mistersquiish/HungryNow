@@ -140,17 +140,6 @@ struct SavedRowView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Rectangle().fill(Color("background")).shadow(radius: 8))
-        
-        
-        
-    }
-    
-    private func selectDeselect(_ restaurantID: String) {
-        if hourSelection.contains(restaurantID) {
-            hourSelection.remove(restaurantID)
-        } else {
-            hourSelection.insert(restaurantID)
-        }
     }
 }
 

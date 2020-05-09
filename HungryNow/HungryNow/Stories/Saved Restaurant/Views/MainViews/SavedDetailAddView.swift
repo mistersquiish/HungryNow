@@ -45,11 +45,11 @@ struct SavedDetailAddView : View {
             }
         }.foregroundColor(Color("font"))
         
-        .popup(isPresented: $showingErrorPopup, autohideIn: 2) {
+        .popup(isPresented: $showingErrorPopup, type: .toast, position: .bottom, autohideIn: 4) {
             ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
         }
             
-        .popup(isPresented: $showingSuccessPopup, autohideIn: 2) {
+        .popup(isPresented: $showingSuccessPopup, type: .toast, position: .bottom, autohideIn: 2) {
             SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup, vcDelegate: nil)
         }
     }
