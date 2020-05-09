@@ -10,18 +10,51 @@
         <!--Map-->
         <scene sceneID="AfC-CY-lqu">
             <objects>
-                <viewController storyboardIdentifier="Map" id="V6v-7p-avR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Map" id="V6v-7p-avR" customClass="MapViewController" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DGc-65-OfJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qvH-PU-U5L">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qlz-ax-6tY">
+                                <rect key="frame" x="0.0" y="685" width="414" height="128"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="D3r-Bm-DMI" kind="embed" destinationCreationSelector="addSwiftUIErrorView:" id="UJ7-iW-96d"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-hk-x3G">
+                                <rect key="frame" x="165" y="65" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search Area"/>
+                                <connections>
+                                    <action selector="searchButton:" destination="V6v-7p-avR" eventType="touchUpInside" id="bTX-ec-zN9"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5zp-cj-OlG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="uvu-53-jfn"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mappin" catalog="system" id="uvu-53-jfn"/>
+                    <connections>
+                        <outlet property="mapView" destination="qvH-PU-U5L" id="Zer-P4-AMK"/>
+                        <outlet property="searchButton" destination="kc6-hk-x3G" id="Sxe-Js-IMa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb3-m7-zrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="919" y="-573"/>
+            <point key="canvasLocation" x="918.84057971014499" y="-573.21428571428567"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="Qw3-1S-Sj8">
+            <objects>
+                <hostingController id="D3r-Bm-DMI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e97-Jd-cNt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1887" y="-573"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="q3d-FQ-aoZ">
@@ -48,8 +81,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-7A-54R">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="Pgu-SP-k0w" kind="embed" destinationCreationSelector="addSwiftUIView:" id="QUq-Zd-J9T"/>
@@ -59,12 +92,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="vur-Dz-REc"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="vur-Dz-REc"/>
                     <navigationItem key="navigationItem" title="HungryNow" id="pte-11-zxB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-786.95652173913049" y="-500.22321428571428"/>
+            <point key="canvasLocation" x="-788" y="-500.59970014992507"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="K9x-eF-enW">
@@ -96,11 +129,16 @@
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="hqW-pk-w7b"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add" id="5XT-cX-2K7"/>
+                    <tabBarItem key="tabBarItem" title="Add" image="plus" catalog="system" id="5XT-cX-2K7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6V-mw-AJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="48" y="-500"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="mappin" catalog="system" width="105" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+    </resources>
 </document>

@@ -21,22 +21,41 @@ struct SavedDetailView: View {
         self.savedRestaurantVM = savedRestaurantVM
         self.notifications = notifications
         self.currentNotifications = notifications.getNotifications(restaurantID: savedRestaurantVM.id)
+        
+        UITableView.appearance().backgroundColor = UIColor(named: "background2")
+        UITableView.appearance().separatorStyle = .none
     }
     
     var body: some View {
-        VStack (alignment: .leading) {
-            List {
+        List {
+            Section(header: NotificationHeader(savedRestaurantVM: savedRestaurantVM)) {
                 ForEach(currentNotifications, id: \.identifier) { notification in
                     SavedDetailRowView(notification: notification)
+                        .padding(.bottom, 1)
+                    .listRowBackground(Color("background2"))
                 }.onDelete(perform: removeRow)
+                
             }
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .background(Color("background2"))
         }
-        .navigationBarTitle(Text(""), displayMode: .inline)
-        .navigationBarItems(trailing: Button(action : {
+        
+        
+        .navigationBarTitle(Text(""))
+        .navigationBarItems(trailing:
+        Button(action: {
             self.showingAdd.toggle()
         }) {
-            Image(systemName: "plus")
-        }).sheet(isPresented: $showingAdd) {
+            ZStack (alignment: .trailing) {
+                Rectangle().fill(Color.clear).frame(width: 60, height: 40)
+                Image(systemName: "plus")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .padding(.trailing, 10)
+                .foregroundColor(Color("accent"))
+            }
+            
+        }).sheet(isPresented: $showingAdd, onDismiss: { self.showingAdd = false }) {
             SavedDetailAddView(notifications: self.notifications, savedRestaurantVM: self.savedRestaurantVM)
         }
         
@@ -68,10 +87,47 @@ struct SavedDetailRowView: View {
     }
     
     var body: some View {
-        VStack (alignment: .leading) {
-            Text(time).font(.largeTitle)
-            Text(timeBefore)
+        Group {
+            VStack (alignment: .leading, spacing: 10) {
+                Text(time).font(.largeTitle)
+                    .customFont(name: "Chivo-Regular", style: .largeTitle)
+                    .foregroundColor(Color("font"))
+                Text(timeBefore)
+                    .customFont(name: "Chivo-Regular", style: .body)
+                    .foregroundColor(Color("subheading"))
+            }.frame(maxWidth: .infinity, alignment: .leading)
         }
+        .padding()
+        .padding(.top, 25)
+        .padding(.bottom, 25)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color("background"))
         
+        
+    }
+}
+
+struct NotificationHeader: View {
+    let savedRestaurantVM: SavedRestaurantViewModel
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text(savedRestaurantVM.name)
+                .customFont(name: "Chivo-Regular", style: .title1)
+                .foregroundColor(Color("font"))
+            Text(savedRestaurantVM.address)
+                .padding(.leading, 1)
+                .customFont(name: "Chivo-Regular", style: .body)
+                .foregroundColor(Color("subheading"))
+            Text(savedRestaurantVM.city)
+                .padding(.leading, 1)
+                .customFont(name: "Chivo-Regular", style: .body)
+                .foregroundColor(Color("subheading"))
+        }
+        .padding(.top, 30)
+        .padding(.leading, 15)
+        .padding(.bottom, 15)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color("background2"))
     }
 }

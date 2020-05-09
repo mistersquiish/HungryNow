@@ -53,6 +53,18 @@ struct SearchBar: UIViewRepresentable {
 
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
         let searchBar = UISearchBar(frame: .zero)
+        // UI changes to search bar
+        searchBar.tintColor = UIColor(named: "accent")
+        
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = UIColor(named: "font")
+        textFieldInsideSearchBar?.tintColor = UIColor(named: "accent")
+        
+        // glass icon color
+        let glassIconView = textFieldInsideSearchBar?.leftView as? UIImageView
+        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
+        glassIconView?.tintColor = UIColor(named: "accent")
+        
         searchBar.delegate = context.coordinator
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = "Search for Restaurants"

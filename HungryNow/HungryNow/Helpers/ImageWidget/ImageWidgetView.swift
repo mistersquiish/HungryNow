@@ -17,8 +17,11 @@ struct ImageViewWidget: View {
     }
     
     var body: some View {
-        Image(uiImage: (UIImage(data: imageLoader.data) ?? UIImage(named: "missing-restaurant")!))
-        .renderingMode(.original)
-        .resizable()
+        VStack {
+            Image(uiImage: (UIImage(data: imageLoader.data) ?? UIImage(named: "missing-restaurant")!))
+                .resizable()
+                .aspectRatio(1, contentMode: .fit)
+        }
+        .frame(width: 125, height: 125)
     }
 }

@@ -31,38 +31,41 @@ struct SavedView: View {
             .font: UIFont(name:"Chivo-Regular", size: 30)!
         ]
         
+        UITabBar.appearance().barTintColor = UIColor(named: "background")
+        UITabBar.appearance().tintColor = UIColor(named: "accent")
     }
         
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                HStack {
-                    Text("Saved Restaurants").font(.custom("Chivo-Regular", size: 30))
-                        .foregroundColor(Color("font"))
-                        .frame(alignment: .leading)
-                        .padding(.leading, 15)
-                    Spacer()
-                }.padding(.top, 15)
-                ZStack {
-                    Color("background2")
-                    VStack (spacing: 30) {
+            ZStack {
+                Color("background2")
+                
+                ScrollView(showsIndicators: false) {
+                    HStack {
+                        Text("Saved Restaurants").font(.custom("Chivo-Regular", size: 30))
+                            .foregroundColor(Color("font"))
+                            .frame(alignment: .leading)
+                            .padding(.leading, 15)
+                        Spacer()
+                    }.padding(.top, 15)
                         ForEach(restaurants, id: \.id) { savedRestaurant in
                             SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications, showHours: self.hourSelection.contains(savedRestaurant.businessId!), hourSelection: self.$hourSelection, didLoadOnce: self.$didLoadOnce)
-                            .animation(.linear(duration: self.didLoadOnce ? 0.3 : 0))
-                            
+                                .animation(.linear(duration: self.didLoadOnce ? 0.3 : 0))
                         }
                         .padding(.leading, 15)
                         .padding(.trailing, 15)
-                    }
+                        .padding(.bottom, 30)
+                    
                 }
-                .padding(.bottom, 30)
+                .frame(maxWidth: .infinity)
+                .background(Color("background2"))
+                    
             }
-            .frame(maxWidth: .infinity)
-            .background(Color("background2"))
             
             .navigationBarTitle("HungryNow", displayMode: .inline)
         }
-    
+        .navigationViewStyle(StackNavigationViewStyle())
+        
     }
 }
 
@@ -105,74 +108,17 @@ struct SavedRowView: View {
             // Restaurant info View
             HStack (alignment: .top) {
                 imageViewWidget.frame(width: 125, height: 125)
-                VStack (alignment: .leading, spacing: 0) {
-                    Text(savedRestaurantVM.name)
-                        .foregroundColor(Color("font"))
-                        .font(.custom("Chivo-Regular", size: 20))
-                    HStack {
-                        HStack (alignment: .center, spacing: 5) {
-                            Text(String("\(savedRestaurantVM.rating)"))
-                                .foregroundColor(Color("font"))
-                                .font(.custom("Chivo-Regular", size: 17))
-                            Image(systemName: "star.fill")
-                                .resizable()
-                                .frame(width: 15, height: 15)
-                                .foregroundColor(Color.yellow)
-                        }
-                        Text(String("\(savedRestaurantVM.reviewCount) reviews"))
-                        Text(savedRestaurantVM.price)
-                    }
-                    .padding(.top, 10)
-                    .padding(.bottom, 10)
-                    
-                    Text(savedRestaurantVM.address)
-                    
-                    HStack {
-                        Text(savedRestaurantVM.city)
-                        Text(String(format: "%.2f mi", savedRestaurantVM.distance)).frame(width: 100, alignment: .leading)
-                    }
-                    
-                }
+                RestaurantInfoView(restaurantVM: nil, savedRestaurantVM: savedRestaurantVM)
                     .foregroundColor(Color("subheading"))
-                    .font(.custom("Chivo-Regular", size: 15))
+                    .customFont(name: "Chivo-Regular", style: .body)
                 Spacer()
                 ActionButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM)
             }
+            .padding(.top, 10)
+            .padding(.leading, 10)
             
             // Hours View
-            if showHours {
-                VStack (alignment: .leading) {
-                    HStack (spacing: 5) {
-                        if savedRestaurantVM.isOpen {
-                            Text("Open").foregroundColor(Color.green)
-                        } else {
-                            Text("Closed").foregroundColor(Color.red)
-                        }
-                        Text("") // blank text for consistent spacing
-                        Image(systemName: "chevron.up").foregroundColor(Color("font"))
-                    }
-                    HoursView(savedRestaurantVM: savedRestaurantVM)
-                        .onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
-                }.padding()
-            } else {
-                Group {
-                    HStack (spacing: 5) {
-                        if savedRestaurantVM.isOpen {
-                            Text("Open").foregroundColor(Color.green)
-                            Text("•").font(.custom("Chivo-Regular", size: 8)).foregroundColor(Color("subheading"))
-                        } else {
-                            Text("Closed").foregroundColor(Color.red)
-                        }
-                        Text(savedRestaurantVM.nextClosingTime).foregroundColor(Color("subheading"))
-                        Image(systemName: "chevron.down").foregroundColor(Color("font"))
-                    }
-                }
-                    .padding()
-                    .onTapGesture {
-                        self.didLoadOnce = true
-                        self.selectDeselect(self.savedRestaurantVM.id)
-                    }
-            }
+            HoursView(savedRestaurantVM: savedRestaurantVM, didLoadOnce: $didLoadOnce, hourSelection: $hourSelection, showHours: showHours)
             Divider()
             
             // Restaurant buttons View
@@ -189,13 +135,70 @@ struct SavedRowView: View {
                 EmptyView()
             }.disabled(self.showingNotifications == false)
 
+            
+            // Next Notification
             NextNotificaionsView(notifications: notifications, restaurantID: savedRestaurantVM.id)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Rectangle().fill(Color("background")).shadow(radius: 8))
-        
-        
-        
+    }
+}
+
+struct HoursView: View {
+    @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
+    
+    @Binding var didLoadOnce: Bool
+    @Binding var hourSelection: Set<String>
+    
+    let showHours: Bool
+    
+    var body: some View {
+        Group {
+            if showHours {
+                VStack (alignment: .leading) {
+                    HStack (spacing: 5) {
+                        if savedRestaurantVM.isOpen {
+                            Text("Open").foregroundColor(Color.green)
+                        } else {
+                            Text("Closed").foregroundColor(Color.red)
+                        }
+                        Text("") // blank text for consistent spacing
+                        Image(systemName: "chevron.up").foregroundColor(Color("font"))
+                    }.onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
+                    
+                    VStack (alignment: .leading) {
+                        HourView(dayStr: "Sun", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
+                        HourView(dayStr: "Mon", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Monday])
+                        HourView(dayStr: "Tue", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Tuesday])
+                        HourView(dayStr: "Wed", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Wednesday])
+                        HourView(dayStr: "Thu", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Thursday])
+                        HourView(dayStr: "Fri", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Friday])
+                        HourView(dayStr: "Sat", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
+                    }
+                }
+                    .customFont(name: "Chivo-Regular", style: .body)
+                    .padding()
+            } else {
+                Group {
+                    HStack (spacing: 5) {
+                        if savedRestaurantVM.isOpen {
+                            Text("Open").foregroundColor(Color.green)
+                            Text("•").font(.custom("Chivo-Regular", size: 8)).foregroundColor(Color("subheading"))
+                        } else {
+                            Text("Closed").foregroundColor(Color.red)
+                        }
+                        Text(savedRestaurantVM.nextClosingTime).foregroundColor(Color("subheading"))
+                        Image(systemName: "chevron.down").foregroundColor(Color("font"))
+                    }
+                }
+                    .customFont(name: "Chivo-Regular", style: .body)
+                    .padding()
+                    .onTapGesture {
+                        self.didLoadOnce = true
+                        self.selectDeselect(self.savedRestaurantVM.id)
+                    }
+            }
+        }
     }
     
     private func selectDeselect(_ restaurantID: String) {
@@ -203,22 +206,6 @@ struct SavedRowView: View {
             hourSelection.remove(restaurantID)
         } else {
             hourSelection.insert(restaurantID)
-        }
-    }
-}
-
-struct HoursView: View {
-    @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
-    
-    var body: some View {
-        VStack (alignment: .leading) {
-            HourView(dayStr: "Sun", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
-            HourView(dayStr: "Mon", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Monday])
-            HourView(dayStr: "Tue", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Tuesday])
-            HourView(dayStr: "Wed", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Wednesday])
-            HourView(dayStr: "Thu", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Thursday])
-            HourView(dayStr: "Fri", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Friday])
-            HourView(dayStr: "Sat", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
         }
     }
 }
@@ -247,7 +234,7 @@ struct HourView: View {
                 }
             }
         }
-        .font(.custom("Chivo-Regular", size: 15))
+        .customFont(name: "Chivo-Regular", style: .body)
         .foregroundColor(Color("subheading"))
     }
 }
@@ -302,7 +289,7 @@ struct NextNotificaionsView: View {
             .padding(.bottom, 10)
             .frame(maxWidth: .infinity, alignment: .center)
             .foregroundColor(Color("font"))
-            .font(.custom("Chivo-Regular", size: 15))
+            .customFont(name: "Chivo-Regular", style: .callout)
             .background(Color("background3"))
     }
 }

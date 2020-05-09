@@ -131,6 +131,7 @@ class NotificationManager {
         
         // make day nil as it was only used to calculate if selected time went back a day
         notificationComponents.day = nil
+        notificationComponents.quarter = nil // Bug in Xcode where you have to add this
         return notificationComponents
     }
     

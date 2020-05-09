@@ -19,6 +19,7 @@ struct DurationPickerView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UIDatePicker {
         let datePicker = UIDatePicker()
+        datePicker.setValue(UIColor(named: "font"), forKeyPath: "textColor")
         datePicker.datePickerMode = .countDownTimer
         datePicker.addTarget(context.coordinator, action: #selector(Coordinator.onDateChanged), for: .valueChanged)
         return datePicker
@@ -34,6 +35,7 @@ struct DurationPickerView: UIViewRepresentable {
 
         init(_ durationPicker: DurationPickerView) {
             self.durationPicker = durationPicker
+            
         }
 
         @objc func onDateChanged(sender: UIDatePicker) {

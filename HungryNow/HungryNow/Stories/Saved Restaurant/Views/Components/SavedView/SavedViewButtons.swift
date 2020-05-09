@@ -62,6 +62,8 @@ struct RestaurantButton: View {
 }
 
 struct DirectionsButton: View {
+    @State private var showingDirections = false
+    
     var savedRestaurantVM: SavedRestaurantViewModel
     var query: String
     
@@ -75,18 +77,7 @@ struct DirectionsButton: View {
     
     var body: some View {
             Button(action: {
-                // Try GoogleMaps first
-                if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-                    UIApplication.shared.open(URL(string:"comgooglemaps://?daddr=\(self.query)")!, options: [:], completionHandler: nil)
-                }
-                // Try AppleMaps
-                else if  UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com/")!) {
-                    UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(self.query)")!, options: [:], completionHandler: nil)
-                }
-                // Open Google Maps on browser
-                else {
-                    UIApplication.shared.open(URL(string: "http://maps.google.com/maps?daddr=\(self.query)")!, options: [:], completionHandler: nil)
-                }
+                self.showingDirections = true
             }) {
                 HStack {
                     Image(systemName: RestaurantButtonType.Direction.systemName)
@@ -94,7 +85,47 @@ struct DirectionsButton: View {
                 }.frame(maxWidth: .infinity)
                 
             }
-        }
+            .actionSheet(isPresented: $showingDirections) {
+            ActionSheet(title: Text(savedRestaurantVM.name), message: Text("\(savedRestaurantVM.address) \(savedRestaurantVM.city)"), buttons: [
+                .default(Text("Google Maps")) {
+                    if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                        UIApplication.shared.open(URL(string:"comgooglemaps://?daddr=\(self.query)")!, options: [:], completionHandler: nil)
+                    } else {
+                        // open google maps on browser
+                        UIApplication.shared.open(URL(string: "http://maps.google.com/maps?daddr=\(self.query)")!, options: [:], completionHandler: nil)
+                    }
+                },
+                .default(Text("Apple Maps")) {
+                    if  UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com/")!) {
+                        UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(self.query)")!, options: [:], completionHandler: nil)
+                    }
+                },
+                .cancel()
+            ])
+            }
+        
+//        .popSheet(isPresented: self.$showingDirections, content: {
+//            PopSheet(
+//                title: Text(self.savedRestaurantVM.name),
+//                message: Text("\(self.savedRestaurantVM.address) \(self.savedRestaurantVM.city)"),
+//                buttons: [
+//                PopSheet.Button(kind: .default, label: Text("Google Maps"), action: {
+//                    if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+//                        UIApplication.shared.open(URL(string:"comgooglemaps://?daddr=\(self.query)")!, options: [:], completionHandler: nil)
+//                    } else {
+//                        // open google maps on browser
+//                        UIApplication.shared.open(URL(string: "http://maps.google.com/maps?daddr=\(self.query)")!, options: [:], completionHandler: nil)
+//                    }
+//                }),
+//                PopSheet.Button(kind: .default, label: Text("Apple Maps"), action: {
+//                    if  UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com/")!) {
+//                        UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(self.query)")!, options: [:], completionHandler: nil)
+//                    }
+//                }),
+//                PopSheet.Button(kind: .cancel, label: Text("Cancel"), action: {})
+//            ])
+//        })
+    }
 }
 
 struct PhoneButton: View {
@@ -143,13 +174,26 @@ struct ActionButton: View {
                 .frame(width: 20, height: 4)
                 .rotationEffect(Angle(degrees: 90.0))
                 .padding(.top, 15)
-        }.actionSheet(isPresented: $showingSheet) {
+        }
+        .foregroundColor(Color("subheading"))
+        .actionSheet(isPresented: $showingSheet) {
             ActionSheet(title: Text(savedRestaurantVM.name), message: Text("\(savedRestaurantVM.address) \(savedRestaurantVM.city)"), buttons: [
                 .destructive(Text("Delete")) { self.removeRestaurant() },
                 .cancel()
             ])
-                 
-        }.foregroundColor(Color("subheading"))
+        }
+            
+//        .popSheet(isPresented: self.$showingSheet, content: {
+//            PopSheet(
+//                title: Text(self.savedRestaurantVM.name),
+//                message: Text("\(self.savedRestaurantVM.address) \(self.savedRestaurantVM.city)"),
+//                buttons: [
+//                PopSheet.Button(kind: .destructive, label: Text("Delete"), action: {
+//                    self.removeRestaurant()
+//                }),
+//                PopSheet.Button(kind: .cancel, label: Text("Cancel"), action: {})
+//            ])
+//        })
         
     }
     

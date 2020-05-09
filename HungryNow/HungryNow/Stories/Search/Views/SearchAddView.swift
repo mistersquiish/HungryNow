@@ -23,74 +23,18 @@ struct SearchAddView : View {
     var restaurantVM: RestaurantViewModel
     var vcDelegate: UIViewController
     
-    @State private var selectedTime = DurationPickerTime(hour: 1, minute: 0)
-    private var selectedDays: [Day] {
-        get {
-            var days: [Day] = []
-            if moToggled {
-                days.append(Day.Monday)
-            }
-            if tuToggled {
-                days.append(Day.Tuesday)
-            }
-            if weToggled {
-                days.append(Day.Wednesday)
-            }
-            if thToggled {
-                days.append(Day.Thursday)
-            }
-            if frToggled {
-                days.append(Day.Friday)
-            }
-            if saToggled {
-                days.append(Day.Saturday)
-            }
-            if suToggled {
-                days.append(Day.Sunday)
-            }
-            return days
-        }
-    }
-    
-    // Day Button toggles
-    @State private var moToggled: Bool = false
-    @State private var tuToggled: Bool = false
-    @State private var weToggled: Bool = false
-    @State private var thToggled: Bool = false
-    @State private var frToggled: Bool = false
-    @State private var saToggled: Bool = false
-    @State private var suToggled: Bool = false
-    
     var body: some View {
-        // Popup Views
         ZStack {
-            VStack (alignment: .center) {
-                Text("When would you like to be notified?")
-                    .frame(maxHeight: 100)
-                    .multilineTextAlignment(.center)
-                    .font(.title)
-                DurationPickerView(time: $selectedTime)
-                
-                Text("What days do you want to be notified")
-                HStack {
-                    DayButton(day: "Su", toggled: $suToggled)
-                    DayButton(day: "Mo", toggled: $moToggled)
-                    DayButton(day: "Tu", toggled: $tuToggled)
-                    DayButton(day: "We", toggled: $weToggled)
-                    DayButton(day: "Th", toggled: $thToggled)
-                    DayButton(day: "Fr", toggled: $frToggled)
-                    DayButton(day: "Sa", toggled: $saToggled)
-                }
-                
-                SaveButton(showingSuccessPopup: $showingSuccessPopup, showingErrorPopup: $showingErrorPopup, error: $error, notifications: notifications, restaurantVM: restaurantVM, selectedDays: selectedDays, selectedTime: $selectedTime)
-                
-                
-            }
-        }.popup(isPresented: $showingErrorPopup, autohideIn: 2) {
+            Color("background").edgesIgnoringSafeArea(.all)
+            AddNotificationView(confirmNewNotification: ConfirmNewNotification.Save, notifications: notifications, restaurant: restaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
+        }.foregroundColor(Color("font"))
+            
+        // Popup Views
+        .popup(isPresented: $showingErrorPopup, type: .toast, position: .bottom, autohideIn: 4) {
             ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
         }
             
-        .popup(isPresented: $showingSuccessPopup, autohideIn: 2) {
+        .popup(isPresented: $showingSuccessPopup, type: .toast, position: .bottom, autohideIn: 2) {
             SuccessAlert(showingSuccessPopup: self.$showingSuccessPopup, vcDelegate: self.vcDelegate)
         }
         
@@ -100,7 +44,14 @@ struct SearchAddView : View {
         .navigationBarItems(leading: Button(action : {
             self.mode.wrappedValue.dismiss()
         }){
-            Image(systemName: "arrow.left")
+            ZStack (alignment: .leading) {
+                Rectangle().fill(Color.clear)
+                    .frame(width: 40, height: 40)
+                Image(systemName: "arrow.left")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color("accent"))
+            }
         })
         
         
@@ -110,67 +61,4 @@ struct SearchAddView : View {
         
 }
 
-struct DayButton: View {
-    
-    let day: String
-    @Binding var toggled: Bool
-    @State var buttonHighlighting = Color.gray
 
-    var body: some View {
-        Button(action: {
-            self.toggled.toggle()
-            if self.toggled {
-                self.buttonHighlighting = Color.blue
-            } else {
-                self.buttonHighlighting = Color.gray
-            }
-        }) {
-            Text(day)
-                .font(.system(size: 18))
-                .padding(10)
-                .background(buttonHighlighting)
-                .foregroundColor(Color.black)
-                .mask(Circle())
-        }
-    }
-}
-
-struct SaveButton: View {
-    
-    @Binding var showingSuccessPopup: Bool
-    @Binding var showingErrorPopup: Bool
-    @Binding var error: Error?
-    
-    var notifications: Notifications
-    
-    var restaurantVM: RestaurantViewModel
-    var selectedDays: [Day]
-    @Binding var selectedTime: DurationPickerTime
-    
-    var body: some View {
-        Button( action: {
-            HungryNowManager.addNewRestaurant(restaurant: self.restaurantVM.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
-                if success {
-                    self.showingSuccessPopup = true
-                    self.notifications.getCurrentNotifications()
-                } else if let error = error {
-                    // Notification and YelpAPI Errors
-                    self.error = error
-                    self.showingErrorPopup = true
-                    self.showingSuccessPopup = false
-                }
-            }
-        }) {
-            HStack {
-                Text("Save")
-                    .fontWeight(.semibold)
-                    .font(.title)
-            }
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding()
-            .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.blue]), startPoint: .leading, endPoint: .trailing))
-            .cornerRadius(40)
-        }.padding()
-    }
-}

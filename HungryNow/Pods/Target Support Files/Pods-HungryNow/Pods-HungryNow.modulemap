@@ -1,4 +1,4 @@
-framework module Pods_HungryNow {
+module Pods_HungryNow {
   umbrella header "Pods-HungryNow-umbrella.h"
 
   export *

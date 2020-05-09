@@ -1811,24 +1811,8 @@
             filePath = "HungryNow/Stories/Search/View Models/RestaurantListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "onSearchTapped(query:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6629049E-42E3-48D0-A8E3-CAB6B5FAD096"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HungryNow/Stories/Search/View Models/RestaurantListViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "onSearchTapped(query:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1843,8 +1827,8 @@
             filePath = "HungryNow/Stories/Search/View Models/RestaurantListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "onSearchTapped(query:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1859,8 +1843,8 @@
             filePath = "HungryNow/Stories/Search/Views/SearchView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -1939,8 +1923,8 @@
             filePath = "HungryNow/Helpers/Notifications/NotificationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "checkErrors(selectedDays:selectedTime:hours:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2103,6 +2087,257 @@
             endingLineNumber = "136"
             landmarkName = "nextClosingTime"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15B5C9DD-8074-4038-BC21-76708B9C7B42"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Stories/Search/View Models/RestaurantListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "onSearchTapped(query:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7ED954BF-82ED-4299-8457-F35BCE7CB595"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Stories/Saved Restaurant/Views/MainViews/SavedView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "init(notifications:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDB2B9B2-48B9-4388-9B4C-861FD686C04B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Controllers/MapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "500EB48C-AF3C-42F4-A35C-A8ACEE683454"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Controllers/MapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "searchArea()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E929C9AB-8B21-4885-9A59-A6B1F5CB2EDE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Controllers/MapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA6BC9B8-D654-4365-AF74-26F223886F5C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Controllers/MapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "EA6BC9B8-D654-4365-AF74-26F223886F5C - 824f9c7ecac04bcc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.MapErrorView.body.getter : some"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "EA6BC9B8-D654-4365-AF74-26F223886F5C - a4f5b8cd40bf7393"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.Text in HungryNow.MapErrorView.body.getter : some"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HungryNow/Controllers/MapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "MapErrorView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182 - deb7d8219d2a471b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.MapErrorView.init() -&gt; HungryNow.MapErrorView"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182 - eb7ff4eb050b4abb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of HungryNow.MapErrorView.showingErrorPopup : Swift.Bool"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182 - e5070579d06dd361"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.MapErrorView.showingErrorPopup.getter : Swift.Bool"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182 - a8656212c95efb6d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.MapErrorView.showingErrorPopup.setter : Swift.Bool"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182 - cca0dd90200df562"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.MapErrorView.showingErrorPopup.modify : Swift.Bool"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182 - 64c8e9f5797d096d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.MapErrorView.showingErrorPopup.modify : Swift.Bool with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "F52A32D2-6B0B-4E7E-B1DE-78660E045182 - e92b2d87b88cd725"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HungryNow.MapErrorView.$showingErrorPopup.getter : SwiftUI.Binding&lt;Swift.Bool&gt;"
+                  moduleName = "HungryNow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/henryvuong/Desktop/HungryNow/HungryNow/HungryNow/Controllers/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

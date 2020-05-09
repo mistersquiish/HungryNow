@@ -1,4 +1,4 @@
-framework module ExytePopupView {
+module ExytePopupView {
   umbrella header "ExytePopupView-umbrella.h"
 
   export *

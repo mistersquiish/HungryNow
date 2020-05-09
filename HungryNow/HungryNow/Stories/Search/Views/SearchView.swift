@@ -21,32 +21,51 @@ struct SearchView : View {
     
     var vcDelegate: UIViewController
     
-    @State var isLoading = false
     @State private var searchText: String = ""
 
     var body: some View {
         ZStack {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 0) {
                 NavigationView {
-                    VStack (alignment: .leading) {
-                        SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
+                    ZStack {
+                        // needed to hide the space behind the nav bar
+                        Rectangle().fill(Color("background")).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,
+                                maxHeight: .infinity,
+                                alignment: .topLeading)
+                        .padding(.top, -200)
                         
-                        List(self.restaurantListVM.restaurants, id: \.id) { restaurant in
-                            RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
-                            
+                        // Search bar and list of restaurants
+                        VStack (alignment: .leading, spacing: 5) {
+                            SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
+                            List {
+                                // display output if user query returned 0 results
+                                if restaurantListVM.noResults {
+                                    NoResultsView()
+                                }
+                                
+                                ForEach(self.restaurantListVM.restaurants, id: \.id) { restaurant in
+                                    RestaurantRowView(restaurantVM: restaurant, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
+                                        .padding(.bottom, 5)
+                                        .listRowBackground(Color("background2"))
+                                }
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            }
                         }
                     }
+                    .background(Color("background"))
                     .navigationBarTitle(Text("Restaurants"))
                     .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
                 }
-                .padding(.top, 25)
-            }.blur(radius: restaurantListVM.isLoading ? 15 : 0)
+                .padding(.top, 20)
+                .navigationViewStyle(StackNavigationViewStyle())
+            }
+            .blur(radius: restaurantListVM.isLoading ? 15 : 0)
             
             if restaurantListVM.isLoading {
                 Loading()
             }
-        }
-        .popup(isPresented: $restaurantListVM.showingErrorPopup, autohideIn: 2) {
+        }.background(Color("background"))
+            .popup(isPresented: $restaurantListVM.showingErrorPopup, type: .toast, position: .bottom, autohideIn: 2) {
             ErrorAlert(error: self.restaurantListVM.error, showingErrorPopup: self.$restaurantListVM.showingErrorPopup)
         }
     }
@@ -85,46 +104,47 @@ struct RestaurantRowView: View {
     }
     
     var body: some View {
-        
-        HStack (alignment: .top) {
-            imageViewWidget.frame(width: 125, height: 125)
-            VStack (alignment: .leading) {
-                Text(self.restaurantVM.name).font(.headline)
-                HStack {
-                    Text(String("\(self.restaurantVM.rating) rating,"))
-                    Text(String("\(self.restaurantVM.reviewCount) reviews"))
-                    Text(self.restaurantVM.price)
-                }
-                Text(self.restaurantVM.address)
-                Text(self.restaurantVM.city)
-                Text(String(format: "%.2f mi", self.restaurantVM.distance)).font(.footnote)
-                Text(self.categories).font(.subheadline)
-            }
-            VStack (alignment: .trailing) {
-                NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
-                    EmptyView()
-                }.disabled(self.showingAddView == false)
-                if (self.isSaved) {
-                    Image(systemName: "checkmark.circle.fill")
-                    .resizable()
-                    .frame(width: 35, height: 35, alignment: .center)
-                    .accentColor(Color(UIColor.black))
-                    .padding(.top, 125 / 2 - 17.5)
-                } else {
-                    Image(systemName: "plus.circle")
-                    .resizable()
-                    .frame(width: 35, height: 35, alignment: .center)
-                    .accentColor(Color(UIColor.black))
-                    .padding(.top, 125 / 2 - 17.5)
-                    .onTapGesture {
-                    self.showingAddView = true
+        ZStack {
+            VStack (alignment: .leading, spacing: 10) {
+                HStack (alignment: .top) {
+                    imageViewWidget.frame(width: 125, height: 125)
+                    RestaurantInfoView(restaurantVM: restaurantVM, savedRestaurantVM: nil)
+                        
+                    
+                    Spacer()
+                    if (self.isSaved) {
+                        Image(systemName: "checkmark.circle.fill")
+                        .resizable()
+                        .frame(width: 35, height: 35, alignment: .center)
+                        .foregroundColor(Color("accent2"))
+                        .padding(.top, 125 / 2 - 17.5)
+                    } else {
+                        Image(systemName: "plus.circle")
+                        .resizable()
+                        .frame(width: 35, height: 35, alignment: .center)
+                        .foregroundColor(Color("accent"))
+                        .padding(.top, 125 / 2 - 17.5)
+                        .onTapGesture {
+                        self.showingAddView = true
+                        }
                     }
                 }
-
-            }.frame(width: 35)
-
+                Text(self.categories)
+                    .customFont(name: "Chivo-Regular", style: .callout)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color("background"))
+            .foregroundColor(Color("subheading"))
+            
+            
+            // Nav link
+            NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
+                EmptyView()
+            }.disabled(self.showingAddView == false)
         }
     }
+    
 }
 
 struct DismissButton: View {
@@ -137,7 +157,25 @@ struct DismissButton: View {
             Image(systemName: "xmark")
                 .resizable()
                 .frame(width: 20, height: 20)
-                .accentColor(Color(UIColor.black))
+                .accentColor(Color("accent"))
         }
+    }
+}
+
+struct NoResultsView: View {
+    var body: some View {
+        VStack (alignment: .center) {
+            Text("No Results")
+                .customFont(name: "Chivo-Regular", style: .title1)
+            Text("Try Searching with only alpha and")
+                .customFont(name: "Chivo-Regular", style: .body)
+            Text("and numerical characters.")
+                .customFont(name: "Chivo-Regular", style: .body)
+        }
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .padding(15)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .foregroundColor(Color("font"))
+            .background(Color("background2"))
     }
 }

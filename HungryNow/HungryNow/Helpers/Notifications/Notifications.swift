@@ -29,8 +29,8 @@ class Notifications: ObservableObject {
         
         
         restaurantNotifications = restaurantNotifications.sorted(by: {
-            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()! <
-            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()!
+            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate() ?? Date() <
+            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate() ?? Date()
         })
         
         return restaurantNotifications[0]
@@ -38,10 +38,11 @@ class Notifications: ObservableObject {
     
     func getNotifications(restaurantID: String) -> [UNNotificationRequest] {
         var restaurantNotifications = notifications.filter { $0.content.userInfo["restaurant_id"] as! String == restaurantID}
-        
+
+        // There is a bug where sometimes the 'nextTriggerDate()' returns nil. Unsure how that can happen
         restaurantNotifications = restaurantNotifications.sorted(by: {
-            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()! <
-            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate()!
+            ($0.trigger as! UNCalendarNotificationTrigger).nextTriggerDate() ?? Date() <
+            ($1.trigger as! UNCalendarNotificationTrigger).nextTriggerDate() ?? Date()
         })
         
         return restaurantNotifications

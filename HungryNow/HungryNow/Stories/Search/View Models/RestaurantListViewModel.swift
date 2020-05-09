@@ -18,6 +18,7 @@ class RestaurantListViewModel: NSObject, ObservableObject {
     @Published var error: Error?
     @Published var showingErrorPopup = false
     @Published var isLoading = false
+    @Published var noResults = false
     
     var locationManager = LocationManager()
     
@@ -27,6 +28,7 @@ class RestaurantListViewModel: NSObject, ObservableObject {
     
     func onSearchTapped(query: String) {
         self.isLoading = true
+        self.noResults = false
         if let location = locationManager.getCurrentLocation() {
             YelpAPI.getSearch(query: query, cllocation: location) { (restaurants: [Restaurant]?, error: Error?) in
                 if error != nil {
@@ -35,10 +37,11 @@ class RestaurantListViewModel: NSObject, ObservableObject {
                     self.isLoading = false
                     return
                 } else if let restaurants = restaurants {
-                    // no restaurants found
+                    // no restaurants found. inform the parent to display a no results output
                     if restaurants.count == 0 {
-                        self.error = SearchError.NoBusinesses
-                        self.showingErrorPopup = true
+                        self.noResults = true
+//                        self.error = SearchError.NoBusinesses
+//                        self.showingErrorPopup = true
                     }
                     
                     self.restaurants = restaurants.map(RestaurantViewModel.init)
