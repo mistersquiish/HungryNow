@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28130815246719320057B9A6 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28130814246719320057B9A6 /* CustomFont.swift */; };
 		2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820716E2443CA5900174DEF /* ImageWidgetView.swift */; };
 		28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */; };
 		28262CC32466541B0092F365 /* RestaurantRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28262CC22466541B0092F365 /* RestaurantRow.swift */; };
@@ -76,6 +77,7 @@
 /* Begin PBXFileReference section */
 		08171D9FB4B49018149F883D /* Pods_HungryNowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryNowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		188184C43F39B9A27C556E70 /* Pods-HungryNowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryNowUITests.release.xcconfig"; path = "Target Support Files/Pods-HungryNowUITests/Pods-HungryNowUITests.release.xcconfig"; sourceTree = "<group>"; };
+		28130814246719320057B9A6 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		2820716E2443CA5900174DEF /* ImageWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidgetView.swift; sourceTree = "<group>"; };
 		28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRestaurantViewModel.swift; sourceTree = "<group>"; };
 		28262CC22466541B0092F365 /* RestaurantRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRow.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				28A9783F24427319007BF823 /* LocationManager.swift */,
 				2833D6DD2455107300B4207C /* HungryNowManager.swift */,
 				28A9783A24424FEA007BF823 /* SearchBar.swift */,
+				28130814246719320057B9A6 /* CustomFont.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28130815246719320057B9A6 /* CustomFont.swift in Sources */,
 				2854EA75244BE87B00ADC239 /* SavedRestaurant.xcdatamodeld in Sources */,
 				28A9783B24424FEA007BF823 /* SearchBar.swift in Sources */,
 				28C190512444FB6E001119E5 /* SearchAddView.swift in Sources */,

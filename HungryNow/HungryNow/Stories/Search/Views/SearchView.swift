@@ -63,7 +63,7 @@ struct SearchView : View {
                 Loading()
             }
         }.background(Color("background"))
-        .popup(isPresented: $restaurantListVM.showingErrorPopup, autohideIn: 2) {
+            .popup(isPresented: $restaurantListVM.showingErrorPopup, type: .toast, position: .bottom, autohideIn: 2) {
             ErrorAlert(error: self.restaurantListVM.error, showingErrorPopup: self.$restaurantListVM.showingErrorPopup)
         }
     }
@@ -128,12 +128,13 @@ struct RestaurantRowView: View {
                     }
                 }
                 Text(self.categories)
+                    .customFont(name: "Chivo-Regular", style: .callout)
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color("background"))
             .foregroundColor(Color("subheading"))
-            .font(.custom("Chivo-Regular", size: 15))
+            
             
             // Nav link
             NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
@@ -163,11 +164,11 @@ struct NoResultsView: View {
     var body: some View {
         VStack (alignment: .center) {
             Text("No Results")
-                .font(.custom("Chivo-Regular", size: 25))
+                .customFont(name: "Chivo-Regular", style: .title1)
             Text("Try Searching with only alpha and")
-                .font(.custom("Chivo-Regular", size: 15))
+                .customFont(name: "Chivo-Regular", style: .body)
             Text("and numerical characters.")
-            .font(.custom("Chivo-Regular", size: 15))
+                .customFont(name: "Chivo-Regular", style: .body)
         }
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .padding(15)

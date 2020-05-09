@@ -29,7 +29,7 @@ struct DayButton: View {
         }) {
             Text(day)
                 .padding(10)
-                .font(.custom("Chivo-Regular", size: 18))
+                .customFont(name: "Chivo-Regular", style: .headline)
                 .foregroundColor(buttonTint)
                 .background(buttonBackground)
                 .mask(Circle())

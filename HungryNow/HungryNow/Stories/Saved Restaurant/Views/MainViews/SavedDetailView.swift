@@ -90,10 +90,10 @@ struct SavedDetailRowView: View {
         Group {
             VStack (alignment: .leading, spacing: 10) {
                 Text(time).font(.largeTitle)
-                    .font(.custom("Chivo-Regular", size: 45))
+                    .customFont(name: "Chivo-Regular", style: .largeTitle)
                     .foregroundColor(Color("font"))
                 Text(timeBefore)
-                    .font(.custom("Chivo-Regular", size: 15))
+                    .customFont(name: "Chivo-Regular", style: .body)
                     .foregroundColor(Color("subheading"))
             }.frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -113,15 +113,20 @@ struct NotificationHeader: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text(savedRestaurantVM.name)
-                .font(.custom("Chivo-Regular", size: 30))
+                .customFont(name: "Chivo-Regular", style: .title1)
                 .foregroundColor(Color("font"))
             Text(savedRestaurantVM.address)
                 .padding(.leading, 1)
-                .font(.custom("Chivo-Regular", size: 15))
+                .customFont(name: "Chivo-Regular", style: .body)
+                .foregroundColor(Color("subheading"))
+            Text(savedRestaurantVM.city)
+                .padding(.leading, 1)
+                .customFont(name: "Chivo-Regular", style: .body)
                 .foregroundColor(Color("subheading"))
         }
         .padding(.top, 30)
         .padding(.leading, 15)
+        .padding(.bottom, 15)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color("background2"))
     }

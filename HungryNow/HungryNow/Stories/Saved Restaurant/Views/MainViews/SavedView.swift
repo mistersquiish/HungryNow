@@ -37,30 +37,30 @@ struct SavedView: View {
         
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                HStack {
-                    Text("Saved Restaurants").font(.custom("Chivo-Regular", size: 30))
-                        .foregroundColor(Color("font"))
-                        .frame(alignment: .leading)
-                        .padding(.leading, 15)
-                    Spacer()
-                }.padding(.top, 15)
-                ZStack {
-                    Color("background2")
-                    VStack (spacing: 30) {
+            ZStack {
+                Color("background2")
+                
+                ScrollView(showsIndicators: false) {
+                    HStack {
+                        Text("Saved Restaurants").font(.custom("Chivo-Regular", size: 30))
+                            .foregroundColor(Color("font"))
+                            .frame(alignment: .leading)
+                            .padding(.leading, 15)
+                        Spacer()
+                    }.padding(.top, 15)
                         ForEach(restaurants, id: \.id) { savedRestaurant in
                             SavedRowView(savedRestaurant: savedRestaurant, notifications: self.notifications, showHours: self.hourSelection.contains(savedRestaurant.businessId!), hourSelection: self.$hourSelection, didLoadOnce: self.$didLoadOnce)
-                            .animation(.linear(duration: self.didLoadOnce ? 0.3 : 0))
-                            
+                                .animation(.linear(duration: self.didLoadOnce ? 0.3 : 0))
                         }
                         .padding(.leading, 15)
                         .padding(.trailing, 15)
-                    }
+                        .padding(.bottom, 30)
+                    
                 }
-                .padding(.bottom, 30)
+                .frame(maxWidth: .infinity)
+                .background(Color("background2"))
+                    
             }
-            .frame(maxWidth: .infinity)
-            .background(Color("background2"))
             
             .navigationBarTitle("HungryNow", displayMode: .inline)
         }
@@ -109,7 +109,7 @@ struct SavedRowView: View {
                 imageViewWidget.frame(width: 125, height: 125)
                 RestaurantInfoView(restaurantVM: nil, savedRestaurantVM: savedRestaurantVM)
                     .foregroundColor(Color("subheading"))
-                    .font(.custom("Chivo-Regular", size: 15))
+                    .customFont(name: "Chivo-Regular", style: .body)
                 Spacer()
                 ActionButton(notifications: notifications, savedRestaurantVM: savedRestaurantVM)
             }
@@ -175,7 +175,7 @@ struct HoursView: View {
                         HourView(dayStr: "Sat", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
                     }
                 }
-                    .font(.custom("Chivo-Regular", size: 15))
+                    .customFont(name: "Chivo-Regular", style: .body)
                     .padding()
             } else {
                 Group {
@@ -190,7 +190,7 @@ struct HoursView: View {
                         Image(systemName: "chevron.down").foregroundColor(Color("font"))
                     }
                 }
-                    .font(.custom("Chivo-Regular", size: 15))
+                    .customFont(name: "Chivo-Regular", style: .body)
                     .padding()
                     .onTapGesture {
                         self.didLoadOnce = true
@@ -233,7 +233,7 @@ struct HourView: View {
                 }
             }
         }
-        .font(.custom("Chivo-Regular", size: 15))
+        .customFont(name: "Chivo-Regular", style: .body)
         .foregroundColor(Color("subheading"))
     }
 }
@@ -288,7 +288,7 @@ struct NextNotificaionsView: View {
             .padding(.bottom, 10)
             .frame(maxWidth: .infinity, alignment: .center)
             .foregroundColor(Color("font"))
-            .font(.custom("Chivo-Regular", size: 15))
+            .customFont(name: "Chivo-Regular", style: .callout)
             .background(Color("background3"))
     }
 }

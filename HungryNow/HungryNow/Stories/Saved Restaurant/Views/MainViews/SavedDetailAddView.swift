@@ -41,7 +41,6 @@ struct SavedDetailAddView : View {
                 }
                 
                 AddNotificationView(confirmNewNotification: ConfirmNewNotification.Add, notifications: notifications, restaurant: savedRestaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
-                //Spacer()
             }
         }.foregroundColor(Color("font"))
         

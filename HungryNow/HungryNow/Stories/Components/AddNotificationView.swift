@@ -67,16 +67,15 @@ struct AddNotificationView: View {
         VStack (alignment: .center, spacing: 15) {
             VStack (alignment: .center) {
                 Text("When would you like to be")
-                    .font(.custom("Chivo-Regular", size: 30))
+                    .customFont(name: "Chivo-Regular", style: .title1)
                 Text("notified?")
-                    .font(.custom("Chivo-Regular", size: 30))
+                    .customFont(name: "Chivo-Regular", style: .title1)
             }
-                .font(.title)
                 
             DurationPickerView(time: $selectedTime)
 
             Text("What days do you want to be notified")
-                .font(.custom("Chivo-Regular", size: 15))
+                .customFont(name: "Chivo-Regular", style: .body)
             HStack {
                 Spacer()
                 DayButton(day: "Su", toggled: $suToggled)
@@ -172,7 +171,7 @@ struct AccentButton: View {
         HStack {
             Text(buttonLabel)
                 .fontWeight(.semibold)
-                .font(.custom("Chivo-Regular", size: 30))
+                .customFont(name: "Chivo-Regular", style: .title2)
         }
         .padding()
         .frame(minWidth: 0, maxWidth: .infinity)

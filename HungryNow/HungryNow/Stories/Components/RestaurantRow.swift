@@ -41,7 +41,7 @@ struct RestaurantInfoView: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text(name)
-                .font(.custom("Chivo-Regular", size: 20))
+                .customFont(name: "Chivo-Regular", style: .headline)
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(3)
                 .foregroundColor(Color("font"))
@@ -50,7 +50,7 @@ struct RestaurantInfoView: View {
                 HStack (alignment: .center, spacing: 5) {
                     Text(String("\(rating)"))
                         .foregroundColor(Color("font"))
-                        .font(.custom("Chivo-Regular", size: 17))
+                        .customFont(name: "Chivo-Regular", style: .headline)
                     Image(systemName: "star.fill")
                         .resizable()
                         .frame(width: 15, height: 15)
@@ -62,6 +62,6 @@ struct RestaurantInfoView: View {
             Text(address)
             Text(city)
             Text(String(format: "%.2f mi", distance)).frame(width: 100, alignment: .leading)
-        }
+        }.customFont(name: "Chivo-Regular", style: .callout)
     }
 }
