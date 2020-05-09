@@ -107,37 +107,7 @@ struct SavedRowView: View {
             // Restaurant info View
             HStack (alignment: .top) {
                 imageViewWidget.frame(width: 125, height: 125)
-                VStack (alignment: .leading, spacing: 0) {
-                    Text(savedRestaurantVM.name)
-                        .foregroundColor(Color("font"))
-                        .font(.custom("Chivo-Regular", size: 20))
-                        .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(2)
-                        .frame(maxWidth: 220, alignment: .leading)
-                    HStack {
-                        HStack (alignment: .center, spacing: 5) {
-                            Text(String("\(savedRestaurantVM.rating)"))
-                                .foregroundColor(Color("font"))
-                                .font(.custom("Chivo-Regular", size: 17))
-                            Image(systemName: "star.fill")
-                                .resizable()
-                                .frame(width: 15, height: 15)
-                                .foregroundColor(Color.yellow)
-                        }
-                        Text(String("\(savedRestaurantVM.reviewCount) reviews"))
-                        Text(savedRestaurantVM.price)
-                    }
-                    .padding(.top, 10)
-                    .padding(.bottom, 10)
-                    
-                    Text(savedRestaurantVM.address)
-                    
-                    HStack (alignment: .top) {
-                        Text(savedRestaurantVM.city)
-                        Text(String(format: "%.2f mi", savedRestaurantVM.distance)).frame(width: 100, alignment: .leading)
-                    }
-                    
-                }
+                RestaurantInfoView(restaurantVM: nil, savedRestaurantVM: savedRestaurantVM)
                     .foregroundColor(Color("subheading"))
                     .font(.custom("Chivo-Regular", size: 15))
                 Spacer()
@@ -147,6 +117,53 @@ struct SavedRowView: View {
             .padding(.leading, 10)
             
             // Hours View
+            HoursView(savedRestaurantVM: savedRestaurantVM, didLoadOnce: $didLoadOnce, hourSelection: $hourSelection, showHours: showHours)
+            Divider()
+            
+            // Restaurant buttons View
+            HStack (spacing: 0) {
+                RestaurantButton(buttonType: RestaurantButtonType.Direction, savedRestaurantVM: self.savedRestaurantVM, showingNotifications: nil)
+                Divider().frame(height: 30)
+                RestaurantButton(buttonType: RestaurantButtonType.Phone, savedRestaurantVM: self.savedRestaurantVM, showingNotifications: nil)
+                Divider().frame(height: 30)
+                RestaurantButton(buttonType: RestaurantButtonType.Edit, savedRestaurantVM: nil, showingNotifications: self.$showingNotifications)
+            }
+            
+            // Hidden Nav link
+            NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications), isActive: self.$showingNotifications) {
+                EmptyView()
+            }.disabled(self.showingNotifications == false)
+
+            
+            // Next Notification
+            NextNotificaionsView(notifications: notifications, restaurantID: savedRestaurantVM.id)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Rectangle().fill(Color("background")).shadow(radius: 8))
+        
+        
+        
+    }
+    
+    private func selectDeselect(_ restaurantID: String) {
+        if hourSelection.contains(restaurantID) {
+            hourSelection.remove(restaurantID)
+        } else {
+            hourSelection.insert(restaurantID)
+        }
+    }
+}
+
+struct HoursView: View {
+    @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
+    
+    @Binding var didLoadOnce: Bool
+    @Binding var hourSelection: Set<String>
+    
+    let showHours: Bool
+    
+    var body: some View {
+        Group {
             if showHours {
                 VStack (alignment: .leading) {
                     HStack (spacing: 5) {
@@ -158,7 +175,16 @@ struct SavedRowView: View {
                         Text("") // blank text for consistent spacing
                         Image(systemName: "chevron.up").foregroundColor(Color("font"))
                     }.onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
-                    HoursView(savedRestaurantVM: savedRestaurantVM)
+                    
+                    VStack (alignment: .leading) {
+                        HourView(dayStr: "Sun", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
+                        HourView(dayStr: "Mon", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Monday])
+                        HourView(dayStr: "Tue", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Tuesday])
+                        HourView(dayStr: "Wed", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Wednesday])
+                        HourView(dayStr: "Thu", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Thursday])
+                        HourView(dayStr: "Fri", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Friday])
+                        HourView(dayStr: "Sat", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
+                    }
                 }
                     .font(.custom("Chivo-Regular", size: 15))
                     .padding()
@@ -182,29 +208,7 @@ struct SavedRowView: View {
                         self.selectDeselect(self.savedRestaurantVM.id)
                     }
             }
-            Divider()
-            
-            // Restaurant buttons View
-            HStack (spacing: 0) {
-                RestaurantButton(buttonType: RestaurantButtonType.Direction, savedRestaurantVM: self.savedRestaurantVM, showingNotifications: nil)
-                Divider().frame(height: 30)
-                RestaurantButton(buttonType: RestaurantButtonType.Phone, savedRestaurantVM: self.savedRestaurantVM, showingNotifications: nil)
-                Divider().frame(height: 30)
-                RestaurantButton(buttonType: RestaurantButtonType.Edit, savedRestaurantVM: nil, showingNotifications: self.$showingNotifications)
-            }
-            
-            // Hidden Nav link
-            NavigationLink(destination: SavedDetailView(savedRestaurantVM: savedRestaurantVM, notifications: notifications), isActive: self.$showingNotifications) {
-                EmptyView()
-            }.disabled(self.showingNotifications == false)
-
-            NextNotificaionsView(notifications: notifications, restaurantID: savedRestaurantVM.id)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Rectangle().fill(Color("background")).shadow(radius: 8))
-        
-        
-        
     }
     
     private func selectDeselect(_ restaurantID: String) {
@@ -212,22 +216,6 @@ struct SavedRowView: View {
             hourSelection.remove(restaurantID)
         } else {
             hourSelection.insert(restaurantID)
-        }
-    }
-}
-
-struct HoursView: View {
-    @ObservedObject var savedRestaurantVM: SavedRestaurantViewModel
-    
-    var body: some View {
-        VStack (alignment: .leading) {
-            HourView(dayStr: "Sun", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
-            HourView(dayStr: "Mon", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Monday])
-            HourView(dayStr: "Tue", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Tuesday])
-            HourView(dayStr: "Wed", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Wednesday])
-            HourView(dayStr: "Thu", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Thursday])
-            HourView(dayStr: "Fri", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Friday])
-            HourView(dayStr: "Sat", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Saturday])
         }
     }
 }

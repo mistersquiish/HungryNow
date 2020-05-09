@@ -106,32 +106,7 @@ struct RestaurantRowView: View {
             VStack (alignment: .leading, spacing: 10) {
                 HStack (alignment: .top) {
                     imageViewWidget.frame(width: 125, height: 125)
-                    VStack (alignment: .leading) {
-                        Text(self.restaurantVM.name)
-                            .font(.custom("Chivo-Regular", size: 20))
-                            .fixedSize(horizontal: false, vertical: true)
-                            .lineLimit(2)
-                            .foregroundColor(Color("font"))
-                            .frame(maxWidth: 220, alignment: .leading)
-                        HStack {
-                            HStack (alignment: .center, spacing: 5) {
-                                Text(String("\(self.restaurantVM.rating)"))
-                                    .foregroundColor(Color("font"))
-                                    .font(.custom("Chivo-Regular", size: 17))
-                                Image(systemName: "star.fill")
-                                    .resizable()
-                                    .frame(width: 15, height: 15)
-                                    .foregroundColor(Color.yellow)
-                            }
-                            Text(String("\(self.restaurantVM.reviewCount) reviews"))
-                            Text(self.restaurantVM.price)
-                        }
-                        Text(self.restaurantVM.address)
-                        HStack {
-                            Text(self.restaurantVM.city)
-                            Text(String(format: "%.2f mi", self.restaurantVM.distance)).frame(width: 100, alignment: .leading)
-                        }
-                    }
+                    RestaurantInfoView(restaurantVM: restaurantVM, savedRestaurantVM: nil)
                         
                     
                     Spacer()
