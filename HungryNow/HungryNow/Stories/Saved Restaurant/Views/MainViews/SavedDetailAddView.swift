@@ -45,7 +45,7 @@ struct SavedDetailAddView : View {
         }.foregroundColor(Color("font"))
         
         .popup(isPresented: $showingErrorPopup, type: .toast, position: .bottom, autohideIn: 4) {
-            ErrorAlert(error: self.error, showingErrorPopup: self.$showingErrorPopup)
+            ErrorAlert(error: self.error)
         }
             
         .popup(isPresented: $showingSuccessPopup, type: .toast, position: .bottom, autohideIn: 2) {

@@ -21,30 +21,24 @@ class YelpAPI {
             guard let errorCode = error["code"] as? String else {
                 return YelpAPIError.NoErrorCode
             }
-            
             guard let errorDescription = error["description"] as? String else {
                 return YelpAPIError.NoErrorCode
             }
-            
             if errorCode == "INTERNAL_ERROR" {
                 return YelpAPIError.InternalError
             }
-            
             if errorCode == "ACCESS_LIMIT_REACHED" {
                 return YelpAPIError.AccessLimitReached
             }
-            
             if errorCode == "TOO_MANY_REQUESTS_PER_SECOND" {
                 return YelpAPIError.TooManyRequestsPerSecond
             }
-            
             if errorCode == "VALIDATION_ERROR" {
                 if errorDescription == "Please specify a location or a latitude and longitude" {
                     return YelpAPIError.ValidatinoErrorLocation
                 }
                 return YelpAPIError.ValidationError(responseDescription: errorDescription)
             }
-            
             return YelpAPIError.Unknown(errorDescription: errorDescription)
         }
         // no error
@@ -58,7 +52,7 @@ class YelpAPI {
         return nil
     }
     
-    static func getSearch(query: String, cllocation: CLLocation, completion: @escaping ([Restaurant]?, Error?) -> ()) {
+    static func getSearch(query: String?, cllocation: CLLocation, completion: @escaping ([Restaurant]?, Error?) -> ()) {
         let requestURL: String = yelpAPI + "businesses/search"
         let radius: Int = 40000
         
@@ -66,8 +60,7 @@ class YelpAPI {
             "Authorization": "Bearer \(yelpAPIKey)"
         ]
         
-        let parameters = [
-            "term": query,
+        var parameters = [
             "latitude": cllocation.coordinate.latitude,
             "longitude": cllocation.coordinate.longitude,
             "radius": radius,
@@ -76,33 +69,38 @@ class YelpAPI {
             "categories": "food,restaurants"
         ] as [String : Any]
         
+        // add query if provided
+        if let query = query {
+            parameters["term"] = query
+        }
+        
         Alamofire.request(requestURL,
                           method: .get,
                           parameters: parameters,
                           headers: header).response { response in
-                            if let error = checkRequestErrors(response: response) {
-                                completion(nil, error)
-                                return
-                            }
-                            
-                            if let data = response.data {
-                                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                                // check if returned response error
-                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
-                                    completion(nil, error)
-                                    return
-                                }
-                                
-                                guard let restaurantsDictionary = dataDictionary["businesses"] as? [[String: Any]] else {
-                                    completion(nil, YelpAPIError.NoBusinesses)
-                                    return
-                                }
-                                let restaurants = Restaurant.restaurants(dictionaries: restaurantsDictionary)
-                                completion(restaurants, nil)
-                            } else {
-                                print("error: no data")
-                                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
-                            }
+            if let error = checkRequestErrors(response: response) {
+                completion(nil, error)
+                return
+            }
+            
+            if let data = response.data {
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                // check if returned response error
+                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
+                    completion(nil, error)
+                    return
+                }
+                
+                guard let restaurantsDictionary = dataDictionary["businesses"] as? [[String: Any]] else {
+                    completion(nil, YelpAPIError.NoBusinesses)
+                    return
+                }
+                let restaurants = Restaurant.restaurants(dictionaries: restaurantsDictionary)
+                completion(restaurants, nil)
+            } else {
+                print("error: no data")
+                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
+            }
         } 
     }
     
@@ -116,34 +114,34 @@ class YelpAPI {
         Alamofire.request(requestURL,
                           method: .get,
                           headers: header).response { response in
-                            if let data = response.data {
-                                if let error = checkRequestErrors(response: response) {
-                                    completion(nil, error)
-                                    return
-                                }
-                                
-                                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                                
-                                // check if returned response error
-                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
-                                    completion(nil, error)
-                                    return
-                                }
-                                
-                                // check if hours is in the request call
-                                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else { completion(nil, YelpAPIError.NoHours)
-                                    return
-                                }
-                                guard let hoursDictionary = openDictionary[0]["open"] as? [[String: Any]] else {
-                                    completion(nil, YelpAPIError.NoHours)
-                                    return
-                                }
-                                completion(RestaurantHours(times: hoursDictionary), nil)
-                                
-                            } else {
-                                print("error: no data")
-                                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
-                            }
+            if let data = response.data {
+                if let error = checkRequestErrors(response: response) {
+                    completion(nil, error)
+                    return
+                }
+                
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                
+                // check if returned response error
+                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
+                    completion(nil, error)
+                    return
+                }
+                
+                // check if hours is in the request call
+                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else { completion(nil, YelpAPIError.NoHours)
+                    return
+                }
+                guard let hoursDictionary = openDictionary[0]["open"] as? [[String: Any]] else {
+                    completion(nil, YelpAPIError.NoHours)
+                    return
+                }
+                completion(RestaurantHours(times: hoursDictionary), nil)
+                
+            } else {
+                print("error: no data")
+                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
+            }
         }
     }
     
@@ -157,40 +155,40 @@ class YelpAPI {
         Alamofire.request(requestURL,
                           method: .get,
                           headers: header).response { response in
-                            if let error = checkRequestErrors(response: response) {
-                                print(restaurantID)
-                                completion(nil, error)
-                                return
-                            }
-                            
-                            if let data = response.data {
-                                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                                
-                                // check if returned response error
-                                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
-                                    completion(nil, error)
-                                    return
-                                }
-                                
-                                let restaurant = Restaurant(data: dataDictionary)
-                                
-                                // check if hours is in the request call
-                                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else { completion(nil, YelpAPIError.NoHours)
-                                    return
-                                }
-                                guard let hoursDictionary = openDictionary[0]["open"] as? [[String: Any]] else {
-                                    completion(nil, YelpAPIError.NoHours)
-                                    return
-                                }
-                                
-                                restaurant.hours = RestaurantHours(times: hoursDictionary)
-                                
-                                completion(restaurant, nil)
-                                
-                            } else {
-                                print("error: no data")
-                                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
-                            }
+            if let error = checkRequestErrors(response: response) {
+                print(restaurantID)
+                completion(nil, error)
+                return
+            }
+            
+            if let data = response.data {
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                
+                // check if returned response error
+                if let error = checkYelpErrors(dataDictionary: dataDictionary) {
+                    completion(nil, error)
+                    return
+                }
+                
+                let restaurant = Restaurant(data: dataDictionary)
+                
+                // check if hours is in the request call
+                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else { completion(nil, YelpAPIError.NoHours)
+                    return
+                }
+                guard let hoursDictionary = openDictionary[0]["open"] as? [[String: Any]] else {
+                    completion(nil, YelpAPIError.NoHours)
+                    return
+                }
+                
+                restaurant.hours = RestaurantHours(times: hoursDictionary)
+                
+                completion(restaurant, nil)
+                
+            } else {
+                print("error: no data")
+                completion(nil, YelpAPIError.RequestFailed(error: response.error!))
+            }
         }
     }
 }
