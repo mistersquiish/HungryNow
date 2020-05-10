@@ -38,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 savedVC.notifications = notifications
             }
         }
+        
+        NotificationManager.center.delegate = self
+        
         return true
     }
 
@@ -127,6 +130,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        if response.actionIdentifier == "deleteNotification" {
+            NotificationManager.removeNotification(identifier: response.notification.request.identifier)
+            notifications.getCurrentNotifications()
         }
     }
 }
