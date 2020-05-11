@@ -14,12 +14,14 @@ Savong Tan - Designer
 - [x] Heavy use of asynchronous functions and view updating
 - [x] Core Data
 - [x] Popups for various errors
+- [x] MapKit
 
 # Challenges
 - [x] Synthesizing SwiftUI with vanilla Swift UIKit and storyboard
 - [x] Asynchronous programming
 - [x] Learning SwiftUI
 - [x] Enhancing user experience
+- [x] Beta SwiftUI has many bugs and lack of features
 
 # Dependencies
 - [x] ExytePopupView
