@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +10,7 @@
         <!--Map-->
         <scene sceneID="AfC-CY-lqu">
             <objects>
-                <viewController storyboardIdentifier="Map" id="V6v-7p-avR" customClass="MapViewController" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Map" id="V6v-7p-avR" customClass="MapViewControllerSWIFT" customModule="HungryNow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DGc-65-OfJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,49 +18,36 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qvH-PU-U5L">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-hk-x3G">
-                                <rect key="frame" x="142" y="59" width="130" height="30"/>
-                                <color key="backgroundColor" name="accent"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="daz-Kb-S4w"/>
-                                    <constraint firstAttribute="width" constant="130" id="yGR-3V-bCq"/>
-                                </constraints>
-                                <state key="normal" title="Search Area"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0K-ag-A2S">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <action selector="searchButton:" destination="V6v-7p-avR" eventType="touchUpInside" id="bTX-ec-zN9"/>
+                                    <segue destination="AEI-zJ-gVA" kind="embed" destinationCreationSelector="addSwiftUIView:" id="CEn-jO-1g8"/>
                                 </connections>
-                            </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="XT3-Vw-9fU">
-                                <rect key="frame" x="197" y="64" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="WtW-H8-Z3O"/>
-                                    <constraint firstAttribute="width" constant="20" id="b8b-hM-wqL"/>
-                                </constraints>
-                            </activityIndicatorView>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="XT3-Vw-9fU" firstAttribute="centerX" secondItem="kc6-hk-x3G" secondAttribute="centerX" id="1Q0-6D-jxc"/>
-                            <constraint firstItem="XT3-Vw-9fU" firstAttribute="centerY" secondItem="kc6-hk-x3G" secondAttribute="centerY" id="2lQ-p4-ikn"/>
                             <constraint firstItem="qvH-PU-U5L" firstAttribute="bottom" secondItem="5zp-cj-OlG" secondAttribute="bottom" id="3qS-ZJ-Gg9"/>
                             <constraint firstItem="qvH-PU-U5L" firstAttribute="leading" secondItem="5zp-cj-OlG" secondAttribute="leading" id="6kJ-60-fet"/>
                             <constraint firstItem="qvH-PU-U5L" firstAttribute="trailing" secondItem="5zp-cj-OlG" secondAttribute="trailing" id="aeB-o0-Lfy"/>
-                            <constraint firstItem="kc6-hk-x3G" firstAttribute="top" secondItem="5zp-cj-OlG" secondAttribute="top" constant="15" id="gXd-n8-KQY"/>
-                            <constraint firstItem="kc6-hk-x3G" firstAttribute="centerX" secondItem="qvH-PU-U5L" secondAttribute="centerX" id="l3K-vV-Kng"/>
                             <constraint firstItem="qvH-PU-U5L" firstAttribute="top" secondItem="5zp-cj-OlG" secondAttribute="top" id="udb-nQ-vEB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5zp-cj-OlG"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="mappin" catalog="system" id="uvu-53-jfn"/>
-                    <connections>
-                        <outlet property="buttonAcitivityIndicator" destination="XT3-Vw-9fU" id="PFL-xF-vmn"/>
-                        <outlet property="mapView" destination="qvH-PU-U5L" id="Zer-P4-AMK"/>
-                        <outlet property="searchButton" destination="kc6-hk-x3G" id="Sxe-Js-IMa"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb3-m7-zrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="918.84057971014499" y="-573.21428571428567"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="UZg-wi-YVC">
+            <objects>
+                <hostingController id="AEI-zJ-gVA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q6Y-bH-V2R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1747" y="-619"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="q3d-FQ-aoZ">
@@ -147,8 +133,5 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <namedColor name="accent">
-            <color red="1" green="0.3880000114440918" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

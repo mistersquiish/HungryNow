@@ -18,7 +18,6 @@ struct SearchView : View {
     @ObservedObject var restaurantListVM = RestaurantListViewModel()
     @ObservedObject var notifications: Notifications
     
-    
     var vcDelegate: UIViewController
     
     @State private var searchText: String = ""
@@ -40,7 +39,7 @@ struct SearchView : View {
                             List {
                                 // display output if user query returned 0 results
                                 if restaurantListVM.noResults {
-                                    NoResultsView(noResultsMessage: NoResultsMessage.Query)
+                                    NoResultsView(noResultsMessage: NoResultsMessage.Location)
                                 }
                                 
                                 ForEach(self.restaurantListVM.restaurants, id: \.id) { restaurant in

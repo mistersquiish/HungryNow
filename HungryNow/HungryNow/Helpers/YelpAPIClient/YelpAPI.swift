@@ -35,7 +35,7 @@ class YelpAPI {
             }
             if errorCode == "VALIDATION_ERROR" {
                 if errorDescription == "Please specify a location or a latitude and longitude" {
-                    return YelpAPIError.ValidatinoErrorLocation
+                    return YelpAPIError.ValidationErrorLocation
                 }
                 return YelpAPIError.ValidationError(responseDescription: errorDescription)
             }
@@ -52,7 +52,7 @@ class YelpAPI {
         return nil
     }
     
-    static func getSearch(query: String?, cllocation: CLLocation, completion: @escaping ([Restaurant]?, Error?) -> ()) {
+    static func getSearch(query: String?, coordinate: CLLocationCoordinate2D, completion: @escaping ([Restaurant]?, Error?) -> ()) {
         let requestURL: String = yelpAPI + "businesses/search"
         let radius: Int = 40000
         
@@ -61,8 +61,8 @@ class YelpAPI {
         ]
         
         var parameters = [
-            "latitude": cllocation.coordinate.latitude,
-            "longitude": cllocation.coordinate.longitude,
+            "latitude": coordinate.latitude,
+            "longitude": coordinate.longitude,
             "radius": radius,
             "sort_by": "distance",
             "limit": 10,

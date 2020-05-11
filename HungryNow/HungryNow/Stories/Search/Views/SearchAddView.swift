@@ -26,7 +26,7 @@ struct SearchAddView : View {
     var body: some View {
         ZStack {
             Color("background").edgesIgnoringSafeArea(.all)
-            AddNotificationView(confirmNewNotification: ConfirmNewNotification.Save, notifications: notifications, restaurant: restaurantVM.restaurant, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
+            AddNotificationView(confirmNewNotification: ConfirmNewNotification.Save, notifications: notifications, restaurant: restaurantVM.restaurant!, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
         }.foregroundColor(Color("font"))
             
         // Popup Views
