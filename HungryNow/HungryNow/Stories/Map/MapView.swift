@@ -16,23 +16,24 @@ struct MainMapView: View {
     let vcDelegate: UIViewController
     
     @State var coordinate = LocationManager().getCurrentLocation()!.coordinate
+    @State var onSearchTapped = false
     @State var showingErrorPopup = false
     @State var showingRestaurantPopup = false
     @State var restaurantVMSelected = RestaurantViewModel()
     
-    let notifications: Notifications
-    
+    let notifications: Notifications    
     
     var body: some View {
         NavigationView {
             ZStack {
-                MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup).onTapGesture {
+                MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup, onSearchTapped: $onSearchTapped).onTapGesture {
                     self.showingRestaurantPopup = false
                 }
                 
                 VStack {
                     Button (action: {
                         self.restaurantListVM.onSearchTapped(query: nil, locationQuery: self.coordinate)
+                        self.onSearchTapped = true
                     }) {
                         ZStack {
                             if self.restaurantListVM.isLoading {
@@ -78,6 +79,7 @@ struct MapView: UIViewRepresentable {
     @ObservedObject var restaurantListVM: RestaurantListViewModel
     @Binding var restaurantVMSelected: RestaurantViewModel
     @Binding var showingRestaurantPopup: Bool
+    @Binding var onSearchTapped: Bool
     
     // Main methods
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
@@ -89,7 +91,6 @@ struct MapView: UIViewRepresentable {
         mapView.setRegion(center, animated: false)
         mapView.showsUserLocation = true
         mapView.pointOfInterestFilter = MKPointOfInterestFilter(excluding: [.restaurant, .cafe, .brewery, .bakery])
-        
         
         mapView.delegate = context.coordinator
         return mapView
@@ -106,15 +107,20 @@ struct MapView: UIViewRepresentable {
     final class Coordinator: NSObject, MKMapViewDelegate {
         private let mapView: MapView
         private let restaurantListVM: RestaurantListViewModel
+        private var updateCount: Int
 
         init(_ mapView: MapView, restaurantListVM: RestaurantListViewModel) {
             self.mapView = mapView
             self.restaurantListVM = restaurantListVM
+            self.updateCount = restaurantListVM.updateCount
         }
 
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             self.mapView.center = mapView.centerCoordinate
-            addAnnotations(mapView: mapView)
+            if updateCount != restaurantListVM.updateCount {
+                updateCount = restaurantListVM.updateCount
+                addAnnotations(mapView: mapView)
+            }
         }
         
         //MARK: - Custom Annotation
@@ -132,6 +138,8 @@ struct MapView: UIViewRepresentable {
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 view.tintColor = UIColor.green
                 view.markerTintColor = UIColor(named: "accent")
+                view.displayPriority = MKFeatureDisplayPriority.required
+                view.glyphImage = #imageLiteral(resourceName: "missing-restaurant")
                 return view
             }
             return view
@@ -144,12 +152,17 @@ struct MapView: UIViewRepresentable {
             }
         }
                 
-        private func addAnnotations(mapView: MKMapView) {
+        func addAnnotations(mapView: MKMapView) {
+            var annotations: [RestaurantAnnotation] = []
             for restaurantVM in restaurantListVM.restaurants {
                 let annotation = makeAnnotation(restaurant: restaurantVM.restaurant!)
-                mapView.addAnnotation(annotation)
+                
+                
+                //mapView.addAnnotation(annotation)
+                annotations.append(annotation)
             }
             
+            ContestedLocation.updateLocation(mv: mapView, oldAnnotations: annotations)
         }
         
         private func makeAnnotation(restaurant: Restaurant) -> RestaurantAnnotation {

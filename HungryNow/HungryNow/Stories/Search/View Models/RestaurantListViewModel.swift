@@ -14,12 +14,17 @@ import AlamofireImage
 import SwiftUI
 
 class RestaurantListViewModel: NSObject, ObservableObject {
-    @Published var restaurants = [RestaurantViewModel]()
+    @Published var restaurants = [RestaurantViewModel]() {
+        didSet {
+            updateCount += 1
+        }
+    }
     @Published var error: Error?
     @Published var showingErrorPopup = false
     @Published var isLoading = false
     @Published var noResults = false
     
+    var updateCount = 0 // Used to let the mapview know when it needs to update the annotations
     var locationManager = LocationManager()
     
     override init() {
