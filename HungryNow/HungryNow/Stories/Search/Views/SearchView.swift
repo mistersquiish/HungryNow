@@ -18,7 +18,6 @@ struct SearchView : View {
     @ObservedObject var restaurantListVM = RestaurantListViewModel()
     @ObservedObject var notifications: Notifications
     
-    
     var vcDelegate: UIViewController
     
     @State private var searchText: String = ""
@@ -40,7 +39,7 @@ struct SearchView : View {
                             List {
                                 // display output if user query returned 0 results
                                 if restaurantListVM.noResults {
-                                    NoResultsView()
+                                    NoResultsView(noResultsMessage: NoResultsMessage.Query)
                                 }
                                 
                                 ForEach(self.restaurantListVM.restaurants, id: \.id) { restaurant in
@@ -66,7 +65,7 @@ struct SearchView : View {
             }
         }.background(Color("background"))
             .popup(isPresented: $restaurantListVM.showingErrorPopup, type: .toast, position: .bottom, autohideIn: 2) {
-            ErrorAlert(error: self.restaurantListVM.error, showingErrorPopup: self.$restaurantListVM.showingErrorPopup)
+            ErrorAlert(error: self.restaurantListVM.error)
         }
     }
 }
@@ -136,12 +135,8 @@ struct RestaurantRowView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color("background"))
             .foregroundColor(Color("subheading"))
-            
-            
-            // Nav link
-            NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
-                EmptyView()
-            }.disabled(self.showingAddView == false)
+        }.sheet(isPresented: $showingAddView, onDismiss: { self.showingAddView = false }) {
+            SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: self.vcDelegate)
         }
     }
     
@@ -159,23 +154,5 @@ struct DismissButton: View {
                 .frame(width: 20, height: 20)
                 .accentColor(Color("accent"))
         }
-    }
-}
-
-struct NoResultsView: View {
-    var body: some View {
-        VStack (alignment: .center) {
-            Text("No Results")
-                .customFont(name: "Chivo-Regular", style: .title1)
-            Text("Try Searching with only alpha and")
-                .customFont(name: "Chivo-Regular", style: .body)
-            Text("and numerical characters.")
-                .customFont(name: "Chivo-Regular", style: .body)
-        }
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding(15)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .foregroundColor(Color("font"))
-            .background(Color("background2"))
     }
 }

@@ -13,6 +13,14 @@ import SwiftUI
 class NotificationManager {
     static var center = UNUserNotificationCenter.current()
     
+    static func setCategories() {
+        // Notification actions
+        let deleteAction = UNNotificationAction(identifier: "deleteNotification", title: "Delete Notification", options: [.destructive])
+        
+        let category = UNNotificationCategory(identifier: "deleteCategory", actions: [deleteAction], intentIdentifiers: [], options: [])
+        center.setNotificationCategories([category])
+    }
+    
     static func createNotifications(restaurant: Restaurant, selectedDays: [Day], selectedTime: DurationPickerTime, hours: RestaurantHours, completion: @escaping (Bool, Error?) -> ()) {
         
         // Check if user selections are valid
@@ -38,22 +46,43 @@ class NotificationManager {
     }
 
     static func createNotification(restaurant: Restaurant, restaurantTime: RestaurantTime, selectedTime: DurationPickerTime) {
-        let center = UNUserNotificationCenter.current()
+        setCategories()
+        
+        // get the closing time
+        let dateComponents = DateComponents(hour: Int(restaurantTime.end.prefix(2)), minute: Int(restaurantTime.end.suffix(2)))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mma"
+        
+        let timeNoFormat = DateComponents(hour: dateComponents.hour, minute: dateComponents.minute)
+        let closingTime = dateFormatter.string(from: NSCalendar.current.date(from: timeNoFormat)!)
+        
+        var closingIn = ""
+        if selectedTime.hour > 0 {
+            closingIn += "\(selectedTime.hour)hr "
+        }
+        if selectedTime.minute > 0 {
+            closingIn += "\(selectedTime.minute)min"
+        }
 
         let content = UNMutableNotificationContent()
-        content.title = "\(restaurant.name!) is closing in \(selectedTime)"
-        content.body = "\(restaurant.name!) closes at "
+        content.title = "\(restaurant.name!)"
+        content.body = "Closing in \(closingIn) at \(closingTime)"
         content.categoryIdentifier = "notification"
         content.userInfo = [
             "restaurant_id": restaurant.id,
             "day": restaurantTime.day.dayNum,
             "selectedHour": selectedTime.hour,
-            "selectedMinute": selectedTime.minute
+            "selectedMinute": selectedTime.minute,
+            "name": restaurant.name!,
+            "address": restaurant.address!,
+            "city": restaurant.city!
         ]
         content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "deleteCategory"
 
-        let dateComponents = calculateNotificationTime(restaurantTime: restaurantTime, selectedTime: selectedTime)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let notificationComponents = calculateNotificationTime(restaurantTime: restaurantTime, selectedTime: selectedTime)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notificationComponents, repeats: true)
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)

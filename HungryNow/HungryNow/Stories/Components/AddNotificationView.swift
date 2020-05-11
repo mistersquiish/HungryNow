@@ -65,6 +65,7 @@ struct AddNotificationView: View {
     
     var body: some View {
         VStack (alignment: .center, spacing: 15) {
+            Spacer()
             VStack (alignment: .center) {
                 Text("When would you like to be")
                     .customFont(name: "Chivo-Regular", style: .title1)

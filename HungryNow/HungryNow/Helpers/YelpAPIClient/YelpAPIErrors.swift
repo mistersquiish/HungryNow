@@ -16,7 +16,7 @@ enum YelpAPIError: Error {
     case AccessLimitReached
     case TooManyRequestsPerSecond
     case ValidationError(responseDescription: String)
-    case ValidatinoErrorLocation
+    case ValidationErrorLocation
     case BusinessNotFound
     case InternalError
     case Unknown(errorDescription: String)
@@ -43,9 +43,9 @@ extension YelpAPIError: LocalizedError {
             return NSLocalizedString("Access limit reached for Yelp API.", comment: "")
         case .TooManyRequestsPerSecond:
             return NSLocalizedString("Too many requests per second. Please try again later.", comment: "")
-        case .ValidationError(let responseDescription):
-            return NSLocalizedString("Validation error" + responseDescription, comment: "")
-        case .ValidatinoErrorLocation:
+        case .ValidationError(let _):
+            return NSLocalizedString("Validation error. Our servers must be down. Please try again later.", comment: "")
+        case .ValidationErrorLocation:
             return NSLocalizedString("Validation error. Please specify a location or a latitude and longitude.", comment: "")
         case .BusinessNotFound:
             return NSLocalizedString("Business not found from API call.", comment: "")

@@ -23,6 +23,8 @@ class LocationManager: NSObject {
         retriveCurrentLocation()
         if let location = locationManager.location {
              return location
+            // Austin Location
+//            return CLLocation(latitude: CLLocationDegrees(exactly: 30.285052)!, longitude: CLLocationDegrees(exactly: -97.741729)!)
         } else {
             return nil
         }

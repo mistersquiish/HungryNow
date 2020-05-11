@@ -14,23 +14,38 @@ import AlamofireImage
 import SwiftUI
 
 class RestaurantListViewModel: NSObject, ObservableObject {
-    @Published var restaurants = [RestaurantViewModel]()
+    @Published var restaurants = [RestaurantViewModel]() {
+        didSet {
+            updateCount += 1
+        }
+    }
     @Published var error: Error?
     @Published var showingErrorPopup = false
     @Published var isLoading = false
     @Published var noResults = false
     
+    var updateCount = 0 // Used to let the mapview know when it needs to update the annotations
     var locationManager = LocationManager()
     
     override init() {
         super.init()
     }
     
-    func onSearchTapped(query: String) {
+    func onSearchTapped(query: String?, limit: Int, locationQuery: CLLocationCoordinate2D?) {
         self.isLoading = true
         self.noResults = false
-        if let location = locationManager.getCurrentLocation() {
-            YelpAPI.getSearch(query: query, cllocation: location) { (restaurants: [Restaurant]?, error: Error?) in
+        self.showingErrorPopup = false
+        
+        var coordinate: CLLocationCoordinate2D?
+        if let locationQuery = locationQuery {
+            coordinate = locationQuery
+        } else if let currentLocation = locationManager.getCurrentLocation() {
+            coordinate = currentLocation.coordinate
+        }
+        
+        
+        if let coordinate = coordinate {
+            YelpAPI.getSearch(query: query, coordinate: coordinate, limit: limit) { (restaurants: [Restaurant]?, error: Error?) in
                 if error != nil {
                     self.error = error
                     self.showingErrorPopup = true
@@ -40,10 +55,7 @@ class RestaurantListViewModel: NSObject, ObservableObject {
                     // no restaurants found. inform the parent to display a no results output
                     if restaurants.count == 0 {
                         self.noResults = true
-//                        self.error = SearchError.NoBusinesses
-//                        self.showingErrorPopup = true
                     }
-                    
                     self.restaurants = restaurants.map(RestaurantViewModel.init)
                     self.isLoading = false
                 }
@@ -59,54 +71,56 @@ class RestaurantListViewModel: NSObject, ObservableObject {
 }
 
 struct RestaurantViewModel {
-    var restaurant: Restaurant
+    var restaurant: Restaurant?
     
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
     }
     
+    init() {}
+    
     var id: String {
-        return self.restaurant.id
+        return self.restaurant?.id ?? "id"
     }
     
     var name: String {
-        return self.restaurant.name
+        return self.restaurant?.name ?? "Name"
     }
     
     var address: String {
-        return self.restaurant.address
+        return self.restaurant?.address ?? "Address"
     }
     
     var city: String {
-        return self.restaurant.city
+        return self.restaurant?.city ?? "City, State"
     }
     
     var rating: Float {
-        return self.restaurant.rating ?? 0
+        return self.restaurant?.rating ?? 0
     }
     
     var reviewCount: Int {
-        return self.restaurant.reviewCount ?? 0
+        return self.restaurant?.reviewCount ?? 0
     }
     
     var phone: String {
-        return self.restaurant.phone ?? "No phone"
+        return self.restaurant?.phone ?? "No phone"
     }
     
     var price: String {
-        return self.restaurant.price ?? "$"
+        return self.restaurant?.price ?? "$"
     }
     
     var distance: Float {
-        return self.restaurant.distance ?? 0.0
+        return self.restaurant?.distance ?? 0.0
     }
     
     var imageURL: String {
-        return self.restaurant.imageURL ?? ""
+        return self.restaurant?.imageURL ?? ""
     }
     
     var categories: [[String: String]] {
-        return self.restaurant.categories
+        return self.restaurant?.categories ?? [["title": "title"]]
     }
     
 }
