@@ -31,7 +31,7 @@ class RestaurantListViewModel: NSObject, ObservableObject {
         super.init()
     }
     
-    func onSearchTapped(query: String?, locationQuery: CLLocationCoordinate2D?) {
+    func onSearchTapped(query: String?, limit: Int, locationQuery: CLLocationCoordinate2D?) {
         self.isLoading = true
         self.noResults = false
         
@@ -44,7 +44,7 @@ class RestaurantListViewModel: NSObject, ObservableObject {
         
         
         if let coordinate = coordinate {
-            YelpAPI.getSearch(query: query, coordinate: coordinate) { (restaurants: [Restaurant]?, error: Error?) in
+            YelpAPI.getSearch(query: query, coordinate: coordinate, limit: limit) { (restaurants: [Restaurant]?, error: Error?) in
                 if error != nil {
                     self.error = error
                     self.showingErrorPopup = true

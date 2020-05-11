@@ -15,12 +15,13 @@ import CoreLocation
 struct SearchBar: UIViewRepresentable {
 
     @Binding var text: String
-    var onSearchButtonClicked: ((String, CLLocationCoordinate2D?) -> Void)? = nil
+    var onSearchButtonClicked: ((String, Int, CLLocationCoordinate2D?) -> Void)? = nil
 
     class Coordinator: NSObject, UISearchBarDelegate {
 
         @Binding var text: String
         let control: SearchBar
+        let searchResultsLimit = 10
 
         init(text: Binding<String>, _ control: SearchBar) {
             _text = text
@@ -36,7 +37,7 @@ struct SearchBar: UIViewRepresentable {
         }
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            control.onSearchButtonClicked?(text, nil)
+            control.onSearchButtonClicked?(text, searchResultsLimit, nil)
             searchBar.endEditing(true)
             searchBar.setShowsCancelButton(false, animated: true)
         }

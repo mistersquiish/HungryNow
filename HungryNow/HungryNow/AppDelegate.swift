@@ -39,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             }
         }
         
+        // override dark mode
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = .light
+        }
+        
         NotificationManager.center.delegate = self
         
         return true

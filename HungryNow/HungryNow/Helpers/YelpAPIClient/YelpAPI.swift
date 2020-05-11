@@ -52,7 +52,7 @@ class YelpAPI {
         return nil
     }
     
-    static func getSearch(query: String?, coordinate: CLLocationCoordinate2D, completion: @escaping ([Restaurant]?, Error?) -> ()) {
+    static func getSearch(query: String?, coordinate: CLLocationCoordinate2D, limit: Int, completion: @escaping ([Restaurant]?, Error?) -> ()) {
         let requestURL: String = yelpAPI + "businesses/search"
         let radius: Int = 40000
         
@@ -65,7 +65,7 @@ class YelpAPI {
             "longitude": coordinate.longitude,
             "radius": radius,
             "sort_by": "distance",
-            "limit": 10,
+            "limit": limit,
             "categories": "food,restaurants"
         ] as [String : Any]
         

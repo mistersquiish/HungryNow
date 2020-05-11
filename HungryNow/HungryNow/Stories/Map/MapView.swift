@@ -29,10 +29,24 @@ struct MainMapView: View {
                 MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup, onSearchTapped: $onSearchTapped).onTapGesture {
                     self.showingRestaurantPopup = false
                 }
+                VStack {
+                    HStack {
+                        if (restaurantListVM.restaurants.count > 0) {
+                            Text("\(restaurantListVM.restaurants.count) results")
+                            .foregroundColor(Color("subheading"))
+                            .font(.custom("Chivo-Regular", size: 14))
+                            .padding()
+                            .shadow(radius: 8)
+                        }
+                        Spacer()
+                    }
+                    Spacer()
+                }
                 
+
                 VStack {
                     Button (action: {
-                        self.restaurantListVM.onSearchTapped(query: nil, locationQuery: self.coordinate)
+                        self.restaurantListVM.onSearchTapped(query: nil, limit: 30, locationQuery: self.coordinate)
                         self.onSearchTapped = true
                     }) {
                         ZStack {
@@ -44,7 +58,7 @@ struct MainMapView: View {
                         }
                             .foregroundColor(Color.white)
                             .font(.custom("Chivo-Regular", size: 15))
-                            .frame(width: 90, height: 20)
+                            .frame(width: 90, height: 10)
                             .padding()
                             .background(Color("accent"))
                             .shadow(radius: 8)

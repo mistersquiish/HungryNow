@@ -26,7 +26,7 @@ class YelpAPITests: XCTestCase {
         var errorCheck: Error?
         var restaurantsCheck: [Restaurant]?
         
-        YelpAPI.getSearch(query: query, cllocation: location) { (restaurants: [Restaurant]?, error: Error?) in
+        YelpAPI.getSearch(query: query, coordinate: location.coordinate, limit: 10) { (restaurants: [Restaurant]?, error: Error?) in
             errorCheck = error
             restaurantsCheck = restaurants
             apiCallExpectation!.fulfill()
@@ -50,7 +50,7 @@ class YelpAPITests: XCTestCase {
         var errorCheck: Error?
         var restaurantsCheck: [Restaurant]?
         
-        YelpAPI.getSearch(query: query, cllocation: location) { (restaurants: [Restaurant]?, error: Error?) in
+        YelpAPI.getSearch(query: query, coordinate: location.coordinate, limit: 10) { (restaurants: [Restaurant]?, error: Error?) in
             errorCheck = error
             restaurantsCheck = restaurants
             apiCallExpectation?.fulfill()

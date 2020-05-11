@@ -49,7 +49,7 @@ struct SuccessAlert: View {
                 .resizable()
                 .frame(width: 30, height: 30)
                 .foregroundColor(Color.white)
-            Text("Successfull Added")
+            Text("Successfully Added")
                 .customFont(name: "Chivo-Regular", style: .headline)
                 .foregroundColor(Color.white)
         }
