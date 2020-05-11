@@ -34,6 +34,7 @@ class RestaurantListViewModel: NSObject, ObservableObject {
     func onSearchTapped(query: String?, limit: Int, locationQuery: CLLocationCoordinate2D?) {
         self.isLoading = true
         self.noResults = false
+        self.showingErrorPopup = false
         
         var coordinate: CLLocationCoordinate2D?
         if let locationQuery = locationQuery {
@@ -55,7 +56,6 @@ class RestaurantListViewModel: NSObject, ObservableObject {
                     if restaurants.count == 0 {
                         self.noResults = true
                     }
-                    
                     self.restaurants = restaurants.map(RestaurantViewModel.init)
                     self.isLoading = false
                 }

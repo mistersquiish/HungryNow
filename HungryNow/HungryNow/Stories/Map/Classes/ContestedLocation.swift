@@ -21,16 +21,10 @@ class ContestedLocation {
             }
             
         }
-        
-        // replace annotations
-        //mv.removeAnnotations(mv.annotations)
         mv.addAnnotations(newAnnotations)
     }
     
     static private func constructRestaurantAnnotation(title: String, restaurant: Restaurant, coordinate: CLLocationCoordinate2D) -> RestaurantAnnotation {
-        print("-----")
-        print(title)
-        print(coordinate)
         let p = RestaurantAnnotation(title: title, restaurant: restaurant, coordinate: coordinate)
         return p
     }

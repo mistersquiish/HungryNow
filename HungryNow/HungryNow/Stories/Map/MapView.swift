@@ -16,72 +16,73 @@ struct MainMapView: View {
     let vcDelegate: UIViewController
     
     @State var coordinate = LocationManager().getCurrentLocation()!.coordinate
-    @State var onSearchTapped = false
-    @State var showingErrorPopup = false
     @State var showingRestaurantPopup = false
     @State var restaurantVMSelected = RestaurantViewModel()
+    
+    // Animations
+    @State private var rowDraggedOffset = CGSize.zero
+    @State private var dragIndicatorOffset = CGSize.zero
     
     let notifications: Notifications    
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup, onSearchTapped: $onSearchTapped).onTapGesture {
-                    self.showingRestaurantPopup = false
-                }
-                VStack {
-                    HStack {
-                        if (restaurantListVM.restaurants.count > 0) {
-                            Text("\(restaurantListVM.restaurants.count) results")
-                            .foregroundColor(Color("subheading"))
-                            .font(.custom("Chivo-Regular", size: 14))
-                            .padding()
-                            .shadow(radius: 8)
-                        }
+        ZStack {
+            NavigationView {
+                ZStack {
+                    MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup).onTapGesture {
+                        self.showingRestaurantPopup = false
+                    }
+                    MapResultsView(restaurantListVM: restaurantListVM)
+                    VStack {
+                        SearchAreaButton(restaurantListVM: self.restaurantListVM, coordinate: $coordinate)
                         Spacer()
-                    }
-                    Spacer()
-                }
-                
-
-                VStack {
-                    Button (action: {
-                        self.restaurantListVM.onSearchTapped(query: nil, limit: 30, locationQuery: self.coordinate)
-                        self.onSearchTapped = true
-                    }) {
-                        ZStack {
-                            if self.restaurantListVM.isLoading {
-                                Indicator()
-                            } else {
-                                Text("Search Area")
+                        if showingRestaurantPopup && !restaurantListVM.noResults && !restaurantListVM.showingErrorPopup {
+                            ZStack {
+                                Rectangle().fill(Color("background"))
+                                    .frame(maxWidth: .infinity, maxHeight: 30)
+                                VStack {
+                                    Capsule()
+                                        .fill(Color(red: 220/255, green: 220/255, blue: 220/255 ))
+                                        .frame(width: 50, height: 8)
+                                        .opacity(0.90)
+                                        .padding(.top, 5)
+                                        .offset(y: self.dragIndicatorOffset.height)
+                                    RestaurantRowView(restaurantVM: self.restaurantVMSelected, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
+                                }
                             }
+                            
+                            .animation(.spring())
+                            .offset(y: self.rowDraggedOffset.height)
+                            .gesture(DragGesture()
+                                .onChanged { value in
+                                    if value.translation.height > 0 {
+                                        self.rowDraggedOffset = value.translation
+                                    } else {
+                                        self.dragIndicatorOffset = CGSize(width: 0, height: -10)
+                                    }
+                                }
+                                .onEnded { value in
+                                    if value.translation.height > 150 {
+                                        self.showingRestaurantPopup = false
+                                    }
+                                    self.rowDraggedOffset = CGSize.zero
+                                    self.dragIndicatorOffset = CGSize.zero
+                                    
+                                }
+                            )
                         }
-                            .foregroundColor(Color.white)
-                            .font(.custom("Chivo-Regular", size: 15))
-                            .frame(width: 90, height: 10)
-                            .padding()
-                            .background(Color("accent"))
-                            .shadow(radius: 8)
-                            .cornerRadius(30)
-                        
-                    }.padding()
-                    Spacer()
-                    if showingRestaurantPopup {
-                        RestaurantRowView(restaurantVM: self.restaurantVMSelected, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
-                    }
-                    
-                    if restaurantListVM.noResults {
-                        NoResultsView(noResultsMessage: NoResultsMessage.Location)
-                    }
-                }
 
+                        if restaurantListVM.noResults {
+                            NoResultsView(noResultsMessage: NoResultsMessage.Location)
+                        } else if restaurantListVM.showingErrorPopup {
+                            ErrorAlert(error: self.restaurantListVM.error)
+                        }
+                    }
+
+                }
+                .background(Color.green)
+                .navigationBarTitle(Text("Map"), displayMode: .inline)
             }
-            .popup(isPresented: $restaurantListVM.showingErrorPopup, type: .toast, position: .bottom, autohideIn: 2) {
-                ErrorAlert(error: self.restaurantListVM.error)
-            }
-            
-            .background(Color("background"))
-            .navigationBarTitle(Text("Map"), displayMode: .inline)
         }
     }
 }
@@ -93,7 +94,6 @@ struct MapView: UIViewRepresentable {
     @ObservedObject var restaurantListVM: RestaurantListViewModel
     @Binding var restaurantVMSelected: RestaurantViewModel
     @Binding var showingRestaurantPopup: Bool
-    @Binding var onSearchTapped: Bool
     
     // Main methods
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
@@ -162,6 +162,8 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
             if let restaurantAnnotation = view.annotation as? RestaurantAnnotation {
                 self.mapView.restaurantVMSelected = RestaurantViewModel(restaurant: restaurantAnnotation.restaurant)
+                self.mapView.restaurantListVM.showingErrorPopup = false
+                self.mapView.restaurantListVM.noResults = false
                 self.mapView.showingRestaurantPopup = true
             }
         }
@@ -184,6 +186,53 @@ struct MapView: UIViewRepresentable {
             let annotation = RestaurantAnnotation(title: restaurant.name, restaurant: restaurant, coordinate: coordinate)
             
             return annotation
+        }
+    }
+}
+
+struct SearchAreaButton: View {
+    @ObservedObject var restaurantListVM: RestaurantListViewModel
+    @Binding var coordinate: CLLocationCoordinate2D
+    
+    var body: some View {
+        Button (action: {
+            self.restaurantListVM.onSearchTapped(query: nil, limit: 30, locationQuery: self.coordinate)
+        }) {
+            ZStack {
+                if self.restaurantListVM.isLoading {
+                    Indicator()
+                } else {
+                    Text("Search Area")
+                }
+            }
+                .foregroundColor(Color.white)
+                .font(.custom("Chivo-Regular", size: 15))
+                .frame(width: 90, height: 10)
+                .padding()
+                .background(Color("accent"))
+                .shadow(radius: 8)
+                .cornerRadius(30)
+            
+        }.padding()
+    }
+}
+
+struct MapResultsView: View {
+    @ObservedObject var restaurantListVM: RestaurantListViewModel
+    
+    var body: some View {
+        VStack {
+            HStack {
+                if (restaurantListVM.restaurants.count > 0) {
+                    Text("\(restaurantListVM.restaurants.count) results")
+                    .foregroundColor(Color("subheading"))
+                    .font(.custom("Chivo-Regular", size: 14))
+                    .padding()
+                    .shadow(radius: 8)
+                }
+                Spacer()
+            }
+            Spacer()
         }
     }
 }

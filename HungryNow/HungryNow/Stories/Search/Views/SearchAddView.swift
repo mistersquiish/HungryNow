@@ -26,7 +26,24 @@ struct SearchAddView : View {
     var body: some View {
         ZStack {
             Color("background").edgesIgnoringSafeArea(.all)
-            AddNotificationView(confirmNewNotification: ConfirmNewNotification.Save, notifications: notifications, restaurant: restaurantVM.restaurant!, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
+            VStack {
+                HStack {
+                    Button (action: {
+                        self.mode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .accentColor(Color(UIColor.black))
+                    }
+                    .padding(.top, 25)
+                    .padding(.leading, 25)
+                    Spacer()
+                }
+                Spacer()
+                AddNotificationView(confirmNewNotification: ConfirmNewNotification.Save, notifications: notifications, restaurant: restaurantVM.restaurant!, showingErrorPopup: $showingErrorPopup, showingSuccessPopup: $showingSuccessPopup, error: $error)
+                Spacer()
+            }
         }.foregroundColor(Color("font"))
             
         // Popup Views

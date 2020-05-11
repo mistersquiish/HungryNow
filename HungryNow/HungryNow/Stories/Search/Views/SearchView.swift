@@ -135,12 +135,8 @@ struct RestaurantRowView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color("background"))
             .foregroundColor(Color("subheading"))
-            
-            
-            // Nav link
-            NavigationLink(destination: SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: vcDelegate), isActive: self.$showingAddView) {
-                EmptyView()
-            }.disabled(self.showingAddView == false)
+        }.sheet(isPresented: $showingAddView, onDismiss: { self.showingAddView = false }) {
+            SearchAddView(notifications: self.notifications, restaurantVM: self.restaurantVM, vcDelegate: self.vcDelegate)
         }
     }
     

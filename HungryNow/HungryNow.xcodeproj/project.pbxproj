@@ -229,17 +229,9 @@
 		284C39CB24633EFE0024EE3B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				284C39CC24633F080024EE3B /* SavedView */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		284C39CC24633F080024EE3B /* SavedView */ = {
-			isa = PBXGroup;
-			children = (
 				284C39C924632EC10024EE3B /* SavedViewButtons.swift */,
 			);
-			path = SavedView;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		2854EA6C244B974400ADC239 /* Saved Restaurant */ = {
