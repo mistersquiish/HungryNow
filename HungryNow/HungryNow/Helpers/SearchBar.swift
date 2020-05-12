@@ -21,7 +21,7 @@ struct SearchBar: UIViewRepresentable {
 
         @Binding var text: String
         let control: SearchBar
-        let searchResultsLimit = 10
+        let searchResultsLimit = 20
 
         init(text: Binding<String>, _ control: SearchBar) {
             _text = text

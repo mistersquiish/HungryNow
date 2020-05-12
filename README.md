@@ -1,6 +1,9 @@
 # HungryNow
 
-App that notifies users when their favorite restaurants are closing soon.
+*Hours Spent: Around 145 hours*
+
+App that notifies users when their favorite restaurants are closing soon. More on:
+https://hungrynow.herokuapp.com/
 
 Henry Vuong - Lead Developer 
 Savong Tan - Designer
@@ -15,6 +18,12 @@ Savong Tan - Designer
 - [x] Core Data
 - [x] Popups for various errors
 - [x] MapKit
+
+# Issues
+- [ ] Animation for dismissal of errors on MapView
+- [ ] Picture quality
+- [ ] User input for query limit
+- [ ] MapView UIViewRepresentation lag on update
 
 # Challenges
 - [x] Synthesizing SwiftUI with vanilla Swift UIKit and storyboard
