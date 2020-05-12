@@ -230,11 +230,11 @@ struct MapRestaurantView: View {
     var body: some View {
         ZStack {
             Group {
-                Rectangle().fill(Color("background")).frame(maxWidth: .infinity, maxHeight: 210)
+                Rectangle().fill(Color("background")).frame(maxWidth: .infinity, maxHeight: 220)
                 
                 Group {
                     // needed for extra space animation
-                    Rectangle().fill(Color("background")).frame(maxWidth: .infinity, maxHeight: 210)
+                    Rectangle().fill(Color("background")).frame(maxWidth: .infinity, maxHeight: 220)
                     VStack (spacing: 0) {
                         Capsule()
                         .fill(Color(red: 230/255, green: 230/255, blue: 230/255 ))

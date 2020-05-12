@@ -102,7 +102,6 @@ class YelpAPI {
                 let restaurants = Restaurant.restaurants(dictionaries: restaurantsDictionary)
                 completion(restaurants, nil)
             } else {
-                print("error: no data")
                 completion(nil, YelpAPIError.RequestFailed(error: response.error!))
             }
         } 
@@ -143,7 +142,6 @@ class YelpAPI {
                 completion(RestaurantHours(times: hoursDictionary), nil)
                 
             } else {
-                print("error: no data")
                 completion(nil, YelpAPIError.RequestFailed(error: response.error!))
             }
         }
@@ -160,7 +158,6 @@ class YelpAPI {
                           method: .get,
                           headers: header).response { response in
             if let error = checkRequestErrors(response: response) {
-                print(restaurantID)
                 completion(nil, error)
                 return
             }
@@ -190,7 +187,6 @@ class YelpAPI {
                 completion(restaurant, nil)
                 
             } else {
-                print("error: no data")
                 completion(nil, YelpAPIError.RequestFailed(error: response.error!))
             }
         }

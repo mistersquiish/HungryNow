@@ -107,7 +107,6 @@ class CoreDataManager {
     }
     
     private static func addToQueue(updatedRestaurant: Restaurant) {
-        print("updated queue")
         updateQueue.append(updatedRestaurant)
         return
     }

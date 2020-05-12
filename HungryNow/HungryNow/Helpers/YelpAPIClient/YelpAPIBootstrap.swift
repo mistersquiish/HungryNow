@@ -50,16 +50,16 @@ extension YelpAPI {
                             yelpAPIKey = KeychainWrapper.standard.string(forKey: "yelpAPIKey")!
                             yelpClientID = KeychainWrapper.standard.string(forKey: "yelpClientID")!
                         } else {
-                            print("error: no yelp data")
+                            print("bootstrap error: no yelp data")
                         }
                         
                         
                     } catch {
-                        print("error: failed on data parsing")
+                        print("bootstrap error: failed on data parsing")
                     }
                     
                 } else {
-                    print("error: failed to connect to server")
+                    print("bootstrap error: failed to connect to server")
                 }
                 
                                 

@@ -40,25 +40,30 @@ struct RestaurantInfoView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text(name)
-                .customFont(name: "Chivo-Regular", style: .headline)
-                .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(3)
-                .foregroundColor(Color("font"))
-                .frame(maxWidth: 220, alignment: .leading)
-            HStack {
-                HStack (alignment: .center, spacing: 5) {
-                    Text(String("\(rating)"))
-                        .foregroundColor(Color("font"))
-                        .customFont(name: "Chivo-Regular", style: .headline)
-                    Image(systemName: "star.fill")
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                        .foregroundColor(Color.yellow)
-                }
-                Text(String("\(reviewCount) reviews"))
+                Text(name)
+                    .customFont(name: "Chivo-Regular", style: .headline)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(3)
+                    .foregroundColor(Color("font"))
+                    .frame(maxWidth: 220, alignment: .leading)
+            
+            HStack (alignment: .center, spacing: 5) {
+                Text(String("\(rating)"))
+                    .foregroundColor(Color("font"))
+                    .customFont(name: "Chivo-Regular", style: .headline)
+//                    Image(systemName: "star.fill")
+                YelpRating(rating: rating)
+                    .frame(width: 90, height: 15)
+                    .foregroundColor(Color.yellow)
+                Text(String("\(reviewCount)"))
+                Text("•").font(.custom("Chivo-Regular", size: 8)).foregroundColor(Color("subheading"))
                 Text(price)
             }
+//            HStack {
+//
+//                Text("•").font(.custom("Chivo-Regular", size: 8)).foregroundColor(Color("subheading"))
+//            }
+            
             Text(address)
                 .lineLimit(1)
             Text(city)

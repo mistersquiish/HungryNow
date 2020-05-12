@@ -66,7 +66,6 @@ class RestaurantListViewModel: NSObject, ObservableObject {
                 }
             }
         } else {
-            print("no location enabled")
             self.error = NotificationError.LocationNotEnabled
             self.showingErrorPopup = true
             self.isLoading = false
