@@ -38,21 +38,24 @@ class LocationManager: NSObject {
                 return
             }
             
-            // if haven't show location permission dialog before, show it to user
-            if(status == .notDetermined){
-                locationManager.requestWhenInUseAuthorization()
-                
-                // if you want the app to retrieve location data even in background, use requestAlwaysAuthorization
-                // locationManager.requestAlwaysAuthorization()
-                return
-            }
-            
             // at this point the authorization status is authorized
             // request location data once
             locationManager.requestLocation()
             
             // start monitoring location data and get notified whenever there is change in location data / every few seconds, until stopUpdatingLocation() is called
             // locationManager.startUpdatingLocation()
+    }
+    
+    func requestAuthorization() {
+        let status = CLLocationManager.authorizationStatus()
+        // if haven't show location permission dialog before, show it to user
+        if(status == .notDetermined){
+            locationManager.requestWhenInUseAuthorization()
+            
+            // if you want the app to retrieve location data even in background, use requestAlwaysAuthorization
+            // locationManager.requestAlwaysAuthorization()
+            return
+        }
     }
 }
 

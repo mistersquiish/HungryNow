@@ -8,80 +8,59 @@
 
 import SwiftUI
 import MapKit
+import AVFoundation
+
+// default location
+let austinLocation = CLLocation(latitude: CLLocationDegrees(exactly: 30.285052)!, longitude: CLLocationDegrees(exactly: -97.741729)!)
 
 struct MainMapView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var restaurantListVM = RestaurantListViewModel()
     @FetchRequest(entity: SavedRestaurant.entity(), sortDescriptors: []) var restaurants: FetchedResults<SavedRestaurant>
     let vcDelegate: UIViewController
+    let locMan = LocationManager()
     
-    @State var coordinate = LocationManager().getCurrentLocation()!.coordinate
+    @State var coordinate: CLLocationCoordinate2D = LocationManager().getCurrentLocation()?.coordinate ?? austinLocation.coordinate
     @State var showingRestaurantPopup = false
     @State var restaurantVMSelected = RestaurantViewModel()
     
-    // Animations
-    @State private var rowDraggedOffset = CGSize.zero
-    @State private var dragIndicatorOffset = CGSize.zero
+    let notifications: Notifications
     
-    let notifications: Notifications    
+    init(vcDelegate: UIViewController, notifications: Notifications) {
+        self.notifications = notifications
+        self.vcDelegate = vcDelegate
+        
+        locMan.requestAuthorization()
+    }
     
     var body: some View {
-        ZStack {
-            NavigationView {
-                ZStack {
-                    MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup).onTapGesture {
-                        self.showingRestaurantPopup = false
+        NavigationView {
+            ZStack {
+                MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup).onTapGesture {
+                    self.showingRestaurantPopup = false
+                }
+                MapResultsView(restaurantListVM: restaurantListVM)
+                YelpLogo()
+                
+                // Main Map UI
+                VStack {
+                    SearchAreaButton(restaurantListVM: self.restaurantListVM, coordinate: $coordinate)
+                    Spacer()
+                    
+                    // Restaurant pop up
+                    if showingRestaurantPopup && !restaurantListVM.noResults && !restaurantListVM.showingErrorPopup {
+                        MapRestaurantView(restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup, notifications: notifications, restaurants: restaurants, vcDelegate: vcDelegate)
                     }
-                    MapResultsView(restaurantListVM: restaurantListVM)
-                    YelpLogo()
-                    VStack {
-                        SearchAreaButton(restaurantListVM: self.restaurantListVM, coordinate: $coordinate)
-                        Spacer()
-                        if showingRestaurantPopup && !restaurantListVM.noResults && !restaurantListVM.showingErrorPopup {
-                            ZStack {
-                                Rectangle().fill(Color("background"))
-                                    .frame(maxWidth: .infinity, maxHeight: 30)
-                                VStack {
-                                    Capsule()
-                                        .fill(Color(red: 220/255, green: 220/255, blue: 220/255 ))
-                                        .frame(width: 50, height: 8)
-                                        .opacity(0.90)
-                                        .padding(.top, 5)
-                                        .offset(y: self.dragIndicatorOffset.height)
-                                    RestaurantRowView(restaurantVM: self.restaurantVMSelected, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
-                                }
-                            }
-                            
-                            .animation(.spring())
-                            .offset(y: self.rowDraggedOffset.height)
-                            .gesture(DragGesture()
-                                .onChanged { value in
-                                    if value.translation.height > 0 {
-                                        self.rowDraggedOffset = value.translation
-                                    } else {
-                                        self.dragIndicatorOffset = CGSize(width: 0, height: -10)
-                                    }
-                                }
-                                .onEnded { value in
-                                    if value.translation.height > 150 {
-                                        self.showingRestaurantPopup = false
-                                    }
-                                    self.rowDraggedOffset = CGSize.zero
-                                    self.dragIndicatorOffset = CGSize.zero
-                                    
-                                }
-                            )
-                        }
 
-                        if restaurantListVM.noResults {
-                            NoResultsView(noResultsMessage: NoResultsMessage.Location)
-                        } else if restaurantListVM.showingErrorPopup {
-                            ErrorAlert(error: self.restaurantListVM.error)
-                        }
+                    // No results and Error Popup
+                    if restaurantListVM.noResults {
+                        NoResultsView(noResultsMessage: NoResultsMessage.Location)
+                    } else if restaurantListVM.showingErrorPopup {
+                        ErrorAlert(error: self.restaurantListVM.error)
                     }
                 }
-                .navigationBarTitle(Text("Map"), displayMode: .inline)
             }
+            .navigationBarTitle(Text("Map"), displayMode: .inline)
         }
     }
 }
@@ -232,6 +211,71 @@ struct MapResultsView: View {
                 Spacer()
             }
             Spacer()
+        }
+    }
+}
+
+struct MapRestaurantView: View {
+    @Binding var restaurantVMSelected: RestaurantViewModel
+    @Binding var showingRestaurantPopup: Bool
+    @ObservedObject var notifications: Notifications
+    var restaurants: FetchedResults<SavedRestaurant>
+    var vcDelegate: UIViewController
+    
+    // Animations
+    @State private var rowDraggedDownOffset = CGSize.zero
+    @State private var dragIndicatorOffset = CGSize.zero
+    @State private var rowDraggedUpOffset = CGSize.zero
+    
+    var body: some View {
+        ZStack {
+            Group {
+                Rectangle().fill(Color("background")).frame(maxWidth: .infinity, maxHeight: 210)
+                
+                Group {
+                    // needed for extra space animation
+                    Rectangle().fill(Color("background")).frame(maxWidth: .infinity, maxHeight: 210)
+                    VStack (spacing: 0) {
+                        Capsule()
+                        .fill(Color(red: 230/255, green: 230/255, blue: 230/255 ))
+                        .frame(width: 50, height: 8)
+                        .opacity(0.85)
+                        .offset(y: self.dragIndicatorOffset.height)
+                        .zIndex(1)
+                        RestaurantRowView(restaurantVM: self.restaurantVMSelected, notifications: self.notifications, restaurants: self.restaurants, vcDelegate: self.vcDelegate)
+                    }
+                }
+                .offset(y: self.rowDraggedUpOffset.height)
+            }
+            .animation(.spring())
+            .offset(y: self.rowDraggedDownOffset.height)
+            .gesture(DragGesture()
+                .onChanged { value in
+                    if value.translation.height > 0 {
+                        self.rowDraggedDownOffset = value.translation
+                        // Remember, the drag indicator is offsetted by both its
+                        // offset and the row offset
+                        self.dragIndicatorOffset = CGSize(width: 0, height: 5)
+                    } else {
+                        self.rowDraggedUpOffset = CGSize(width: 0, height: -10)
+                        // Remember, the drag indicator is offsetted by both its
+                        // offset and the row offset
+                        self.dragIndicatorOffset = CGSize(width: 0, height: -5)
+                    }
+                }
+                .onEnded { value in
+                    if value.translation.height > 150 {
+                        // vibration
+                        let impactGenerator = UIImpactFeedbackGenerator()
+                        impactGenerator.impactOccurred()
+                        self.showingRestaurantPopup = false
+                    }
+                    self.rowDraggedDownOffset = CGSize.zero
+                    self.dragIndicatorOffset = CGSize.zero
+                    self.rowDraggedUpOffset = CGSize.zero
+                    
+                }
+            )
         }
     }
 }

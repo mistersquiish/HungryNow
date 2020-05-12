@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import MapKit
 
 class MapViewControllerSWIFT: UIViewController {
     
@@ -15,8 +16,9 @@ class MapViewControllerSWIFT: UIViewController {
     
     @IBSegueAction func addSwiftUIView(_ coder: NSCoder) -> UIViewController? {
         let delegate = UIApplication.shared.delegate as! AppDelegate
+        let rootView = MainMapView(vcDelegate: self, notifications: delegate.notifications).environment(\.managedObjectContext, context)
         
-        return UIHostingController(coder: coder, rootView: MainMapView(vcDelegate: self, notifications: delegate.notifications).environment(\.managedObjectContext, context))
+        return UIHostingController(coder: coder, rootView: rootView)
     }
     
     override func viewDidLoad() {

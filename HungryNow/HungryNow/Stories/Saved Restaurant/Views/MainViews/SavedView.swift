@@ -164,7 +164,12 @@ struct HoursView: View {
                         }
                         Text("") // blank text for consistent spacing
                         Image(systemName: "chevron.up").foregroundColor(Color("font"))
-                    }.onTapGesture { self.selectDeselect(self.savedRestaurantVM.id) }
+                    }.onTapGesture {
+                        self.selectDeselect(self.savedRestaurantVM.id)
+                        // vibration
+                        let impactGenerator = UIImpactFeedbackGenerator()
+                        impactGenerator.impactOccurred()
+                    }
                     
                     VStack (alignment: .leading) {
                         HourView(dayStr: "Sun", restaurantTimes: savedRestaurantVM.restaurantHours.days[.Sunday])
@@ -196,6 +201,9 @@ struct HoursView: View {
                     .onTapGesture {
                         self.didLoadOnce = true
                         self.selectDeselect(self.savedRestaurantVM.id)
+                        // vibration
+                        let impactGenerator = UIImpactFeedbackGenerator()
+                        impactGenerator.impactOccurred()
                     }
             }
         }

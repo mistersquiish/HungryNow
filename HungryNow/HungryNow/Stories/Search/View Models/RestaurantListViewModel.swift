@@ -32,6 +32,8 @@ class RestaurantListViewModel: NSObject, ObservableObject {
     }
     
     func onSearchTapped(query: String?, limit: Int, locationQuery: CLLocationCoordinate2D?) {
+        locationManager.requestAuthorization()
+        
         self.isLoading = true
         self.noResults = false
         self.showingErrorPopup = false
@@ -50,6 +52,9 @@ class RestaurantListViewModel: NSObject, ObservableObject {
                     self.error = error
                     self.showingErrorPopup = true
                     self.isLoading = false
+                    // vibration
+                    let impactGenerator = UIImpactFeedbackGenerator()
+                    impactGenerator.impactOccurred()
                     return
                 } else if let restaurants = restaurants {
                     // no restaurants found. inform the parent to display a no results output

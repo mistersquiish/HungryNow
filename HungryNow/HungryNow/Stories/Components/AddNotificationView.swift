@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 enum ConfirmNewNotification {
     case Add
@@ -113,15 +114,25 @@ struct AddButton: View {
     @Binding var error: Error?
     @Binding var selectedTime: DurationPickerTime
     
+    let impactGenerator = UIImpactFeedbackGenerator()
+    
     var body: some View {
         Button( action: {
             HungryNowManager.addNotification(restaurant: self.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime, hours: self.restaurant.hours!) { (success: Bool, error: Error?) in
                 if success {
+                    // success sound
+                    let successSoundID: SystemSoundID = 1407
+                    AudioServicesPlaySystemSound (successSoundID)
+                    
+                    self.showingErrorPopup = false
                     self.showingSuccessPopup = true
                     self.notifications.getCurrentNotifications()
                 } else if let error = error {
                     self.error = error
                     self.showingErrorPopup = true
+                    self.showingSuccessPopup = false
+                    // vibration
+                    self.impactGenerator.impactOccurred()
                 }
             }
         }) {
@@ -139,6 +150,7 @@ struct SaveButton: View {
     @Binding var error: Error?
     
     var notifications: Notifications
+    let impactGenerator = UIImpactFeedbackGenerator()
     
     var restaurant: Restaurant
     var selectedDays: [Day]
@@ -148,6 +160,11 @@ struct SaveButton: View {
         Button( action: {
             HungryNowManager.addNewRestaurant(restaurant: self.restaurant, selectedDays: self.selectedDays, selectedTime: self.selectedTime) { (success: Bool, error: Error?) in
                 if success {
+                    // success sound
+                    let successSoundID: SystemSoundID = 1407
+                    AudioServicesPlaySystemSound (successSoundID)
+                    
+                    self.showingErrorPopup = false
                     self.showingSuccessPopup = true
                     self.notifications.getCurrentNotifications()
                 } else if let error = error {
@@ -155,6 +172,9 @@ struct SaveButton: View {
                     self.error = error
                     self.showingErrorPopup = true
                     self.showingSuccessPopup = false
+                    
+                    // vibration
+                    self.impactGenerator.impactOccurred()
                 }
             }
         }) {
