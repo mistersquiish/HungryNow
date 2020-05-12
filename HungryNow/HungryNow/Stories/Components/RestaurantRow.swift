@@ -60,8 +60,9 @@ struct RestaurantInfoView: View {
                 Text(price)
             }
             Text(address)
+                .lineLimit(1)
             Text(city)
             Text(String(format: "%.2f mi", distance)).frame(width: 100, alignment: .leading)
-        }.customFont(name: "Chivo-Regular", style: .callout)
+        }.customFont(name: "Chivo-Regular", style: .subheadline)
     }
 }

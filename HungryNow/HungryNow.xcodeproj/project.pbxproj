@@ -21,6 +21,7 @@
 		2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6DD2455107300B4207C /* HungryNowManager.swift */; };
 		2833D6E124553E4A00B4207C /* NotificationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6E024553E4A00B4207C /* NotificationErrors.swift */; };
 		2833D6E324553E5700B4207C /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D6E224553E5700B4207C /* Notifications.swift */; };
+		284A1F94246A11D400741E8A /* YelpAPIBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284A1F93246A11D400741E8A /* YelpAPIBootstrap.swift */; };
 		284C39C724632DD60024EE3B /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C39C624632DD60024EE3B /* ViewExtension.swift */; };
 		284C39CA24632EC10024EE3B /* SavedViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C39C924632EC10024EE3B /* SavedViewButtons.swift */; };
 		284C39D2246348920024EE3B /* Chivo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 284C39D1246348920024EE3B /* Chivo-Regular.otf */; };
@@ -95,6 +96,7 @@
 		2833D6DD2455107300B4207C /* HungryNowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryNowManager.swift; sourceTree = "<group>"; };
 		2833D6E024553E4A00B4207C /* NotificationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationErrors.swift; sourceTree = "<group>"; };
 		2833D6E224553E5700B4207C /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		284A1F93246A11D400741E8A /* YelpAPIBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPIBootstrap.swift; sourceTree = "<group>"; };
 		284C39C624632DD60024EE3B /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		284C39C924632EC10024EE3B /* SavedViewButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewButtons.swift; sourceTree = "<group>"; };
 		284C39D1246348920024EE3B /* Chivo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chivo-Regular.otf"; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				286F97C724423F4E00BC2DED /* Models */,
+				284A1F93246A11D400741E8A /* YelpAPIBootstrap.swift */,
 				28758A4A243FD53A007F6CCA /* YelpAPI.swift */,
 				28758A4E243FDDDC007F6CCA /* YelpAPIErrors.swift */,
 			);
@@ -681,6 +684,7 @@
 				28ED21212468EC7B00511692 /* MapView.swift in Sources */,
 				2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */,
 				28C19053244518D8001119E5 /* Hours.swift in Sources */,
+				284A1F94246A11D400741E8A /* YelpAPIBootstrap.swift in Sources */,
 				28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */,
 				28758A53243FE96E007F6CCA /* SearchTransitionVC.swift in Sources */,
 				2874D501244D0264004DC4B7 /* CoreDataManager.swift in Sources */,

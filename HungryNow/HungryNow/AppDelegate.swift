@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        YelpAPI.bootstrap()
         notifications.getCurrentNotifications()
         let navigationBarAppearace = UINavigationBar.appearance()
 

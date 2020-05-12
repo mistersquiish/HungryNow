@@ -3,11 +3,13 @@ PODS:
   - AlamofireImage (3.5.2):
     - Alamofire (~> 4.8)
   - ExytePopupView (0.0.1)
+  - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - ExytePopupView
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -15,12 +17,14 @@ SPEC REPOS:
   trunk:
     - AlamofireImage
     - ExytePopupView
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   ExytePopupView: 731fe82b58e1725ea80e1acc23f995ad9e9a2382
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: eaf73008152ded659e585941c0f81e4e551278ec
+PODFILE CHECKSUM: 22a76f85711ed1fa7ddf1b1b46d19560b5ac7fca
 
 COCOAPODS: 1.9.1

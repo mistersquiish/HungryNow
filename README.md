@@ -26,6 +26,7 @@ Savong Tan - Designer
 # Dependencies
 - [x] ExytePopupView
 - [x] Alamofire
+- [x] SwiftKeychainWrapper
 
 # Thank you
 

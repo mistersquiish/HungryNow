@@ -12,9 +12,9 @@ import Alamofire
 import CoreLocation
 
 class YelpAPI {
-    static let yelpAPI: String = "https://api.yelp.com/v3/"
-    static let yelpClientID: String = "linRbg0iHogjirbBxD-omw"
-    static let yelpAPIKey: String = "KT_bxS5gMkwkqOweJ-DLtwJg3WaTwwLvQhaPINQgx7bGHyP3EZi_K7ZjfmCfD9xPXE8ACtxjseKOchixoxxTrsyjQjtqVmeyJiLGQ8Km9DYGF9bwD_BXx35bb3OPXnYx"
+    static var yelpAPI: String = "https://api.yelp.com/v3/"
+    static var yelpClientID: String = ""
+    static var yelpAPIKey: String = ""
     
     static func checkYelpErrors(dataDictionary: [String: Any]) -> YelpAPIError? {
         if let error = dataDictionary["error"] as? [String: Any] {
