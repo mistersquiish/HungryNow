@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Chivo-Regular.otf</string>
-	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>HungryNow needs your location to better filter restaurants near you</string>
-	<key>NSLocationUsageDescription</key>
-	<string>HungryNow needs your location to better filter restaurants near you</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>HungryNow needs your location to better filter restaurants near you</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -28,8 +18,22 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>HungryNow needs your location to better filter restaurants near you</string>
+	<key>NSLocationUsageDescription</key>
+	<string>HungryNow needs your location to better filter restaurants near you</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>HungryNow needs your location to better filter restaurants near you</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Chivo-Regular.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -50,10 +54,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>comgooglemaps</string>
 	</array>
 </dict>
 </plist>

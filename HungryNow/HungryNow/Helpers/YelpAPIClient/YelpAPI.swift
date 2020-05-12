@@ -17,6 +17,7 @@ class YelpAPI {
     static var yelpAPIKey: String = ""
     
     static func checkYelpErrors(dataDictionary: [String: Any]) -> YelpAPIError? {
+        // Preliminary error fixing
         if let error = dataDictionary["error"] as? [String: Any] {
             guard let errorCode = error["code"] as? String else {
                 return YelpAPIError.NoErrorCode
@@ -37,6 +38,9 @@ class YelpAPI {
                 if errorDescription == "Please specify a location or a latitude and longitude" {
                     return YelpAPIError.ValidationErrorLocation
                 }
+                // try requesting a new API key
+                bootstrap()
+                
                 return YelpAPIError.ValidationError(responseDescription: errorDescription)
             }
             return YelpAPIError.Unknown(errorDescription: errorDescription)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A7FA0B09A8667783B0396F5 /* libPods-HungryNowTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9CE0D0513F51A654632A8B2 /* libPods-HungryNowTests.a */; };
+		280C3D0C246A443800887B0A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED21202468EC7B00511692 /* MapView.swift */; };
 		28130815246719320057B9A6 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28130814246719320057B9A6 /* CustomFont.swift */; };
 		2813081724672A2E0057B9A6 /* PopSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2813081624672A2E0057B9A6 /* PopSheet.swift */; };
 		2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820716E2443CA5900174DEF /* ImageWidgetView.swift */; };
@@ -56,7 +57,6 @@
 		28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1E4CA245BB5BA001A10EE /* LoadingView.swift */; };
 		28DB62BB244B63FC0051371A /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB62BA244B63FC0051371A /* NotificationTests.swift */; };
 		28ED211F2468EC0C00511692 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED211E2468EC0C00511692 /* MapViewController.swift */; };
-		28ED21212468EC7B00511692 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED21202468EC7B00511692 /* MapView.swift */; };
 		28FE53312464FD1C007E8338 /* AddNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FE53302464FD1C007E8338 /* AddNotificationView.swift */; };
 		6FAFCA7948490E154143C8AF /* libPods-HungryNow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4721BAD3E589F894BA51B91A /* libPods-HungryNow.a */; };
 		9343E5297357F924C45F9D54 /* libPods-HungryNowUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16BC6CACA844B74B8BE3A28D /* libPods-HungryNowUITests.a */; };
@@ -681,8 +681,8 @@
 				28758A1D243FD448007F6CCA /* SavedVC.swift in Sources */,
 				289FEFEF245B2F8500A9EC41 /* Alerts.swift in Sources */,
 				286F97C624423C2800BC2DED /* SearchViewController.swift in Sources */,
-				28ED21212468EC7B00511692 /* MapView.swift in Sources */,
 				2833D6DE2455107300B4207C /* HungryNowManager.swift in Sources */,
+				280C3D0C246A443800887B0A /* MapView.swift in Sources */,
 				28C19053244518D8001119E5 /* Hours.swift in Sources */,
 				284A1F94246A11D400741E8A /* YelpAPIBootstrap.swift in Sources */,
 				28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */,
@@ -883,14 +883,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V786S5U359;
+				DEVELOPMENT_TEAM = 7QGL9K8S8C;
 				INFOPLIST_FILE = HungryNow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = HungryNow.HungryNow;
+				PRODUCT_BUNDLE_IDENTIFIER = hungrynow.hungrynow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -903,14 +903,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V786S5U359;
+				DEVELOPMENT_TEAM = 7QGL9K8S8C;
 				INFOPLIST_FILE = HungryNow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = HungryNow.HungryNow;
+				PRODUCT_BUNDLE_IDENTIFIER = hungrynow.hungrynow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
