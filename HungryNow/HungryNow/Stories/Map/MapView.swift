@@ -33,6 +33,7 @@ struct MainMapView: View {
                         self.showingRestaurantPopup = false
                     }
                     MapResultsView(restaurantListVM: restaurantListVM)
+                    YelpLogo()
                     VStack {
                         SearchAreaButton(restaurantListVM: self.restaurantListVM, coordinate: $coordinate)
                         Spacer()
@@ -78,9 +79,7 @@ struct MainMapView: View {
                             ErrorAlert(error: self.restaurantListVM.error)
                         }
                     }
-
                 }
-                .background(Color.green)
                 .navigationBarTitle(Text("Map"), displayMode: .inline)
             }
         }

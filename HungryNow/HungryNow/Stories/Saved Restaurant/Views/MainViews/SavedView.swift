@@ -59,13 +59,13 @@ struct SavedView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .background(Color("background2"))
-                    
+                
+                YelpLogo()
+                
             }
             
             .navigationBarTitle("HungryNow", displayMode: .inline)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
-        
     }
 }
 

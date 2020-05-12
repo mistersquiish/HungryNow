@@ -12,6 +12,7 @@
 		28130815246719320057B9A6 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28130814246719320057B9A6 /* CustomFont.swift */; };
 		2813081724672A2E0057B9A6 /* PopSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2813081624672A2E0057B9A6 /* PopSheet.swift */; };
 		2820716F2443CA5900174DEF /* ImageWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820716E2443CA5900174DEF /* ImageWidgetView.swift */; };
+		2820B229246A5B0F009A6796 /* YelpLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820B228246A5B0F009A6796 /* YelpLogo.swift */; };
 		28242B8E244D2AE400EB109B /* SavedRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */; };
 		28262CC32466541B0092F365 /* RestaurantRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28262CC22466541B0092F365 /* RestaurantRow.swift */; };
 		282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282CBAB2245265F300C35F4A /* SavedDetailView.swift */; };
@@ -85,6 +86,7 @@
 		28130814246719320057B9A6 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		2813081624672A2E0057B9A6 /* PopSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopSheet.swift; sourceTree = "<group>"; };
 		2820716E2443CA5900174DEF /* ImageWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidgetView.swift; sourceTree = "<group>"; };
+		2820B228246A5B0F009A6796 /* YelpLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpLogo.swift; sourceTree = "<group>"; };
 		28242B8D244D2AE400EB109B /* SavedRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRestaurantViewModel.swift; sourceTree = "<group>"; };
 		28262CC22466541B0092F365 /* RestaurantRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRow.swift; sourceTree = "<group>"; };
 		282CBAB2245265F300C35F4A /* SavedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDetailView.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				28262CC22466541B0092F365 /* RestaurantRow.swift */,
 				289FEFEE245B2F8500A9EC41 /* Alerts.swift */,
 				2813081624672A2E0057B9A6 /* PopSheet.swift */,
+				2820B228246A5B0F009A6796 /* YelpLogo.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				28758A4D243FD716007F6CCA /* Restaurant.swift in Sources */,
 				286933B624689A0100B34683 /* RestaurantAnnotation.swift in Sources */,
 				284C39CA24632EC10024EE3B /* SavedViewButtons.swift in Sources */,
+				2820B229246A5B0F009A6796 /* YelpLogo.swift in Sources */,
 				28C1E4CB245BB5BA001A10EE /* LoadingView.swift in Sources */,
 				282CBAB3245265F300C35F4A /* SavedDetailView.swift in Sources */,
 				284C39C724632DD60024EE3B /* ViewExtension.swift in Sources */,

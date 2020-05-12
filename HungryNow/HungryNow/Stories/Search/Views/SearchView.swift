@@ -56,7 +56,6 @@ struct SearchView : View {
                     .navigationBarItems(leading: DismissButton(vcDelegate: vcDelegate))
                 }
                 .padding(.top, 20)
-                .navigationViewStyle(StackNavigationViewStyle())
             }
             .blur(radius: restaurantListVM.isLoading ? 15 : 0)
             
