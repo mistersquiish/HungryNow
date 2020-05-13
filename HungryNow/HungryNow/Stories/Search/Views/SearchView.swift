@@ -34,7 +34,7 @@ struct SearchView : View {
                         .padding(.top, -200)
                         
                         // Search bar and list of restaurants
-                        VStack (alignment: .leading, spacing: 5) {
+                        VStack (alignment: .leading, spacing: 0) {
                             SearchBar(text: $searchText, onSearchButtonClicked: restaurantListVM.onSearchTapped)
                             List {
                                 // display output if user query returned 0 results
@@ -49,6 +49,8 @@ struct SearchView : View {
                                 }
                                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                             }
+                            
+                            
                         }
                     }
                     .background(Color("background"))

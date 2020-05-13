@@ -18,7 +18,7 @@ struct YelpLogo: View {
                 Image("yelp")
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: 60, maxHeight: 40)
+                .frame(maxWidth: 70, maxHeight: 70)
                 .padding().onTapGesture {
                     if let url = URL(string: "https://www.yelp.com/") {
                         UIApplication.shared.open(url)

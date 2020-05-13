@@ -19,8 +19,9 @@ struct MainMapView: View {
     @FetchRequest(entity: SavedRestaurant.entity(), sortDescriptors: []) var restaurants: FetchedResults<SavedRestaurant>
     let vcDelegate: UIViewController
     let locMan = LocationManager()
+    let mapHelper = MapViewHelper(coordinate: LocationManager().getCurrentLocation()?.coordinate ?? austinLocation.coordinate)
     
-    @State var coordinate: CLLocationCoordinate2D = LocationManager().getCurrentLocation()?.coordinate ?? austinLocation.coordinate
+//    @State var coordinate: CLLocationCoordinate2D = LocationManager().getCurrentLocation()?.coordinate ?? austinLocation.coordinate
     @State var showingRestaurantPopup = false
     @State var restaurantVMSelected = RestaurantViewModel()
     
@@ -36,7 +37,7 @@ struct MainMapView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                MapView(center: $coordinate, restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup).onTapGesture {
+                MapView(restaurantListVM: restaurantListVM, restaurantVMSelected: $restaurantVMSelected, showingRestaurantPopup: $showingRestaurantPopup, mapHelper: mapHelper).onTapGesture {
                     self.showingRestaurantPopup = false
                 }
                 MapResultsView(restaurantListVM: restaurantListVM)
@@ -44,7 +45,7 @@ struct MainMapView: View {
                 
                 // Main Map UI
                 VStack {
-                    SearchAreaButton(restaurantListVM: self.restaurantListVM, coordinate: $coordinate)
+                    SearchAreaButton(restaurantListVM: self.restaurantListVM, mapHelper: mapHelper)
                     Spacer()
                     
                     // Restaurant pop up
@@ -68,10 +69,11 @@ struct MainMapView: View {
 struct MapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
 
-    @Binding var center: CLLocationCoordinate2D
+    var center: CLLocationCoordinate2D = LocationManager().getCurrentLocation()?.coordinate ?? austinLocation.coordinate
     @ObservedObject var restaurantListVM: RestaurantListViewModel
     @Binding var restaurantVMSelected: RestaurantViewModel
     @Binding var showingRestaurantPopup: Bool
+    @ObservedObject var mapHelper: MapViewHelper
     
     // Main methods
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
@@ -89,7 +91,7 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapView>) {
-        uiView.setCenter(center, animated: true)
+        uiView.setCenter(mapHelper.coordinate, animated: true)
     }
 
     func makeCoordinator() -> MapView.Coordinator {
@@ -108,9 +110,13 @@ struct MapView: UIViewRepresentable {
         }
 
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            self.mapView.center = mapView.centerCoordinate
+            mapView.delegate = self
+            
+            self.mapView.mapHelper.coordinate = mapView.centerCoordinate
             if updateCount != restaurantListVM.updateCount {
                 updateCount = restaurantListVM.updateCount
+                let allAnnotations = mapView.annotations
+                mapView.removeAnnotations(allAnnotations)
                 addAnnotations(mapView: mapView)
             }
         }
@@ -170,11 +176,11 @@ struct MapView: UIViewRepresentable {
 
 struct SearchAreaButton: View {
     @ObservedObject var restaurantListVM: RestaurantListViewModel
-    @Binding var coordinate: CLLocationCoordinate2D
+    @ObservedObject var mapHelper: MapViewHelper
     
     var body: some View {
         Button (action: {
-            self.restaurantListVM.onSearchTapped(query: nil, limit: 30, locationQuery: self.coordinate)
+            self.restaurantListVM.onSearchTapped(query: nil, limit: 50, locationQuery: self.mapHelper.coordinate)
         }) {
             ZStack {
                 if self.restaurantListVM.isLoading {
@@ -277,5 +283,13 @@ struct MapRestaurantView: View {
                 }
             )
         }
+    }
+}
+
+class MapViewHelper: ObservableObject {
+    @Published var coordinate: CLLocationCoordinate2D
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
     }
 }

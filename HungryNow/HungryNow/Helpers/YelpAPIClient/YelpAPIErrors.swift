@@ -43,7 +43,7 @@ extension YelpAPIError: LocalizedError {
             return NSLocalizedString("Access limit reached for Yelp API.", comment: "")
         case .TooManyRequestsPerSecond:
             return NSLocalizedString("Too many requests per second. Please try again later.", comment: "")
-        case .ValidationError(let _):
+        case .ValidationError( _):
             return NSLocalizedString("Validation error. Our servers must be down. Please try again later.", comment: "")
         case .ValidationErrorLocation:
             return NSLocalizedString("Validation error. Please specify a location or a latitude and longitude.", comment: "")
