@@ -58,7 +58,7 @@ class YelpAPI {
     
     static func getSearch(query: String?, coordinate: CLLocationCoordinate2D, limit: Int, completion: @escaping ([Restaurant]?, Error?) -> ()) {
         let requestURL: String = yelpAPI + "businesses/search"
-        let radius: Int = 40000
+        let radius: Int = 40000 // 25 miles
         
         let header = [
             "Authorization": "Bearer \(yelpAPIKey)"

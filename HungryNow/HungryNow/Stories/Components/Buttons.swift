@@ -27,14 +27,13 @@ struct DayButton: View {
                 self.buttonTint = Color("font")
             }
         }) {
-            Text(day)
-                .padding(10)
-                .customFont(name: "Chivo-Regular", style: .headline)
+            ZStack {
+                Circle().fill(buttonBackground).frame(width: 40, height: 40)
+                Text(day)
+                .lineLimit(1)
+                .font(.custom("Chivo-Regular", size: 14))
                 .foregroundColor(buttonTint)
-                .background(buttonBackground)
-                .mask(Circle())
-                
-            
+            }
         }
     }
 }

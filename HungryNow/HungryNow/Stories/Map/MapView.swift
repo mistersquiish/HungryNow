@@ -73,11 +73,12 @@ struct MapView: UIViewRepresentable {
     @ObservedObject var restaurantListVM: RestaurantListViewModel
     @Binding var restaurantVMSelected: RestaurantViewModel
     @Binding var showingRestaurantPopup: Bool
-    @ObservedObject var mapHelper: MapViewHelper
+    var mapHelper: MapViewHelper
     
     // Main methods
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
         let mapView = MKMapView()
+        mapView.delegate = context.coordinator
         // set zoom
         // Set center of Map
         let regionRadius: CLLocationDistance = 1000
@@ -85,8 +86,6 @@ struct MapView: UIViewRepresentable {
         mapView.setRegion(center, animated: false)
         mapView.showsUserLocation = true
         mapView.pointOfInterestFilter = MKPointOfInterestFilter(excluding: [.restaurant, .cafe, .brewery, .bakery])
-        
-        mapView.delegate = context.coordinator
         return mapView
     }
 
@@ -285,7 +284,7 @@ struct MapRestaurantView: View {
 }
 
 class MapViewHelper: ObservableObject {
-    @Published var coordinate: CLLocationCoordinate2D
+    var coordinate: CLLocationCoordinate2D
     
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
