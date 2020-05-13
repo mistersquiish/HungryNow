@@ -110,8 +110,6 @@ struct MapView: UIViewRepresentable {
         }
 
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            mapView.delegate = self
-            
             self.mapView.mapHelper.coordinate = mapView.centerCoordinate
             if updateCount != restaurantListVM.updateCount {
                 updateCount = restaurantListVM.updateCount

@@ -51,22 +51,19 @@ struct RestaurantInfoView: View {
                 Text(String("\(rating)"))
                     .foregroundColor(Color("font"))
                     .customFont(name: "Chivo-Regular", style: .headline)
-//                    Image(systemName: "star.fill")
                 YelpRating(rating: rating)
                     .frame(width: 90, height: 15)
                     .foregroundColor(Color.yellow)
                 Text(String("\(reviewCount)"))
-                Text("•").font(.custom("Chivo-Regular", size: 8)).foregroundColor(Color("subheading"))
-                Text(price)
             }
-//            HStack {
-//
-//                Text("•").font(.custom("Chivo-Regular", size: 8)).foregroundColor(Color("subheading"))
-//            }
             
             Text(address)
                 .lineLimit(1)
-            Text(city)
+            HStack {
+                Text(city)
+                Text("•").font(.custom("Chivo-Regular", size: 8)).foregroundColor(Color("subheading"))
+                Text(price)
+            }
             Text(String(format: "%.2f mi", distance)).frame(width: 100, alignment: .leading)
         }.customFont(name: "Chivo-Regular", style: .subheadline)
     }
