@@ -18,6 +18,7 @@ Savong Tan - Designer
 - [x] Core Data
 - [x] Popups for various errors
 - [x] MapKit
+- [ ] Allow users to input restaurant hours for 'No restaurant hours' restaurant
 
 # Issues
 - [ ] Animation for dismissal of errors on MapView
