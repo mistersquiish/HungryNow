@@ -22,8 +22,8 @@ Savong Tan - Designer
 # Issues
 - [ ] Animation for dismissal of errors on MapView
 - [ ] Picture quality
-- [ ] User input for query limit
-- [ ] MapView UIViewRepresentation lag on update
+- [ ] Proper API key retrieval and server throttling
+- [ ] Prevent spamming of API requests in client
 
 # Challenges
 - [x] Synthesizing SwiftUI with vanilla Swift UIKit and storyboard
