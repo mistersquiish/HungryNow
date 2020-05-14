@@ -25,6 +25,8 @@ Savong Tan - Designer
 - [ ] Picture quality
 - [ ] Proper API key retrieval and server throttling
 - [ ] Prevent spamming of API requests in client
+- [ ] Tutorial showing users how to use
+- [ ] Fix Notification spacing issue
 
 # Challenges
 - [x] Synthesizing SwiftUI with vanilla Swift UIKit and storyboard
