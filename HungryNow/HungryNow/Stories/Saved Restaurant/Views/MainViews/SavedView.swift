@@ -17,6 +17,7 @@ struct SavedView: View {
     
     @State private var hourSelection: Set<String> = []
     @State var didLoadOnce: Bool = false // Used to disable animations during initialization
+    @State var showingTutorialView: Bool = false
     
     init(notifications: Notifications) {
         self.notifications = notifications
@@ -63,7 +64,19 @@ struct SavedView: View {
                 YelpLogo()
                 
             }
-            
+            .navigationBarItems(leading:
+            Button(action: {
+                self.showingTutorialView = true
+            }) {
+                ZStack (alignment: .leading) {
+                    Rectangle().fill(Color.clear).frame(width: 60, height: 40)
+                    Image(systemName: "questionmark.circle")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                }
+            }).sheet(isPresented: $showingTutorialView, onDismiss: { self.showingTutorialView = false }) {
+                TutorialView()
+            }
             .navigationBarTitle("HungryNow", displayMode: .inline)
         }
     }

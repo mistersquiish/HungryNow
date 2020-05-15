@@ -9,6 +9,7 @@ target 'HungryNow' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'ExytePopupView'
+  pod 'ConcentricOnboarding'
   pod 'SwiftKeychainWrapper'
 
   target 'HungryNowTests' do

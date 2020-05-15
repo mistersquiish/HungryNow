@@ -2,12 +2,14 @@ PODS:
   - Alamofire (4.8.2)
   - AlamofireImage (3.5.2):
     - Alamofire (~> 4.8)
+  - ConcentricOnboarding (0.0.3)
   - ExytePopupView (0.0.1)
   - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
+  - ConcentricOnboarding
   - ExytePopupView
   - SwiftKeychainWrapper
 
@@ -16,15 +18,17 @@ SPEC REPOS:
     - Alamofire
   trunk:
     - AlamofireImage
+    - ConcentricOnboarding
     - ExytePopupView
     - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
+  ConcentricOnboarding: 799d32a08654c27be56522985e9951de399393ef
   ExytePopupView: 731fe82b58e1725ea80e1acc23f995ad9e9a2382
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: 22a76f85711ed1fa7ddf1b1b46d19560b5ac7fca
+PODFILE CHECKSUM: fd005dd966221fa27223649041b806abbcb5b451
 
 COCOAPODS: 1.9.1

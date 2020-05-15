@@ -12,7 +12,7 @@ import SwiftUI
 /// Embeds the Search View inside the hosting view controller
 class SearchViewController: UIViewController {
     
-    var notifications: Notifications!
+    var notifications: Notifications = (UIApplication.shared.delegate as! AppDelegate).notifications
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     @IBSegueAction func addSwiftUIView(_ coder: NSCoder) -> UIViewController? {

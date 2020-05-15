@@ -18,13 +18,13 @@ Savong Tan - Designer
 - [x] Core Data
 - [x] Popups for various errors
 - [x] MapKit
+- [ ] Beautiful tutorial screen (thank you Ejxyte)
 - [ ] Allow users to input restaurant hours for 'No restaurant hours' restaurant
 
 # Issues
 - [ ] Animation for dismissal of errors on MapView
 - [ ] Picture quality
 - [ ] Proper API key retrieval and server throttling
-- [ ] Tutorial showing users how to use
 
 # Challenges
 - [x] Synthesizing SwiftUI with vanilla Swift UIKit and storyboard
@@ -35,6 +35,7 @@ Savong Tan - Designer
 
 # Dependencies
 - [x] ExytePopupView
+- [x] ConcentricOnboarding
 - [x] Alamofire
 - [x] SwiftKeychainWrapper
 

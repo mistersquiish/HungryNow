@@ -12,7 +12,7 @@ import SwiftUI
 class SavedVC: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var notifications: Notifications!
+    var notifications: Notifications = (UIApplication.shared.delegate as! AppDelegate).notifications
     
     @IBSegueAction func addSwiftUIView(_ coder: NSCoder) -> UIViewController? {
         let rootView = SavedView(notifications: notifications).environment(\.managedObjectContext, context)

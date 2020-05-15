@@ -30,19 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         navigationBarAppearace.barTintColor = UIColor(named: "background")
         navigationBarAppearace.backgroundColor = UIColor(named: "background")
         
-        guard let tabBarController = window?.rootViewController as? UITabBarController,
-            let viewControllers = tabBarController.viewControllers else {
-                return true
-        }
-        for (_, viewController) in viewControllers.enumerated() {
-            if let savedVC = viewController as? SavedVC {
-                savedVC.notifications = notifications
-            }
-        }
-        
         // override dark mode
         UIApplication.shared.windows.forEach { window in
             window.overrideUserInterfaceStyle = .light
+        }
+        
+        
+        // Check if user has already seen tutorial screen
+        if !UserDefaults.standard.bool(forKey: "didSeeTutorial") {          
+            let tutorialView = TutorialView()
+            self.window?.rootViewController = UIHostingController(rootView: tutorialView)
+            self.window?.makeKeyAndVisible()
         }
         
         NotificationManager.center.delegate = self
@@ -85,7 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         if viewController is SearchTransitionVC {
             if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as? SearchViewController {
-                newVC.notifications = notifications
                 tabBarController.present(newVC, animated: true)
                 return false
             }
