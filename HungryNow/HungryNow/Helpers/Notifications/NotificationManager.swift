@@ -63,8 +63,11 @@ class NotificationManager {
         }
         if selectedTime.minute > 0 {
             closingIn += "\(selectedTime.minute)min"
+        } else {
+            // remove last space
+            closingIn.removeLast()
         }
-
+        
         let content = UNMutableNotificationContent()
         content.title = "\(restaurant.name!)"
         content.body = "Closing in \(closingIn) at \(closingTime)"
