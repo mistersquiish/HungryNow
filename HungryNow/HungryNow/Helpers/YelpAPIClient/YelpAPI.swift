@@ -16,6 +16,10 @@ class YelpAPI {
     static var yelpClientID: String = ""
     static var yelpAPIKey: String = ""
     
+    static var hoursCache: [String: Bool] = [:]
+    static var searchCoordinateCache: [CLLocationCoordinate2D: [Restaurant]] = [:]
+    static var searchQueryCache: [String: [Restaurant]] = [:]
+    
     static func checkYelpErrors(dataDictionary: [String: Any]) -> YelpAPIError? {
         // Preliminary error fixing
         if let error = dataDictionary["error"] as? [String: Any] {
@@ -57,6 +61,18 @@ class YelpAPI {
     }
     
     static func getSearch(query: String?, coordinate: CLLocationCoordinate2D, limit: Int, completion: @escaping ([Restaurant]?, Error?) -> ()) {
+        // Check if search is already cached for location and query
+        if let query = query {
+            if let restaurants = searchQueryCache[query] {
+                completion(restaurants, nil)
+                return
+            }
+        }
+        if let restaurants = searchCoordinateCache[coordinate] {
+            completion(restaurants, nil)
+            return
+        }
+        
         let requestURL: String = yelpAPI + "businesses/search"
         let radius: Int = 40000 // 25 miles
         
@@ -100,6 +116,12 @@ class YelpAPI {
                     return
                 }
                 let restaurants = Restaurant.restaurants(dictionaries: restaurantsDictionary)
+                // cache result in both query and coordinate cache
+                searchCoordinateCache[coordinate] = restaurants
+                if let query = query {
+                    searchQueryCache[query] = restaurants
+                }
+                
                 completion(restaurants, nil)
             } else {
                 completion(nil, YelpAPIError.RequestFailed(error: response.error!))
@@ -108,6 +130,16 @@ class YelpAPI {
     }
     
     static func getHours(restaurantID: String, completion: @escaping (RestaurantHours?, Error?) -> ()) {
+        // Check if hours already cached
+        if let hourCache = hoursCache[restaurantID] {
+            if hourCache == false {
+                // Restaurant has no hours as previously requested
+                completion(nil, YelpAPIError.NoHours)
+                return
+            }
+        }
+        
+        
         let requestURL: String = yelpAPI + "businesses/" + restaurantID
         
         let header = [
@@ -132,11 +164,16 @@ class YelpAPI {
                 }
                 
                 // check if hours is in the request call
-                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else { completion(nil, YelpAPIError.NoHours)
+                guard let openDictionary = dataDictionary["hours"] as? [[String: Any]] else {
+                    completion(nil, YelpAPIError.NoHours)
+                    // cache result as false
+                    hoursCache[restaurantID] = false
                     return
                 }
                 guard let hoursDictionary = openDictionary[0]["open"] as? [[String: Any]] else {
                     completion(nil, YelpAPIError.NoHours)
+                    // cache result as false
+                    hoursCache[restaurantID] = false
                     return
                 }
                 completion(RestaurantHours(times: hoursDictionary), nil)
