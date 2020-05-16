@@ -18,7 +18,7 @@ Savong Tan - Designer
 - [x] Core Data
 - [x] Popups for various errors
 - [x] MapKit
-- [ ] Beautiful tutorial screen (thank you Ejxyte)
+- [x] Beautiful tutorial screen (thank you Ejxyte)
 - [ ] Allow users to input restaurant hours for 'No restaurant hours' restaurant
 
 # Issues

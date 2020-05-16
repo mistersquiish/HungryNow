@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         
         // Check if user has already seen tutorial screen
-        if !UserDefaults.standard.bool(forKey: "didSeeTutorial") {          
+        if !UserDefaults.standard.bool(forKey: "didSeeTutorial") {
             let tutorialView = TutorialView()
             self.window?.rootViewController = UIHostingController(rootView: tutorialView)
             self.window?.makeKeyAndVisible()

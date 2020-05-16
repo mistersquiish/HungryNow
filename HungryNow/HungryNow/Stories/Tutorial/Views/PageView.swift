@@ -25,7 +25,7 @@ struct PageView: View {
 
         return
             VStack(alignment: .center, spacing: 50) {
-                Text(title)
+                Text(header)
                     .font(Font.system(size: 40, weight: .bold, design: .rounded))
                     .foregroundColor(textColor)
                     .frame(width: textWidth)
@@ -37,11 +37,11 @@ struct PageView: View {
                     .cornerRadius(40)
                     .clipped()
                 VStack(alignment: .center, spacing: 5) {
-                    Text(header)
-                        .font(Font.system(size: 25, weight: .bold, design: .rounded))
-                        .foregroundColor(textColor)
-                        .frame(width: 300, alignment: .center)
-                        .multilineTextAlignment(.center)
+//                    Text(header)
+//                        .font(Font.system(size: 25, weight: .bold, design: .rounded))
+//                        .foregroundColor(textColor)
+//                        .frame(width: 300, alignment: .center)
+//                        .multilineTextAlignment(.center)
                     Text(content)
                         .font(Font.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(textColor)
@@ -52,8 +52,8 @@ struct PageView: View {
     }
 }
 
-struct MockData {
-    static let title = "Eating grapes 101"
+struct TutorialData {
+    static let title = "How it works"
     static let headers = [
         "Step 1",
         "Step 2",
@@ -61,30 +61,30 @@ struct MockData {
         "Step 4",
     ]
     static let contentStrings = [
-        "Break off a branch holding a few grapes and lay it on your plate.",
-        "Put a grape in your mouth whole.",
-        "Deposit the seeds into your thumb and first two fingers.",
-        "Place the seeds on your plate."
+        "Find your favorite restaurant.",
+        "Select how much time before closing you want to be notified by.",
+        "Hit Save.",
+        "All set! You'll be notified at your exact time."
     ]
     static let imageNames = [
-        "small_0",
-        "small_1",
-        "small_2",
-        "small_3"
+        "tutorial_1",
+        "tutorial_2",
+        "tutorial_3",
+        "tutorial_4"
     ]
 
     static let colors = [
-        "F38181",
-        "FCE38A",
-        "95E1D3",
-        "EAFFD0"
+        "455CFF",
+        "FFDE73",
+        "3366CC",
+        "FF5900"
         ].map{ Color(hex: $0) }
 
     static let textColors = [
         "FFFFFF",
-        "4A4A4A",
-        "4A4A4A",
-        "4A4A4A"
+        "000000",
+        "FFFFFF",
+        "FFFFFF"
         ].map{ Color(hex: $0) }
 }
 

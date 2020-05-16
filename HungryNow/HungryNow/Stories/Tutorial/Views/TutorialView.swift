@@ -14,9 +14,9 @@ struct TutorialView: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         let pages = (0...3).map { i in
-            AnyView(PageView(title: MockData.title, imageName: MockData.imageNames[i], header: MockData.headers[i], content: MockData.contentStrings[i], textColor: MockData.textColors[i]))
+            AnyView(PageView(title: TutorialData.title, imageName: TutorialData.imageNames[i], header: TutorialData.headers[i], content: TutorialData.contentStrings[i], textColor: TutorialData.textColors[i]))
         }
-        var onboardingView = ConcentricOnboardingView(pages: pages, bgColors: MockData.colors)
+        var onboardingView = ConcentricOnboardingView(pages: pages, bgColors: TutorialData.colors)
         onboardingView.insteadOfCyclingToFirstPage = {
             // if first time seeing tutorial screen present new VC, if not dismiss modal sheet
             if UserDefaults.standard.bool(forKey: "didSeeTutorial") {
